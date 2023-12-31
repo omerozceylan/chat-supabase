@@ -45,7 +45,12 @@ export default function ProfileForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    supabase.auth.signUp(values);
+    supabase.auth.signUp({
+      ...values,
+      options: {
+        data: { username: values.username },
+      },
+    });
   }
   return (
     <div className="min-h-screen p-4 bg-black">
@@ -105,6 +110,7 @@ export default function ProfileForm() {
                   <Input
                     className="text-black"
                     placeholder="shadcn"
+                    type="password"
                     {...field}
                   />
                 </FormControl>
