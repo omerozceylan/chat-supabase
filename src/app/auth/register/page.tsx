@@ -93,9 +93,7 @@ export default function Register() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
+                <FormDescription>{" s"}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -114,9 +112,7 @@ export default function Register() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
+                <FormDescription> {" s"}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

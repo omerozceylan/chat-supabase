@@ -6,7 +6,7 @@ export default function Home() {
       <div className="flex flex-col gap-6">
         <div className="text-xl ">You have to register first</div>
         <Link href="/auth/register">
-          <button className="bg-red-500 px-1 py-1 text-lg hover:bg-red-200 hover:text-red-500 w-full">
+          <button className="bg-red-500 px-1 py-1 text-lg hover:bg-red-200 hover:text-red-500 w-full transition-all duration-400">
             Auth
           </button>
         </Link>
