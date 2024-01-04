@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 export default function Home() {
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getUser = async () => {
@@ -12,6 +13,7 @@ export default function Home() {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user);
+      setIsLoading(false);
     };
     getUser();
   }, []);
@@ -45,17 +47,26 @@ export default function Home() {
     ),
   };
 
-  console.log(user);
   return (
-    <div>
-      <div className="flex justify-between p-6">
-        Home
-        {user ? authActionButtons["loggedIn"] : authActionButtons["loggedOut"]}
-      </div>
-
-      <div className="px-6">
-        {user ? <div>{user.email}</div> : <div>user not found</div>}
-      </div>
-    </div>
+    <>
+      {isLoading && (
+        <div className="flex w-full h-screen items-center justify-center">
+          <div className="inline-block w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin duration-500"></div>
+        </div>
+      )}
+      {!isLoading && (
+        <>
+          <div className="flex justify-between p-6">
+            Home
+            {user
+              ? authActionButtons["loggedIn"]
+              : authActionButtons["loggedOut"]}
+          </div>
+          <div className="px-6">
+            {user ? <div>{user.email}</div> : <div>user not found</div>}
+          </div>
+        </>
+      )}
+    </>
   );
 }
