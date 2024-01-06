@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from "@/supabase/client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 export default function Home() {
   const [user, setUser] = useState();
@@ -46,21 +46,23 @@ export default function Home() {
       </div>
     ),
   };
-
+  const status = useMemo(() => {
+    return user
+      ? authActionButtons["loggedIn"]
+      : authActionButtons["loggedOut"];
+  }, [user]);
   return (
     <>
       {isLoading && (
         <div className="flex w-full h-screen items-center justify-center">
-          <div className="inline-block w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin duration-500"></div>
+          <div className="inline-block w-7 h-7 border-4 border-white/30 border-t-white rounded-full animate-spin duration-200"></div>
         </div>
       )}
       {!isLoading && (
         <>
           <div className="flex justify-between p-6">
             Home
-            {user
-              ? authActionButtons["loggedIn"]
-              : authActionButtons["loggedOut"]}
+            {status}
           </div>
           <div className="px-6">
             {user ? <div>{user.email}</div> : <div>user not found</div>}
