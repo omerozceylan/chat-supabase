@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function Home() {
   const [user, setUser] = useState();
   const [allMessages, setAllMessages] = useState();
+  const [isMessagesLoading, setIsMessagesLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Home() {
         .select("*");
       console.log(messages);
       setAllMessages(messages ? messages : error);
+      setIsMessagesLoading(false);
     };
     getAllMessages();
   }, []);
@@ -97,7 +99,12 @@ export default function Home() {
           <div className="px-6">
             {user ? <div>{user.email}</div> : <div>user not found</div>}
             <div className="mt-20 flex flex-col items-center gap-2 justify-center">
+              {isMessagesLoading && (
+                <div className="inline-block w-7 h-7 border-4 border-white/30 border-t-white rounded-full animate-spin duration-200"></div>
+              )}
+
               {allMessages &&
+                !isMessagesLoading &&
                 allMessages.map((message) => {
                   return (
                     <div key={message.id}>
