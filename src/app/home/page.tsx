@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 export default function Home() {
   const [user, setUser] = useState();
+  const [allMessages, setAllMessages] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,6 +17,15 @@ export default function Home() {
       setIsLoading(false);
     };
     getUser();
+
+    const getAllMessages = async () => {
+      let { data: messages, error } = await supabase
+        .from("messages")
+        .select("*");
+      console.log(messages);
+      setAllMessages(messages ? messages : error);
+    };
+    getAllMessages();
   }, []);
 
   // const handleLogOut = async () => {
@@ -51,6 +61,26 @@ export default function Home() {
       ? authActionButtons["loggedIn"]
       : authActionButtons["loggedOut"];
   }, [user]);
+
+  const handleInserts = (payload) => {
+    const { new: message, errors } = payload;
+    if (errors) {
+      alert(errors);
+      return;
+    }
+
+    setAllMessages([...allMessages, message]);
+  };
+
+  supabase
+    .channel("messages")
+    .on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "messages" },
+      handleInserts
+    )
+    .subscribe();
+
   return (
     <>
       {isLoading && (
@@ -66,6 +96,16 @@ export default function Home() {
           </div>
           <div className="px-6">
             {user ? <div>{user.email}</div> : <div>user not found</div>}
+            <div className="mt-20 flex flex-col items-center gap-2 justify-center">
+              {allMessages &&
+                allMessages.map((message) => {
+                  return (
+                    <div key={message.id}>
+                      {message.user_name}:{message.message}
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </>
       )}
