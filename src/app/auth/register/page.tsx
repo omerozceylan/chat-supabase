@@ -23,8 +23,8 @@ const formSchema = z.object({
     .min(2, {
       message: "Username must be at least 2 characters.",
     })
-    .max(10, {
-      message: "Username must be at least 10 characters.",
+    .max(16, {
+      message: "Username must be at least 16 characters.",
     }),
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
@@ -43,14 +43,14 @@ export default function Register() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    supabase.auth.signUp({
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { data, error } = await supabase.auth.signUp({
       ...values,
       options: {
         data: { username: values.username },
       },
     });
+    if (error) alert(error);
   }
   return (
     <div className="min-h-screen p-4 bg-black">

@@ -3,7 +3,11 @@
 import { supabase } from "@/supabase/client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
+  const [message, setMessage] = useState("");
   const [user, setUser] = useState();
   const [allMessages, setAllMessages] = useState();
   const [isMessagesLoading, setIsMessagesLoading] = useState(true);
@@ -83,6 +87,15 @@ export default function Home() {
     )
     .subscribe();
 
+  const handleMessageSending = async () => {
+    const currentUserName = await user?.user_metadata.username;
+    const { data, error } = await supabase
+      .from("messages")
+      .insert([{ message: message, user_name: currentUserName }])
+      .select();
+    if (error) alert(error);
+  };
+
   return (
     <>
       {isLoading && (
@@ -108,10 +121,21 @@ export default function Home() {
                 allMessages.map((message) => {
                   return (
                     <div key={message.id}>
-                      {message.user_name}:{message.message}
+                      {message.user_name}: {message.message}
                     </div>
                   );
                 })}
+              <div className="flex">
+                <Input
+                  alt="message-input"
+                  onChange={(event) => {
+                    setMessage(event.target.value);
+                  }}
+                  placeholder="enter your message here"
+                  className="text-black"
+                />
+                <Button onClick={handleMessageSending}>Send</Button>
+              </div>
             </div>
           </div>
         </>

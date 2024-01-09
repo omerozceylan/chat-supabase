@@ -37,8 +37,8 @@ export default function Login() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    supabase.auth.signInWithPassword(values);
+    const { error } = supabase.auth.signInWithPassword(values);
+    if (error) alert(error);
   }
   return (
     <div className="min-h-screen p-4 bg-black">
