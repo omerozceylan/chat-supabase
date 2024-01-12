@@ -8,7 +8,7 @@ async function fetchMessagesByRoomId(roomId: any) {
     .from("messages")
     .select("*")
     .eq("room_id", roomId)
-    .order("created_at", { ascending: false }); // Assuming you have a 'created_at' field
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.error("Error fetching messages", error);
