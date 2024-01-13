@@ -1,4 +1,4 @@
-import { SingleMessageViewTypes } from "../messagesType.d";
+import { SingleMessageViewTypes } from "../messagesType";
 
 export default function SingleMessageView({
   message,

@@ -22,7 +22,7 @@ async function fetchMessagesByRoomId(roomId: any) {
 export default function Room() {
   const [messages, setMessages] = useState([]);
 
-  async function someFunction() {
+  async function setFetchedMessages() {
     try {
       const messages = await fetchMessagesByRoomId(
         "cea9d03d-5812-4e36-80a3-82a5fdc7287f"
@@ -35,12 +35,14 @@ export default function Room() {
     }
   }
   useEffect(() => {
-    someFunction();
+    setFetchedMessages();
   }, []);
 
   return (
     <div>
-      <ChatContainer messages={messages} />
+      <button className="">Create a Room Just for You and Friends</button>
+
+      {/* <ChatContainer messages={messages} /> */}
     </div>
   );
 }
