@@ -1,48 +1,53 @@
 "use client";
 
 import { supabase } from "@/supabase/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChatContainer } from "@/components";
-
-async function fetchMessagesByRoomId(roomId: any) {
-  const { data: messages, error } = await supabase
-    .from("messages")
-    .select("*")
-    .eq("room_id", roomId)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error("Error fetching messages", error);
-    return [];
-  }
-
-  return messages;
-}
 
 export default function Room() {
-  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState();
+  const [userAttendedRooms, setUserAttendedRooms] = useState([]);
 
-  async function setFetchedMessages() {
-    try {
-      const messages = await fetchMessagesByRoomId(
-        "cea9d03d-5812-4e36-80a3-82a5fdc7287f"
-      );
-      setMessages(messages);
-      return messages;
-    } catch (error) {
-      console.error("Error fetching messages", error);
-      return [];
-    }
-  }
   useEffect(() => {
-    setFetchedMessages();
+    const getUserAndRooms = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      // setIsLoading(false);
+
+      const { data: rooms, error } = await supabase
+        .from("participants")
+        .select("*")
+        .eq("user_id", user.id);
+      setUserAttendedRooms(rooms);
+    };
+    getUserAndRooms();
   }, []);
 
-  return (
-    <div>
-      <button className="">Create a Room Just for You and Friends</button>
+  const createRoomAndInsertOwner = async () => {
+    const { data, error } = await supabase
+      .from("rooms")
+      .insert([{ some_column: "someValue", other_column: "otherValue" }])
+      .select();
+  };
 
-      {/* <ChatContainer messages={messages} /> */}
+  return (
+    <div className="min-h-screen">
+      <button onClick={createRoomAndInsertOwner} className="">
+        Create a Room Just for You and Friends
+      </button>
+      <div className="flex">
+        {userAttendedRooms.map((room) => (
+          <Link
+            key={room.id}
+            href={`/rooms/${room.id}`}
+            className="p-12 bg-slate-300 rounded-2xl cursor-pointer "
+          >
+            {room.id}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
