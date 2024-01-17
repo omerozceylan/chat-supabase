@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("min-h-screen ", fontSans.variable)}>{children}</body>
+      <body className={cn("min-h-screen bg-slate-300", fontSans.variable)}>
+        {children}
+      </body>
     </html>
   );
 }

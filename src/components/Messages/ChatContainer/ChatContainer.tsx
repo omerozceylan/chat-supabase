@@ -1,4 +1,4 @@
-export default function ChatContainer({ messages }) {
+export default function ChatContainer({ messages = [] }) {
   return (
     <div>
       {messages.map((data) => (
