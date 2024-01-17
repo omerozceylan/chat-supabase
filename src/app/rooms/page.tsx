@@ -15,8 +15,7 @@ export default function Room() {
       <div className=" min-h-screen">
         <RoomListContainer
           onItemClick={(id) => {
-            setActiveTabId(activeTabId);
-            console.log(id);
+            setActiveTabId(id);
           }}
         />
       </div>
