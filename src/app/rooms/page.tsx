@@ -9,7 +9,7 @@ import RoomListContainer from "@/components/Room/RoomListContainer/RoomListConta
 import { MessageContainer } from "@/components";
 
 export default function Room() {
-  const [activeTabId, setActiveTabId] = useState();
+  const [activeTabId, setActiveTabId] = useState(0);
   return (
     <div className="flex  min-h-screen">
       <div className=" min-h-screen">
@@ -17,6 +17,7 @@ export default function Room() {
           onItemClick={(id) => {
             setActiveTabId(id);
           }}
+          activeTabId={activeTabId}
         />
       </div>
       <div className="w-full">

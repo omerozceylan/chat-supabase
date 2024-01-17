@@ -6,10 +6,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChatContainer } from "@/components";
 
-export default function RoomListContainer({ onItemClick }) {
+export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
 
+  console.log("active tabbbbb", activeTabId);
   useEffect(() => {
     const getUserAndRooms = async () => {
       const {
@@ -40,7 +41,11 @@ export default function RoomListContainer({ onItemClick }) {
                 onItemClick(room.id);
               }}
             >
-              <RoomCard roomName={room.rooms.room_name} id={room.id} />
+              <RoomCard
+                activeTabId={activeTabId}
+                roomName={room.rooms.room_name}
+                id={room.id}
+              />
             </div>
           );
         })}
