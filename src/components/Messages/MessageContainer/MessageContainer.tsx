@@ -7,6 +7,7 @@ import { ChatContainer } from "@/components";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export default function MessageContainer({ activeTabId }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [roomId, setRoomId] = useState();
   const pathName = usePathname();
@@ -22,6 +23,7 @@ export default function MessageContainer({ activeTabId }) {
   };
 
   const fetchMessages = async (roomId: any) => {
+    setIsLoading(true);
     const { data: messages, error } = await supabase
       .from("messages")
       .select("*")
@@ -33,18 +35,27 @@ export default function MessageContainer({ activeTabId }) {
     }
     console.log(messages);
     setMessages(messages);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchMessagesByParticipantsId(activeTabId);
+    if (activeTabId) fetchMessagesByParticipantsId(activeTabId);
   }, [activeTabId]);
 
   return (
-    <div className="bg-white min-h-screen text-black ">
-      {activeTabId ? (
-        <ChatContainer messages={messages} />
+    <div>
+      {isLoading ? (
+        <div className="flex w-full h-screen items-center justify-center bg-white">
+          <div className="inline-block w-7 h-7 border-4 border-white/30 border-t-black rounded-full animate-spin duration-200"></div>
+        </div>
       ) : (
-        <div>Start talking !</div>
+        <div className="bg-white min-h-screen text-black ">
+          {activeTabId ? (
+            <ChatContainer messages={messages} />
+          ) : (
+            <div>Start talking !</div>
+          )}
+        </div>
       )}
     </div>
   );
