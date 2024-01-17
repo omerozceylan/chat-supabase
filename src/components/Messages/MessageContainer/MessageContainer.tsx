@@ -6,11 +6,11 @@ import { ChatContainer } from "@/components";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-export default function MessageContainer() {
+export default function MessageContainer({ activeTabId }) {
   const [messages, setMessages] = useState([]);
   const [roomId, setRoomId] = useState();
   const pathName = usePathname();
-  const id = pathName.split("/").reverse()[0];
+  // const id = pathName.split("/").reverse()[0];
 
   const fetchMessagesByParticipantsId = async (id) => {
     const { data, error } = await supabase
@@ -31,12 +31,18 @@ export default function MessageContainer() {
       console.error("Error fetching messages", error);
       return [];
     }
+    console.log(messages);
     setMessages(messages);
   };
 
   useEffect(() => {
-    fetchMessagesByParticipantsId(id);
-  }, []);
+    fetchMessagesByParticipantsId(activeTabId);
+  }, [activeTabId]);
 
-  return <div>{<ChatContainer messages={messages} />}</div>;
+  return (
+    <div className="bg-white min-h-screen text-black">
+      <div>fadsfs</div>
+      {<ChatContainer messages={messages} />}
+    </div>
+  );
 }

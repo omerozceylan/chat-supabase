@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChatContainer } from "@/components";
 
-export default function RoomListContainer() {
+export default function RoomListContainer({ onItemClick }) {
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
 
@@ -28,12 +28,20 @@ export default function RoomListContainer() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-3">
+    <div className=" bg-zinc-50 p-3 min-h-screen">
       <div className="">
         <div className="">
           {userAttendedRooms.map((room) => {
-            console.log(room);
-            return <RoomCard roomName={room.rooms.room_name} id={room.id} />;
+            return (
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  onItemClick(room.id);
+                }}
+              >
+                <RoomCard roomName={room.rooms.room_name} id={room.id} />
+              </div>
+            );
           })}
         </div>
       </div>
