@@ -40,9 +40,12 @@ export default function MessageContainer({ activeTabId }) {
   }, [activeTabId]);
 
   return (
-    <div className="bg-white min-h-screen text-black">
-      <div>fadsfs</div>
-      {<ChatContainer messages={messages} />}
+    <div className="bg-white min-h-screen text-black ">
+      {activeTabId ? (
+        <ChatContainer messages={messages} />
+      ) : (
+        <div>Start talking !</div>
+      )}
     </div>
   );
 }

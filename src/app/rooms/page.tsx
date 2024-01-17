@@ -11,8 +11,8 @@ import { MessageContainer } from "@/components";
 export default function Room() {
   const [activeTabId, setActiveTabId] = useState();
   return (
-    <div className="grid grid-cols-10 min-h-screen">
-      <div className="col-span-3 min-h-screen">
+    <div className="flex  min-h-screen">
+      <div className=" min-h-screen">
         <RoomListContainer
           onItemClick={(id) => {
             setActiveTabId(activeTabId);
@@ -20,7 +20,7 @@ export default function Room() {
           }}
         />
       </div>
-      <div className="col-span-7">
+      <div className="w-full">
         <MessageContainer activeTabId={activeTabId} />
       </div>
     </div>

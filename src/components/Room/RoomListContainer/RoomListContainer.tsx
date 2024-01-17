@@ -28,22 +28,22 @@ export default function RoomListContainer({ onItemClick }) {
   }, []);
 
   return (
-    <div className=" bg-zinc-50 p-3 min-h-screen">
-      <div className="">
-        <div className="">
-          {userAttendedRooms.map((room) => {
-            return (
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  onItemClick(room.id);
-                }}
-              >
-                <RoomCard roomName={room.rooms.room_name} id={room.id} />
-              </div>
-            );
-          })}
-        </div>
+    <div className="bg-zinc-50 text-black min-h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">
+      {/* <div className=" font-bold text-lg p-3 pb-1 pl-4">Rooms</div> */}
+
+      <div className=" p-3 ">
+        {userAttendedRooms.map((room) => {
+          return (
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                onItemClick(room.id);
+              }}
+            >
+              <RoomCard roomName={room.rooms.room_name} id={room.id} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
