@@ -39,7 +39,11 @@ export default function MessageContainer({ activeTabId }) {
   };
 
   useEffect(() => {
-    if (activeTabId) fetchMessagesByParticipantsId(activeTabId);
+    if (activeTabId) {
+      fetchMessagesByParticipantsId(activeTabId);
+    } else {
+      setIsLoading(false);
+    }
   }, [activeTabId]);
 
   return (
