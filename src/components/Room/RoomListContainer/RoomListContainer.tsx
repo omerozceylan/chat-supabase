@@ -13,7 +13,6 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("active tabbbbb", activeTabId);
   useEffect(() => {
     const getUserAndRooms = async () => {
       const {

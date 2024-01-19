@@ -9,12 +9,14 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
+  const [currentRoomId, setCurrentRoomId] = useState();
 
   const fetchMessagesByParticipantsId = async (id) => {
     const { data, error } = await supabase
       .from("participants")
       .select("*")
       .eq("id", id);
+    setCurrentRoomId(data[0].room_id);
     fetchMessages(data[0].room_id);
   };
 
@@ -32,6 +34,23 @@ export default function MessageContainer({ activeTabId }) {
     setMessages(messages);
     setIsLoading(false);
   };
+  console.log("current room id " + currentRoomId);
+  supabase
+    .channel("messages")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: `room_id=eq.${currentRoomId}`,
+      },
+      ({ new: data }) => {
+        setMessages([...messages, data]);
+        console.log(messages);
+      }
+    )
+    .subscribe();
 
   useEffect(() => {
     if (activeTabId) {
