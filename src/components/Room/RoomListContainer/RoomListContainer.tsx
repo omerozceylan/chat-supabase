@@ -6,6 +6,7 @@ import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChatContainer } from "@/components";
+import { UserCard } from "@/components";
 
 export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [user, setUser] = useState();
@@ -37,7 +38,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
         <CiSquarePlus className="cursor-pointer" />
       </div>
 
-      <div className=" p-3 ">
+      <div className="p-3 flex flex-col">
         {userAttendedRooms.map((room) => {
           return (
             <div
@@ -54,6 +55,9 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
             </div>
           );
         })}
+      </div>
+      <div className="mt-auto p-3">
+        <UserCard />
       </div>
     </div>
   );

@@ -2,4 +2,12 @@ import { SingleMessageView, ChatContainer, MessageContainer } from "./Messages";
 
 import { RoomCard } from "./Room";
 
-export { RoomCard, SingleMessageView, ChatContainer, MessageContainer };
+import { UserCard } from "./auth";
+
+export {
+  RoomCard,
+  SingleMessageView,
+  ChatContainer,
+  MessageContainer,
+  UserCard,
+};
