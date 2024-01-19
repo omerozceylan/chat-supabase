@@ -9,9 +9,6 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [roomId, setRoomId] = useState();
-  const pathName = usePathname();
-  // const id = pathName.split("/").reverse()[0];
 
   const fetchMessagesByParticipantsId = async (id) => {
     const { data, error } = await supabase
@@ -19,7 +16,6 @@ export default function MessageContainer({ activeTabId }) {
       .select("*")
       .eq("id", id);
     fetchMessages(data[0].room_id);
-    // setRoomId(data[0].room_id);
   };
 
   const fetchMessages = async (roomId: any) => {
@@ -33,7 +29,6 @@ export default function MessageContainer({ activeTabId }) {
       console.error("Error fetching messages", error);
       return [];
     }
-    console.log(messages);
     setMessages(messages);
     setIsLoading(false);
   };
@@ -48,7 +43,7 @@ export default function MessageContainer({ activeTabId }) {
 
   return (
     <div>
-      <Spin isLoading={isLoading} />
+      <Spin isLoading={isLoading} bgColor="bg-white" />
 
       {!isLoading && (
         <div className="bg-white min-h-screen text-black p-6 pt-4 ">
