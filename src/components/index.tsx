@@ -1,4 +1,9 @@
-import { SingleMessageView, MessageView, MessageContainer } from "./Messages";
+import {
+  SingleMessageView,
+  MessageView,
+  MessageContainer,
+  MessageInputContainer,
+} from "./Messages";
 
 import { RoomCard } from "./Room";
 
@@ -13,4 +18,5 @@ export {
   MessageContainer,
   UserCard,
   Spin,
+  MessageInputContainer,
 };

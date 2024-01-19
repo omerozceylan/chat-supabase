@@ -3,8 +3,7 @@ import { FaRegMessage } from "react-icons/fa6";
 
 export default function RoomCard({ roomName, id, activeTabId }) {
   const isActive = id == activeTabId;
-  console.log(isActive);
-  console.log("id : ", id, "activeTabId: ", activeTabId);
+
   return (
     <div
       className={`flex items-center text-black gap-3  rounded-lg p-2 hover:bg-gray-200 ${

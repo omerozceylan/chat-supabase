@@ -2,9 +2,7 @@
 
 import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
-import { MessageView, Spin } from "@/components";
-
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { MessageView, MessageInputContainer, Spin } from "@/components";
 
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +32,7 @@ export default function MessageContainer({ activeTabId }) {
     setMessages(messages);
     setIsLoading(false);
   };
-  console.log("current room id " + currentRoomId);
+
   supabase
     .channel("messages")
     .on(
@@ -47,7 +45,6 @@ export default function MessageContainer({ activeTabId }) {
       },
       ({ new: data }) => {
         setMessages([...messages, data]);
-        console.log(messages);
       }
     )
     .subscribe();
@@ -61,11 +58,10 @@ export default function MessageContainer({ activeTabId }) {
   }, [activeTabId]);
 
   return (
-    <div>
+    <div className=" min-h-screen text-black p-6 pt-4 bg-white flex flex-col justify-between">
       <Spin isLoading={isLoading} bgColor="bg-white" />
-
       {!isLoading && (
-        <div className="bg-white min-h-screen text-black p-6 pt-4 ">
+        <div className="">
           {activeTabId ? (
             <MessageView messages={messages} />
           ) : (
@@ -73,6 +69,8 @@ export default function MessageContainer({ activeTabId }) {
           )}
         </div>
       )}
+
+      <MessageInputContainer />
     </div>
   );
 }
