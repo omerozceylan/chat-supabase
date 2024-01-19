@@ -2,7 +2,7 @@
 
 import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
-import { ChatContainer } from "@/components";
+import { MessageView, Spin } from "@/components";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
@@ -48,14 +48,12 @@ export default function MessageContainer({ activeTabId }) {
 
   return (
     <div>
-      {isLoading ? (
-        <div className="flex w-full h-screen items-center justify-center bg-white">
-          <div className="inline-block w-7 h-7 border-4 border-white/30 border-t-black rounded-full animate-spin duration-200"></div>
-        </div>
-      ) : (
-        <div className="bg-white min-h-screen text-black ">
+      <Spin isLoading={isLoading} />
+
+      {!isLoading && (
+        <div className="bg-white min-h-screen text-black p-6 pt-4 ">
           {activeTabId ? (
-            <ChatContainer messages={messages} />
+            <MessageView messages={messages} />
           ) : (
             <div>Start talking !</div>
           )}

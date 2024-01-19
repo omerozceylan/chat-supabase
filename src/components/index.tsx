@@ -1,13 +1,16 @@
-import { SingleMessageView, ChatContainer, MessageContainer } from "./Messages";
+import { SingleMessageView, MessageView, MessageContainer } from "./Messages";
 
 import { RoomCard } from "./Room";
 
-import { UserCard } from "./auth";
+import { UserCard } from "./Auth";
+
+import Spin from "./Loading/Spin";
 
 export {
   RoomCard,
   SingleMessageView,
-  ChatContainer,
+  MessageView,
   MessageContainer,
   UserCard,
+  Spin,
 };

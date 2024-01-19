@@ -1,16 +1,17 @@
 "use client";
 
-import { RoomCard } from "@/components";
+import { RoomCard, Spin } from "@/components";
 import { supabase } from "@/supabase/client";
 import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChatContainer } from "@/components";
+
 import { UserCard } from "@/components";
 
 export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log("active tabbbbb", activeTabId);
   useEffect(() => {
@@ -19,13 +20,16 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user); //contextttt
-      // setIsLoading(false);
-
+      if (!user) {
+        setIsLoading(false);
+        return;
+      }
       const { data: rooms, error } = await supabase
         .from("participants")
         .select("*, rooms(*)")
         .eq("user_id", user.id);
       setUserAttendedRooms(rooms);
+      setIsLoading(false);
     };
     getUserAndRooms();
   }, []);
@@ -37,25 +41,31 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
 
         <CiSquarePlus className="cursor-pointer" />
       </div>
+      {!user && !isLoading && (
+        <div>You must be logged in to reach your rooms.</div>
+      )}
+      <Spin isLoading={isLoading} />
+      {!isLoading && (
+        <div className="p-3 flex flex-col">
+          {userAttendedRooms.map((room) => {
+            return (
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  onItemClick(room.id);
+                }}
+              >
+                <RoomCard
+                  activeTabId={activeTabId}
+                  roomName={room.rooms.room_name}
+                  id={room.id}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
 
-      <div className="p-3 flex flex-col">
-        {userAttendedRooms.map((room) => {
-          return (
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                onItemClick(room.id);
-              }}
-            >
-              <RoomCard
-                activeTabId={activeTabId}
-                roomName={room.rooms.room_name}
-                id={room.id}
-              />
-            </div>
-          );
-        })}
-      </div>
       <div className="mt-auto p-3">
         <UserCard />
       </div>
