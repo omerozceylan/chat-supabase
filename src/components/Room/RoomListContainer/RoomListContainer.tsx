@@ -6,7 +6,9 @@ import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { UserCard } from "@/components";
+// import { UserCard } from "@/components";
+
+type Props = { onItemClick; activeTabId };
 
 export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [user, setUser] = useState();
@@ -31,6 +33,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
       setIsLoading(false);
     };
     getUserAndTheirRooms();
+    //can be convert hook
   }, []);
 
   return (
@@ -65,9 +68,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
         </div>
       )}
 
-      <div className="mt-auto p-3">
-        <UserCard />
-      </div>
+      {/* <div className="mt-auto p-3"><UserCard /></div> */}
     </div>
   );
 }
