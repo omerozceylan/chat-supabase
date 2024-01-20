@@ -1,6 +1,6 @@
 export default function MessageView({ messages = [] }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       {messages.map((data) => {
         return (
           <div className="flex items-center">

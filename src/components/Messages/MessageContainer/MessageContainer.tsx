@@ -85,23 +85,26 @@ export default function MessageContainer({ activeTabId }) {
   };
 
   return (
-    <div className=" min-h-screen text-black p-6 pt-4 bg-white flex flex-col justify-between">
-      <Spin isLoading={isLoading} bgColor="bg-white" />
-      {!isLoading && (
-        <div className="">
-          {activeTabId ? (
-            <MessageView messages={messages} />
-          ) : (
-            <div>Start talking !</div>
-          )}
-        </div>
-      )}
-
-      <MessageInputContainer
-        onSubmit={(message) => {
-          handleMessageSending(message);
-        }}
-      />
+    <div className="  text-black p-6 pt-4 bg-white flex h-screen flex-col justify-between">
+      <div className="overflow-auto h-full">
+        <Spin isLoading={isLoading} bgColor="bg-white" />
+        {!isLoading && (
+          <div className="">
+            {activeTabId ? (
+              <MessageView messages={messages} />
+            ) : (
+              <div>Start talking !</div>
+            )}
+          </div>
+        )}
+      </div>
+      <div className="">
+        <MessageInputContainer
+          onSubmit={(message) => {
+            handleMessageSending(message);
+          }}
+        />
+      </div>
     </div>
   );
 }
