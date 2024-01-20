@@ -57,6 +57,33 @@ export default function MessageContainer({ activeTabId }) {
     }
   }, [activeTabId]);
 
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+  }, []);
+
+  const handleMessageSending = async (message) => {
+    const currentUserName = await user?.user_metadata.username;
+    const { data, error } = await supabase
+      .from("messages")
+      .insert([
+        {
+          message: message,
+          user_name: currentUserName,
+          room_id: currentRoomId,
+        },
+      ])
+      .select();
+    if (error) alert(error);
+  };
+
   return (
     <div className=" min-h-screen text-black p-6 pt-4 bg-white flex flex-col justify-between">
       <Spin isLoading={isLoading} bgColor="bg-white" />
@@ -72,7 +99,7 @@ export default function MessageContainer({ activeTabId }) {
 
       <MessageInputContainer
         onSubmit={(message) => {
-          console.log(message);
+          handleMessageSending(message);
         }}
       />
     </div>

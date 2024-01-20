@@ -14,7 +14,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getUserAndRooms = async () => {
+    const getUserAndTheirRooms = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
@@ -30,7 +30,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
       setUserAttendedRooms(rooms);
       setIsLoading(false);
     };
-    getUserAndRooms();
+    getUserAndTheirRooms();
   }, []);
 
   return (
