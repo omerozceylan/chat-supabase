@@ -85,11 +85,13 @@ export default function MessageContainer({ activeTabId }) {
   };
 
   return (
-    <div className="  text-black p-6 pt-4 bg-white flex h-screen flex-col justify-between">
-      <div className="overflow-auto h-full">
+    <div className="  text-black p-6 pt-0 bg-white flex h-screen flex-col justify-between">
+      <div className="overflow-auto pb-6 h-full">
         <Spin isLoading={isLoading} bgColor="bg-white" />
         {!isLoading && (
           <div className="">
+            <div className="flex w-full justify-center py-3 text-sm font-light"></div>
+
             {activeTabId ? (
               <MessageView messages={messages} />
             ) : (

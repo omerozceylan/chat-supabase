@@ -7,7 +7,7 @@ export default function MessageView({ messages = [] }) {
             <div className="text-white bg-black rounded-2xl w-8 h-8 flex justify-center items-center">
               {data.user_name.charAt(0)}
             </div>
-            <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+            <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl max-w-[50%] whitespace-normal break-words">
               {data.message}
             </span>
           </div>
