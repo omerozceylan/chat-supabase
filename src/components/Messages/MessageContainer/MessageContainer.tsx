@@ -23,8 +23,7 @@ export default function MessageContainer({ activeTabId }) {
     const { data: messages, error } = await supabase
       .from("messages")
       .select("*")
-      .eq("room_id", roomId)
-      .order("created_at", { ascending: false });
+      .eq("room_id", roomId);
     if (error) {
       console.error("Error fetching messages", error);
       return [];
