@@ -41,12 +41,12 @@ export default function Login() {
     if (error) alert(error);
   }
   return (
-    <div className="min-h-screen p-4 bg-black">
+    <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
       {" "}
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 bg-black text-white"
+          className="space-y-8 bg-white text-black p-4 w-80 rounded-lg border "
         >
           <FormField
             control={form.control}
@@ -57,7 +57,7 @@ export default function Login() {
                 <FormControl>
                   <Input
                     className="text-black"
-                    placeholder="shadcn"
+                    placeholder="email"
                     {...field}
                   />
                 </FormControl>
@@ -75,7 +75,7 @@ export default function Login() {
                 <FormControl>
                   <Input
                     className="text-black"
-                    placeholder="shadcn"
+                    placeholder="password"
                     type="password"
                     {...field}
                   />
