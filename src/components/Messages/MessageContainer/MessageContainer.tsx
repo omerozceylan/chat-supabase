@@ -29,6 +29,7 @@ export default function MessageContainer({ activeTabId }) {
       console.error("Error fetching messages", error);
       return [];
     }
+    // console.log(messages);
     setMessages(messages);
     setIsLoading(false);
   };
@@ -90,10 +91,10 @@ export default function MessageContainer({ activeTabId }) {
         <Spin isLoading={isLoading} bgColor="bg-white" />
         {!isLoading && (
           <div className="">
-            <div className="flex w-full justify-center py-3 text-sm font-light"></div>
+            <div className="flex  justify-center py-3 text-sm font-light"></div>
 
             {activeTabId ? (
-              <MessageView messages={messages} />
+              <MessageView user={user} messages={messages} />
             ) : (
               <div>Start talking !</div>
             )}
