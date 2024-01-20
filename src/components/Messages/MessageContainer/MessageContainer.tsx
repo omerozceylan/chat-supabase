@@ -70,7 +70,11 @@ export default function MessageContainer({ activeTabId }) {
         </div>
       )}
 
-      <MessageInputContainer />
+      <MessageInputContainer
+        onSubmit={(message) => {
+          console.log(message);
+        }}
+      />
     </div>
   );
 }

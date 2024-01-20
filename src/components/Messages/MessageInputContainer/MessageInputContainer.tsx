@@ -1,16 +1,32 @@
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 
-export default function MessageInputContainer() {
+export default function MessageInputContainer({ onSubmit }: any) {
+  const [message, setMessage] = useState(null);
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit(message);
+      }}
+    >
       <div className="flex gap-2 items-cente h-10">
-        <Input placeholder="your message" />
+        <Input
+          placeholder="your message"
+          onChange={(event) => {
+            const message = event.target.value;
+            setMessage(message);
+          }}
+        />
 
-        <button className="text-white focus:outline-none   font-medium rounded-md text-sm px-5 py-2.5 me-2 mb-2 bg-gray-800 hover:bg-gray-700  border-gray-700 h-full">
-          <RiSendPlaneFill className="" />
+        <button
+          type="submit"
+          className="text-white focus:outline-none   font-medium rounded-md text-sm px-5 py-2.5 me-2 mb-2 bg-gray-800 hover:bg-gray-700  border-gray-700 h-full"
+        >
+          <RiSendPlaneFill />
         </button>
       </div>
-    </>
+    </form>
   );
 }
