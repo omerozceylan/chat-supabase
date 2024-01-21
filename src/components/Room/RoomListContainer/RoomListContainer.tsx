@@ -5,33 +5,50 @@ import { supabase } from "@/supabase/client";
 import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FiPlusSquare } from "react-icons/fi";
 
-// import { UserCard } from "@/components";
+import { UserCard } from "@/components";
 
-type Props = { onItemClick; activeTabId };
-
-export default function RoomListContainer({ onItemClick, activeTabId }) {
+export default function RoomListContainer({ onItemClick, activeTabId }: any) {
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const getUserAndTheirRooms = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user); //contextttt
-      if (!user) {
-        setIsLoading(false);
-        return;
-      }
-      const { data: rooms, error } = await supabase
-        .from("participants")
-        .select("*, rooms(*)")
-        .eq("user_id", user.id);
-      setUserAttendedRooms(rooms);
+  const getUserAndTheirRooms = async () => {
+    setIsLoading(true);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    setUser(user); //contextttt
+    if (!user) {
       setIsLoading(false);
-    };
+      return;
+    }
+    const { data: rooms, error } = await supabase
+      .from("participants")
+      .select("*, rooms(*)")
+      .eq("user_id", user.id);
+    setUserAttendedRooms(rooms);
+    setIsLoading(false);
+  };
+
+  async function addRoom(roomName) {
+    const { data, error } = await supabase
+      .from("rooms")
+      .insert([{ room_name: roomName }])
+      .select();
+
+    relationUserToRoom(data[0].id);
+    getUserAndTheirRooms();
+  }
+
+  async function relationUserToRoom(roomId) {
+    const { data, error } = await supabase
+      .from("participants")
+      .insert([{ room_id: roomId, user_id: user.id }]);
+  }
+
+  useEffect(() => {
     getUserAndTheirRooms();
     //can be convert hook
   }, []);
@@ -40,8 +57,10 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
     <div className="bg-zinc-50 text-black min-h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">
       <div className=" font-semibold text-lg p-4 pb-1 flex justify-between items-center">
         <span>Rooms You Attended</span>
-
-        <CiSquarePlus className="cursor-pointer" />
+        <FiPlusSquare
+          onClick={() => addRoom("room #?")}
+          className="cursor-pointer"
+        />
       </div>
       {!user && !isLoading && (
         <div>You must be logged in to reach your rooms.</div>
@@ -52,6 +71,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
           {userAttendedRooms.map((room) => {
             return (
               <div
+                key={room.id}
                 className="cursor-pointer"
                 onClick={() => {
                   onItemClick(room.id);
@@ -68,7 +88,9 @@ export default function RoomListContainer({ onItemClick, activeTabId }) {
         </div>
       )}
 
-      {/* <div className="mt-auto p-3"><UserCard /></div> */}
+      <div className="mt-auto p-3">
+        <UserCard />
+      </div>
     </div>
   );
 }

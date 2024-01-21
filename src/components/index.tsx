@@ -7,7 +7,7 @@ import {
 
 import { RoomCard } from "./Room";
 
-// import { UserCard } from "./Auth";
+import { UserCard } from "./Auth";
 
 import Spin from "./Loading/Spin";
 
@@ -16,7 +16,7 @@ export {
   SingleMessageView,
   MessageView,
   MessageContainer,
-  // UserCard,
+  UserCard,
   Spin,
   MessageInputContainer,
 };

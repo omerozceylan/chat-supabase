@@ -1,15 +1,17 @@
 "use client";
-
+// import { css } from '@emotion/react'
+// import ScrollToBottom from "react-scroll-to-bottom";
 import { supabase } from "@/supabase/client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState();
+  const messageContainerRef = useRef(null);
 
-  const fetchMessagesByParticipantsId = async (id) => {
+  const fetchRoomByParticipantsId = async (id) => {
     const { data, error } = await supabase
       .from("participants")
       .select("*")
@@ -51,7 +53,7 @@ export default function MessageContainer({ activeTabId }) {
 
   useEffect(() => {
     if (activeTabId) {
-      fetchMessagesByParticipantsId(activeTabId);
+      fetchRoomByParticipantsId(activeTabId);
     } else {
       setIsLoading(false);
     }
@@ -84,12 +86,31 @@ export default function MessageContainer({ activeTabId }) {
     if (error) alert(error);
   };
 
+  function scrollToBottom() {
+    window.scrollTo({
+      top: messageContainerHeight(),
+      behavior: "smooth",
+    });
+    // console.log("scroll edildi");
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+
+    console.log("scroll edildi: ", messageContainerHeight());
+  }, [messages]);
+
+  const messageContainerHeight = () => {
+    if (!messageContainerRef.current) return 0;
+    return messageContainerRef.current.scrollHeight;
+  };
+
   return (
     <div className="  text-black p-6 pt-0 bg-white flex h-screen flex-col justify-between">
-      <div className="overflow-auto pb-6 h-full">
+      <div ref={messageContainerRef} className="overflow-auto pb-6 h-full">
         <Spin isLoading={isLoading} bgColor="bg-white" />
         {!isLoading && (
-          <div className="">
+          <div>
             <div className="flex  justify-center py-3 text-sm font-light"></div>
 
             {activeTabId ? (
