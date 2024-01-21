@@ -48,6 +48,8 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
       .insert([{ room_id: roomId, user_id: user.id }]);
   }
 
+  async function editRoomName() {}
+
   useEffect(() => {
     getUserAndTheirRooms();
     //can be convert hook
