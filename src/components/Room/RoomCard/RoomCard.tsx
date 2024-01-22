@@ -10,10 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 
 export default function RoomCard({ roomName, id, activeTabId }) {
   const isActive = id == activeTabId;
-
+  const [isEditing, setIsEditing] = useState(false);
   return (
     <div
       className={`flex items-center text-black gap-3 group rounded-lg p-2  hover:bg-gray-200 ${

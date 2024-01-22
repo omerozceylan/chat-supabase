@@ -2,7 +2,7 @@ export default function MessageView({ user, messages = [] }) {
   const currentUserName = user.user_metadata.username;
 
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 p-4 pl-7 h-full overflow-y-auto">
       {messages.map((data) => {
         const isOwner = data.user_name == currentUserName;
 
@@ -18,12 +18,13 @@ export default function MessageView({ user, messages = [] }) {
             >
               {data.user_name.charAt(0)}
             </div>
-            <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px]">
+            <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80	">
               {data.message}
             </span>
           </div>
         );
       })}
+      {/* <div className="h-4 w-4 bg-white p-2"></div> */}
     </div>
   );
 }

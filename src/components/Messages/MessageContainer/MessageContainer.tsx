@@ -4,18 +4,22 @@
 import { supabase } from "@/supabase/client";
 import { useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
+import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
 
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState();
+  const [currentRoomName, setCurrentRoomName] = useState();
+
   const messageContainerRef = useRef(null);
 
   const fetchRoomByParticipantsId = async (id) => {
     const { data, error } = await supabase
       .from("participants")
-      .select("*")
+      .select("*,rooms(*)")
       .eq("id", id);
+    setCurrentRoomName(data[0].rooms.room_name);
     setCurrentRoomId(data[0].room_id);
     fetchMessages(data[0].room_id);
   };
@@ -106,28 +110,65 @@ export default function MessageContainer({ activeTabId }) {
   };
 
   return (
-    <div className="  text-black p-6 pt-0 bg-white flex h-screen flex-col justify-between">
-      <div ref={messageContainerRef} className="overflow-auto pb-6 h-full">
-        <Spin isLoading={isLoading} bgColor="bg-white" />
-        {!isLoading && (
-          <div>
-            <div className="flex  justify-center py-3 text-sm font-light"></div>
+    <div className="bg-white h-full">
+      {!isLoading && (
+        <div className="bg-white text-black h-screen flex flex-col">
+          <Spin isLoading={isLoading} bgColor="bg-white" />
 
+          <div className="h-24">
+            {currentRoomName && (
+              <RoomDetailSection currentRoomName={currentRoomName} />
+            )}
+          </div>
+          <div className=" py-1  h-full overflow-hidden">
             {activeTabId ? (
               <MessageView user={user} messages={messages} />
             ) : (
               <div>Start talking !</div>
-            )}
+            )}{" "}
+          </div>
+
+          <div className="bg-white p-6 pt-1 mt-2">
+            <MessageInputContainer
+              onSubmit={(message) => {
+                handleMessageSending(message);
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+{
+  /* <div className="  text-black  pt-0 bg-white flex h-screen flex-col justify-between">
+      <div ref={messageContainerRef} className="overflow-auto pb-6 h-full">
+        <Spin isLoading={isLoading} bgColor="bg-white" />
+        {!isLoading && (
+          <div className="flex justify-between flex-col">
+            <div className="h-24 ">
+              {currentRoomName && (
+                <RoomDetailSection currentRoomName={currentRoomName} />
+              )}
+            </div>
+            <div className="flex  justify-center py-3 text-sm font-light h-[60px]"></div>
+            <div className="px-6 pb-0 h-full">
+              {activeTabId ? (
+                <MessageView user={user} messages={messages} />
+              ) : (
+                <div>Start talking !</div>
+              )}
+            </div>
           </div>
         )}
       </div>
-      <div className="">
+      <div className="p-6 pt-1">
         <MessageInputContainer
           onSubmit={(message) => {
             handleMessageSending(message);
           }}
         />
       </div>
-    </div>
-  );
+    </div> */
 }
