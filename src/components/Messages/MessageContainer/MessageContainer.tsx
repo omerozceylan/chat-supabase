@@ -117,7 +117,10 @@ export default function MessageContainer({ activeTabId }) {
 
           <div className="h-24">
             {currentRoomName && (
-              <RoomDetailSection currentRoomName={currentRoomName} />
+              <RoomDetailSection
+                roomId={currentRoomId}
+                currentRoomName={currentRoomName}
+              />
             )}
           </div>
           <div className=" py-1  h-full overflow-hidden">

@@ -3,9 +3,13 @@ import { PiDotsThreeBold } from "react-icons/pi";
 import { FaCheckCircle } from "react-icons/fa";
 import { TbEdit } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
+import { useRef } from "react";
+import { supabase } from "@/supabase/client";
 
-export default function RoomDetailSection({ currentRoomName }) {
+export default function RoomDetailSection({ currentRoomName, roomId }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(currentRoomName);
+  const editableAreaRef = useRef(null);
 
   const isEditingButtonVariants = {
     false: (
@@ -21,6 +25,7 @@ export default function RoomDetailSection({ currentRoomName }) {
         <FaCheckCircle
           className="hover:text-green-900 text-green-700"
           onClick={() => {
+            handleSubmitNewRoomName();
             setIsEditing(false);
           }}
         />
@@ -37,6 +42,20 @@ export default function RoomDetailSection({ currentRoomName }) {
     ),
   };
 
+  const handleSubmitNewRoomName = async () => {
+    if (!editableAreaRef.current) return;
+    const text = editableAreaRef.current.innerText;
+    setValue(text);
+
+    const { data, error } = await supabase
+      .from("rooms")
+      .update({ room_name: text })
+      .eq("id", roomId)
+      .select();
+
+    console.log(data, error);
+  };
+
   return (
     <div className=" border-b  z-20 px-6 font-semibold text-md bg-white p-4">
       <div className="flex items-center justify-between">
@@ -46,7 +65,10 @@ export default function RoomDetailSection({ currentRoomName }) {
             isEditing ? "hover:bg-white" : "hover:bg-zinc-100"
           } group transition-all flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
         >
-          <span className={` ${isEditing ? `border-b-2 border-black` : ``}`}>
+          <span
+            ref={editableAreaRef}
+            className={` ${isEditing ? `border-b-2 border-black` : ``}`}
+          >
             {currentRoomName}
           </span>
 
