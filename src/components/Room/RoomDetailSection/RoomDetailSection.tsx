@@ -19,7 +19,7 @@ export default function RoomDetailSection({ currentRoomName }) {
     true: (
       <div contentEditable="false" className="flex items-center gap-2">
         <FaCheckCircle
-          className="text-green-500 hover:text-green-700"
+          className="hover:text-green-900 text-green-700"
           onClick={() => {
             setIsEditing(false);
           }}
@@ -28,7 +28,7 @@ export default function RoomDetailSection({ currentRoomName }) {
           onClick={() => {
             setIsEditing(false);
           }}
-          className="flex items-center text-sm rounded-lg border px-2"
+          className="flex items-center text-sm select-none rounded-lg border px-2"
         >
           <IoClose className="text-md" />
           Cancel
@@ -46,7 +46,9 @@ export default function RoomDetailSection({ currentRoomName }) {
             isEditing ? "hover:bg-white" : "hover:bg-zinc-100"
           } group transition-all flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
         >
-          <span>{currentRoomName}</span>
+          <span className={` ${isEditing ? `border-b-2 border-black` : ``}`}>
+            {currentRoomName}
+          </span>
 
           <span> {isEditingButtonVariants[isEditing]}</span>
         </span>
