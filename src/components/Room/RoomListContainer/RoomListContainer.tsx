@@ -55,14 +55,15 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
     getUserAndTheirRooms();
   }, []);
 
-  const leaveUserFromRoom = () => {};
-
   return (
     <div className="bg-zinc-50 text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">
       <div className=" font-semibold text-lg p-4 pb-1 flex justify-between items-center">
         <span>Rooms You Attended</span>
         <FiPlusSquare
-          onClick={() => addRoom("room #?")}
+          onClick={() => {
+            const userName = user.user_metadata.username;
+            addRoom(`${userName}'s room`);
+          }}
           className="cursor-pointer"
         />
       </div>
