@@ -2,16 +2,16 @@
 // import { css } from '@emotion/react'
 // import ScrollToBottom from "react-scroll-to-bottom";
 import { supabase } from "@/supabase/client";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
-import { render } from "react-dom";
 
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState();
   const [currentRoomName, setCurrentRoomName] = useState();
+  const [currentUserName, setCurrentUserName] = useState();
 
   const fetchRoomByParticipantsId = async (id) => {
     const { data, error } = await supabase
@@ -33,7 +33,7 @@ export default function MessageContainer({ activeTabId }) {
       console.error("Error fetching messages", error);
       return [];
     }
-    // console.log(messages);
+
     setMessages(messages);
     setIsLoading(false);
   };
@@ -70,12 +70,12 @@ export default function MessageContainer({ activeTabId }) {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user);
+      setCurrentUserName(user.user_metadata.username);
     };
     getUser();
   }, []);
 
   const handleMessageSending = async (message) => {
-    const currentUserName = await user?.user_metadata.username;
     const { data, error } = await supabase
       .from("messages")
       .insert([
@@ -106,7 +106,11 @@ export default function MessageContainer({ activeTabId }) {
             )}
           </div>
           <div className=" py-1  h-full overflow-hidden">
-            <MessageView user={user} messages={messages} />
+            <MessageView
+              currentUserName={currentUserName}
+              user={user}
+              messages={messages}
+            />
           </div>
 
           <div className="bg-white p-6 pt-1 mt-2">

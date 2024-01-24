@@ -24,8 +24,8 @@ export default function RoomCard({ roomName, id, activeTabId, onLeave }) {
       }`}
     >
       <div className="flex justify-between  w-full">
-        <div className="flex items-center gap-3">
-          <FaRegMessage />
+        <div className="flex items-center gap-3 pl-3">
+          {/* <FaRegMessage /> */}
           <div>{roomName}</div>
         </div>
 

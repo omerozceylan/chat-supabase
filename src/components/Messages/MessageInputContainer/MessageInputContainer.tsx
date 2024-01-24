@@ -4,18 +4,23 @@ import { RiSendPlaneFill } from "react-icons/ri";
 
 export default function MessageInputContainer({ onSubmit }: any) {
   const [message, setMessage] = useState(null);
+  const [inputValue, setInputValue] = useState();
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(message);
+        setInputValue("");
+        setMessage("");
       }}
     >
       <div className="flex gap-2 items-cente h-10">
         <Input
+          value={inputValue}
           placeholder="your message"
           onChange={(event) => {
             const message = event.target.value;
+            setInputValue(event.target.value);
             setMessage(message);
           }}
         />

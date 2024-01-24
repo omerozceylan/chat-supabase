@@ -1,7 +1,12 @@
-import { useEffect, useRef } from "react";
+"use client";
 
-export default function MessageView({ user, messages = [] }) {
-  const currentUserName = user.user_metadata.username;
+import { useEffect, useRef, useState } from "react";
+
+export default function MessageView({
+  user,
+  currentUserName = "",
+  messages = [],
+}) {
   const messageContainerRef = useRef(null);
 
   useEffect(() => {
