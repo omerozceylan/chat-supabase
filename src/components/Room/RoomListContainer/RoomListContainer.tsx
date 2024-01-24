@@ -19,11 +19,14 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
+
     setUser(user); //contextttt
+
     if (!user) {
       setIsLoading(false);
       return;
     }
+
     const { data: rooms, error } = await supabase
       .from("participants")
       .select("*, rooms(*)")
@@ -37,23 +40,22 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
       .from("rooms")
       .insert([{ room_name: roomName }])
       .select();
-
-    relationUserToRoom(data[0].id);
-    getUserAndTheirRooms();
+    const idOfTheCreatedRoom = data[0].id;
+    relationUserToRoom(idOfTheCreatedRoom);
   }
 
   async function relationUserToRoom(roomId) {
     const { data, error } = await supabase
       .from("participants")
       .insert([{ room_id: roomId, user_id: user.id }]);
+    getUserAndTheirRooms();
   }
-
-  async function editRoomName() {}
 
   useEffect(() => {
     getUserAndTheirRooms();
-    //can be convert hook
   }, []);
+
+  const leaveUserFromRoom = () => {};
 
   return (
     <div className="bg-zinc-50 text-black min-h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">

@@ -12,8 +12,6 @@ export default function MessageContainer({ activeTabId }) {
   const [currentRoomId, setCurrentRoomId] = useState();
   const [currentRoomName, setCurrentRoomName] = useState();
 
-  const messageContainerRef = useRef(null);
-
   const fetchRoomByParticipantsId = async (id) => {
     const { data, error } = await supabase
       .from("participants")
