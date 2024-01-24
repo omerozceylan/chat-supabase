@@ -68,7 +68,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
         />
       </div>
       {!user && !isLoading && (
-        <div>
+        <div className="bg-red-400 rounded-lg text-sm mx-4 p-2">
           You must be logged in to reach your rooms. Or check your connection.
         </div>
       )}
