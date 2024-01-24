@@ -12,7 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
-export default function RoomCard({ roomName, id, activeTabId }) {
+export default function RoomCard({ roomName, id, activeTabId, onLeave }) {
   const isActive = id == activeTabId;
   const [isEditing, setIsEditing] = useState(false);
   return (
@@ -37,7 +37,12 @@ export default function RoomCard({ roomName, id, activeTabId }) {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem className="text-red-500 hover:text-red-500">
+            <DropdownMenuItem
+              onClick={() => {
+                onLeave(id);
+              }}
+              className="text-red-500 hover:text-red-500"
+            >
               Leave
             </DropdownMenuItem>
             <DropdownMenuSeparator />

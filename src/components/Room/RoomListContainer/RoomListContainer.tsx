@@ -85,6 +85,15 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
               >
                 <RoomCard
                   activeTabId={activeTabId}
+                  onLeave={async (participantsId) => {
+                    const { error } = await supabase
+                      .from("participants")
+                      .delete()
+                      .eq("id", participantsId);
+
+                    if (error) console.error(error);
+                    getUserAndTheirRooms();
+                  }}
                   roomName={room.rooms.room_name}
                   id={room.id}
                 />
