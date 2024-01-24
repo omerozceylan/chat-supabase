@@ -106,21 +106,16 @@ export default function MessageContainer({ activeTabId }) {
             )}
           </div>
           <div className=" py-1  h-full overflow-hidden">
-            {(!activeTabId == 0) | activeTabId ? (
-              <MessageView user={user} messages={messages} />
-            ) : (
-              <div></div>
-            )}{" "}
+            <MessageView user={user} messages={messages} />
           </div>
-          {activeTabId | (!activeTabId == 0) && (
-            <div className="bg-white p-6 pt-1 mt-2">
-              <MessageInputContainer
-                onSubmit={(message) => {
-                  handleMessageSending(message);
-                }}
-              />
-            </div>
-          )}
+
+          <div className="bg-white p-6 pt-1 mt-2">
+            <MessageInputContainer
+              onSubmit={(message) => {
+                handleMessageSending(message);
+              }}
+            />
+          </div>
         </div>
       )}
     </div>
