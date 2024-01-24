@@ -90,25 +90,6 @@ export default function MessageContainer({ activeTabId }) {
     if (error) alert(error);
   };
 
-  function scrollToBottom() {
-    window.scrollTo({
-      top: messageContainerHeight(),
-      behavior: "smooth",
-    });
-    // console.log("scroll edildi");
-  }
-
-  useEffect(() => {
-    scrollToBottom();
-
-    console.log("scroll edildi: ", messageContainerHeight());
-  }, [messages]);
-
-  const messageContainerHeight = () => {
-    if (!messageContainerRef.current) return 0;
-    return messageContainerRef.current.scrollHeight;
-  };
-
   return (
     <div className="bg-white h-full">
       {!isLoading && (
@@ -142,36 +123,4 @@ export default function MessageContainer({ activeTabId }) {
       )}
     </div>
   );
-}
-
-{
-  /* <div className="  text-black  pt-0 bg-white flex h-screen flex-col justify-between">
-      <div ref={messageContainerRef} className="overflow-auto pb-6 h-full">
-        <Spin isLoading={isLoading} bgColor="bg-white" />
-        {!isLoading && (
-          <div className="flex justify-between flex-col">
-            <div className="h-24 ">
-              {currentRoomName && (
-                <RoomDetailSection currentRoomName={currentRoomName} />
-              )}
-            </div>
-            <div className="flex  justify-center py-3 text-sm font-light h-[60px]"></div>
-            <div className="px-6 pb-0 h-full">
-              {activeTabId ? (
-                <MessageView user={user} messages={messages} />
-              ) : (
-                <div>Start talking !</div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="p-6 pt-1">
-        <MessageInputContainer
-          onSubmit={(message) => {
-            handleMessageSending(message);
-          }}
-        />
-      </div>
-    </div> */
 }

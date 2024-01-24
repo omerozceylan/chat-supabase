@@ -1,8 +1,22 @@
+import { useEffect, useRef } from "react";
+
 export default function MessageView({ user, messages = [] }) {
   const currentUserName = user.user_metadata.username;
+  const messageContainerRef = useRef(null);
+
+  useEffect(() => {
+    const scrollToBottom = () => {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    };
+    scrollToBottom();
+  }, [messages]);
 
   return (
-    <div className="flex flex-col gap-4 p-4 pl-7 h-full overflow-y-auto">
+    <div
+      ref={messageContainerRef}
+      className="flex flex-col gap-4 p-4 pl-7 h-full overflow-y-auto transition-all"
+    >
       {messages.map((data) => {
         const isOwner = data.user_name == currentUserName;
 
