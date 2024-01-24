@@ -5,6 +5,7 @@ import { supabase } from "@/supabase/client";
 import { useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
+import { render } from "react-dom";
 
 export default function MessageContainer({ activeTabId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -88,6 +89,8 @@ export default function MessageContainer({ activeTabId }) {
     if (error) alert(error);
   };
 
+  if (activeTabId === 0)
+    return <div className="h-screen bg-white text-black"></div>;
   return (
     <div className="bg-white h-full">
       {!isLoading && (
@@ -103,20 +106,21 @@ export default function MessageContainer({ activeTabId }) {
             )}
           </div>
           <div className=" py-1  h-full overflow-hidden">
-            {activeTabId ? (
+            {(!activeTabId == 0) | activeTabId ? (
               <MessageView user={user} messages={messages} />
             ) : (
-              <div>Start talking !</div>
+              <div></div>
             )}{" "}
           </div>
-
-          <div className="bg-white p-6 pt-1 mt-2">
-            <MessageInputContainer
-              onSubmit={(message) => {
-                handleMessageSending(message);
-              }}
-            />
-          </div>
+          {activeTabId | (!activeTabId == 0) && (
+            <div className="bg-white p-6 pt-1 mt-2">
+              <MessageInputContainer
+                onSubmit={(message) => {
+                  handleMessageSending(message);
+                }}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

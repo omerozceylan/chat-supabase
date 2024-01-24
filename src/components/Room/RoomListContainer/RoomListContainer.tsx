@@ -72,6 +72,11 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
           You must be logged in to reach your rooms. Or check your connection.
         </div>
       )}
+      {user && !isLoading && !userAttendedRooms.length > 0 && (
+        <div className="text-sm text-gray-500/75 mx-4 mt-4">
+          There are no rooms you have joined or created.
+        </div>
+      )}
       <Spin isLoading={isLoading} />
       {!isLoading && (
         <div className="p-3 flex flex-col overflow-y-auto">
@@ -94,6 +99,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
 
                     if (error) console.error(error);
                     getUserAndTheirRooms();
+                    onItemClick(0);
                   }}
                   roomName={room.rooms.room_name}
                   id={room.id}
