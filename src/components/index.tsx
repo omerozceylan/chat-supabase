@@ -7,7 +7,7 @@ import {
 
 import { RoomCard } from "./Room";
 
-import { UserCard } from "./Auth";
+import UserCard from "./auth/UserCard/UserCard";
 
 import Spin from "./Loading/Spin";
 
