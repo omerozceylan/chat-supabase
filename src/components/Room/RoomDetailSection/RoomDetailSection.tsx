@@ -61,6 +61,13 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
       <div className="flex items-center justify-between">
         <span
           contentEditable={isEditing}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSubmitNewRoomName();
+              setIsEditing(false);
+            }
+          }}
           className={` ${
             isEditing ? "hover:bg-white" : "hover:bg-zinc-100"
           } group transition-all flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
