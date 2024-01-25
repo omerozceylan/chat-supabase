@@ -6,14 +6,14 @@ import { use, useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
 
-export default function MessageContainer({ activeTabId }) {
+export default function MessageContainer({ activeTabId = 0 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState();
   const [currentRoomName, setCurrentRoomName] = useState();
   const [currentUserName, setCurrentUserName] = useState();
 
-  const fetchRoomByParticipantsId = async (id) => {
+  const fetchRoomByParticipantsId = async (id: any) => {
     const { data, error } = await supabase
       .from("participants")
       .select("*,rooms(*)")

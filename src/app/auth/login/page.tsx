@@ -36,8 +36,8 @@ export default function Login() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { error } = supabase.auth.signInWithPassword(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { error } = await supabase.auth.signInWithPassword(values);
     if (error) alert(error);
   }
   return (
