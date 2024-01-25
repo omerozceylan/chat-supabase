@@ -13,6 +13,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentUserName, setCurrentUserName] = useState();
 
   const getUserAndTheirRooms = async () => {
     setIsLoading(true);
@@ -21,6 +22,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
     } = await supabase.auth.getUser();
 
     setUser(user); //contextttt
+    setCurrentUserName(user.user_metadata.username);
 
     if (!user) {
       setIsLoading(false);
@@ -111,7 +113,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
       )}
 
       <div className="mt-auto p-3">
-        <UserCard />
+        <UserCard userName={currentUserName} />
       </div>
     </div>
   );
