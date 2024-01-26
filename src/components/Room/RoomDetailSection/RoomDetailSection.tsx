@@ -15,7 +15,8 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
     false: (
       <TbEdit
         onClick={() => {
-          setIsEditing(!isEditing);
+          setIsEditing(true);
+          editableAreaRef.current.focus();
         }}
         className="hidden group-hover:block text-black/35"
       />
@@ -26,7 +27,6 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           className="hover:text-green-900 text-green-700"
           onClick={() => {
             handleSubmitNewRoomName();
-            setIsEditing(false);
           }}
         />
         <div
@@ -46,10 +46,17 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
     if (!editableAreaRef.current) return;
     const text = editableAreaRef.current.innerText;
     setValue(text);
+    const trimmedText = text.trim();
 
+    if (!trimmedText) {
+      console.error("bos title gonderilemez ! <3");
+      return;
+    }
+
+    setIsEditing(false);
     const { data, error } = await supabase
       .from("rooms")
-      .update({ room_name: text })
+      .update({ room_name: trimmedText })
       .eq("id", roomId)
       .select();
 
@@ -60,7 +67,6 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
     <div className=" border-b  z-20 px-6 font-semibold text-md bg-white p-4">
       <div className="flex items-center justify-between">
         <span
-          contentEditable={isEditing}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
@@ -74,7 +80,10 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
         >
           <span
             ref={editableAreaRef}
-            className={` ${isEditing ? `border-b-2 border-black` : ``}`}
+            contentEditable={isEditing}
+            className={` outline-none max-w-44 min-w-12  ${
+              isEditing ? `border-b-2 border-black` : ``
+            }`}
           >
             {currentRoomName}
           </span>

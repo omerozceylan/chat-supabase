@@ -3,6 +3,7 @@
 import { useState } from "react";
 import RoomListContainer from "@/components/Room/RoomListContainer/RoomListContainer";
 import { MessageContainer } from "@/components";
+import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
 
 export default function Room() {
   const [activeTabId, setActiveTabId] = useState<number | undefined>();
@@ -19,6 +20,9 @@ export default function Room() {
       </div>
       <div className="w-full">
         <MessageContainer activeTabId={activeTabId} />
+      </div>
+      <div>
+        <ParticipantsContainer />
       </div>
     </div>
   );
