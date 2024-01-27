@@ -2,7 +2,7 @@
 // import { css } from '@emotion/react'
 // import ScrollToBottom from "react-scroll-to-bottom";
 import { supabase } from "@/supabase/client";
-import { use, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
 import { MyContext } from "@/Context";

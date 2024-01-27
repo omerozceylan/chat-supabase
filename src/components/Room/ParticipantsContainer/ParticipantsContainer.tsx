@@ -1,7 +1,7 @@
 import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
 
-export default function ParticipantsContainer({ roomId }) {
+export default function ParticipantsContainer() {
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
