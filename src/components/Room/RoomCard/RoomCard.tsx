@@ -10,9 +10,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext } from "@/Context";
 
-export default function RoomCard({ roomName, id, activeTabId, onLeave }) {
+export default function RoomCard({ roomName, id, onLeave }) {
+  const { activeTabId } = useContext(MyContext);
+
   const isActive = id == activeTabId;
   const [isEditing, setIsEditing] = useState(false);
   return (

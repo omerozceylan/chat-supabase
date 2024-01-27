@@ -6,10 +6,12 @@ import { CiSquarePlus } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
-
+import { MyContext } from "@/Context";
+import { useContext } from "react";
 import { UserCard } from "@/components";
 
-export default function RoomListContainer({ onItemClick, activeTabId }: any) {
+export default function RoomListContainer() {
+  const { activeTabId, setActiveTabId } = useContext(MyContext);
   const [user, setUser] = useState();
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +35,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
       .from("participants")
       .select("*, rooms(*)")
       .eq("user_id", user.id);
+
     setUserAttendedRooms(rooms);
     setIsLoading(false);
   };
@@ -88,11 +91,11 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
                 key={room.id}
                 className="cursor-pointer"
                 onClick={() => {
-                  onItemClick(room.id);
+                  setActiveTabId(room.id);
+                  // onItemClick(room.id);
                 }}
               >
                 <RoomCard
-                  activeTabId={activeTabId}
                   onLeave={async (participantsId) => {
                     const { error } = await supabase
                       .from("participants")
@@ -101,7 +104,7 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
 
                     if (error) console.error(error);
                     getUserAndTheirRooms();
-                    onItemClick(0);
+                    setActiveTabId(0);
                   }}
                   roomName={room.rooms.room_name}
                   id={room.id}
@@ -111,7 +114,6 @@ export default function RoomListContainer({ onItemClick, activeTabId }: any) {
           })}
         </div>
       )}
-
       <div className="mt-auto p-3">
         <UserCard userName={currentUserName} />
       </div>

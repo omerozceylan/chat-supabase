@@ -2,16 +2,19 @@
 // import { css } from '@emotion/react'
 // import ScrollToBottom from "react-scroll-to-bottom";
 import { supabase } from "@/supabase/client";
-import { use, useEffect, useRef, useState } from "react";
+import { use, useContext, useEffect, useRef, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
+import { MyContext } from "@/Context";
 
-export default function MessageContainer({ activeTabId = 0 }) {
+export default function MessageContainer() {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [currentRoomId, setCurrentRoomId] = useState();
   const [currentRoomName, setCurrentRoomName] = useState();
   const [currentUserName, setCurrentUserName] = useState();
+
+  const { activeTabId } = useContext(MyContext);
 
   const fetchRoomByParticipantsId = async (id: any) => {
     const { data, error } = await supabase

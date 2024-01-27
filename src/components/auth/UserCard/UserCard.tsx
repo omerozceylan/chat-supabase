@@ -1,4 +1,6 @@
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { MyContext } from "@/Context";
 
 export default function UserCard({ userName }) {
   return (
