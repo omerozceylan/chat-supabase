@@ -19,7 +19,7 @@ export default function CreateRoomButton() {
     const { data, error } = await supabase
       .from("participants")
       .insert([{ room_id: roomId, user_id: user.id }]);
-    getRooms();
+    getRooms(user);
   }
 
   return (

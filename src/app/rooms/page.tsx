@@ -5,7 +5,7 @@ import { MessageContainer } from "@/components";
 import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
 import { MainContext } from "@/Context";
 import { supabase } from "@/supabase/client";
-import { RoomListContainer, CreateRoomButton } from "@/components";
+import { RoomListContainer } from "@/components";
 
 export default function Room() {
   const [activeTabId, setActiveTabId] = useState<number | undefined>(0);
@@ -19,16 +19,15 @@ export default function Room() {
     const { data, error } = await supabase.auth.getUser();
     const { user } = data;
     setUser(user);
-
     setUserLoading(false);
   };
 
   const getRooms = async (user) => {
+    setRoomLoading(true);
     if (!user) {
       setRoomLoading(false);
       return;
     }
-    setRoomLoading(true);
     const { data: rooms, error } = await supabase
       .from("participants")
       .select("*, rooms(*)")
