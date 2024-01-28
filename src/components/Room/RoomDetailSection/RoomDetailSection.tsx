@@ -62,7 +62,6 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
       .eq("id", roomId)
       .select();
 
-    console.log(data, error);
     getRooms(user);
   };
 
