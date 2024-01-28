@@ -1,3 +1,37 @@
+import { MainContext } from "@/Context";
+import { useContext } from "react";
+import { FiPlusSquare } from "react-icons/fi";
+import { supabase } from "@/supabase/client";
+
 export default function CreateRoomButton() {
-  return <div>ben buyum</div>;
+  const { user, getRooms } = useContext(MainContext);
+
+  async function addRoom(roomName) {
+    const { data, error } = await supabase
+      .from("rooms")
+      .insert([{ room_name: roomName }])
+      .select();
+    const idOfTheCreatedRoom = data[0].id;
+    relationUserToRoom(idOfTheCreatedRoom);
+  }
+
+  async function relationUserToRoom(roomId) {
+    const { data, error } = await supabase
+      .from("participants")
+      .insert([{ room_id: roomId, user_id: user.id }]);
+    getRooms();
+  }
+
+  return (
+    <div>
+      {" "}
+      <FiPlusSquare
+        onClick={() => {
+          const userName = user.user_metadata.username;
+          addRoom(`${userName}'s room`);
+        }}
+        className="cursor-pointer"
+      />
+    </div>
+  );
 }

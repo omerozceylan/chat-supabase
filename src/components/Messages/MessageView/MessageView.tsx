@@ -7,7 +7,6 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
   const messageContainerRef = useRef(null);
   const { user } = useContext(MainContext);
 
-  console.log(messages);
   useEffect(() => {
     const scrollToBottom = () => {
       messageContainerRef.current.scrollTop =

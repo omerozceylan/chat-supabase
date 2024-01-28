@@ -12,17 +12,38 @@ export default function Room() {
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();
   const [userLoading, setUserLoading] = useState(true);
+  const [roomLoading, setRoomLoading] = useState(true);
+  const [userAttendedRooms, setUserAttendedRooms] = useState([]);
+
+  const getUser = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    const { user } = data;
+    setUser(user);
+
+    setUserLoading(false);
+  };
+
+  const getRooms = async (user) => {
+    if (!user) {
+      setRoomLoading(false);
+      return;
+    }
+    setRoomLoading(true);
+    const { data: rooms, error } = await supabase
+      .from("participants")
+      .select("*, rooms(*)")
+      .eq("user_id", user.id);
+    setUserAttendedRooms(rooms);
+    setRoomLoading(false);
+  };
 
   useEffect(() => {
-    const getUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      const { user } = data;
-      setUser(user);
-
-      setUserLoading(false);
-    };
     getUser();
   }, []);
+
+  useEffect(() => {
+    getRooms(user);
+  }, [user]);
 
   return (
     <div className="flex  min-h-screen">
@@ -31,8 +52,11 @@ export default function Room() {
           activeTabId,
           setActiveTabId,
           roomId,
+          getRooms,
+          roomLoading,
           setRoomId,
           user,
+          userAttendedRooms,
           userLoading,
           setUserLoading,
         }}
