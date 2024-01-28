@@ -2,8 +2,6 @@
 
 import { RoomCard, Spin } from "@/components";
 import { supabase } from "@/supabase/client";
-import { CiSquarePlus } from "react-icons/ci";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
 import { MyContext } from "@/Context";
@@ -16,7 +14,6 @@ export default function RoomListContainer() {
 
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentUserName, setCurrentUserName] = useState();
 
   const getRooms = async () => {
     setIsLoading(true);
@@ -95,7 +92,6 @@ export default function RoomListContainer() {
                 className="cursor-pointer"
                 onClick={() => {
                   setActiveTabId(room.id);
-                  // onItemClick(room.id);
                 }}
               >
                 <RoomCard

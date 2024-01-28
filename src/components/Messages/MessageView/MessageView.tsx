@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { MyContext } from "@/Context";
+import { useContext, useEffect, useRef, useState } from "react";
 
-export default function MessageView({
-  user,
-  currentUserName = "",
-  messages = [],
-}) {
+export default function MessageView({ currentUserName = "", messages = [] }) {
   const messageContainerRef = useRef(null);
+  const { user } = useContext(MyContext);
 
+  console.log(messages);
   useEffect(() => {
     const scrollToBottom = () => {
       messageContainerRef.current.scrollTop =
@@ -23,7 +22,7 @@ export default function MessageView({
       className="flex flex-col gap-4 p-4 pl-7 h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
-        const isOwner = data.user_name == currentUserName;
+        const isOwner = data.user_name == user.user_metadata.username;
 
         return (
           <div
@@ -43,7 +42,6 @@ export default function MessageView({
           </div>
         );
       })}
-      {/* <div className="h-4 w-4 bg-white p-2"></div> */}
     </div>
   );
 }

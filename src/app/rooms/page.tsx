@@ -12,11 +12,13 @@ export default function Room() {
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();
   const [userLoading, setUserLoading] = useState(true);
+
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser();
       const { user } = data;
       setUser(user);
+      console.log(user);
       setUserLoading(false);
     };
     getUser();

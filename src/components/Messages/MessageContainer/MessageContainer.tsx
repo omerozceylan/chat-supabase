@@ -10,11 +10,10 @@ import { MyContext } from "@/Context";
 export default function MessageContainer() {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [currentRoomId, setCurrentRoomId] = useState();
-  const [currentRoomName, setCurrentRoomName] = useState();
-  const [currentUserName, setCurrentUserName] = useState();
 
-  const { activeTabId } = useContext(MyContext);
+  const [currentRoomName, setCurrentRoomName] = useState();
+
+  const { activeTabId, user, roomId, setRoomId } = useContext(MyContext);
 
   const fetchRoomByParticipantsId = async (id: any) => {
     const { data, error } = await supabase
@@ -22,7 +21,7 @@ export default function MessageContainer() {
       .select("*,rooms(*)")
       .eq("id", id);
     setCurrentRoomName(data[0].rooms.room_name);
-    setCurrentRoomId(data[0].room_id);
+    setRoomId(data[0].room_id);
     fetchMessages(data[0].room_id);
   };
 
@@ -49,7 +48,7 @@ export default function MessageContainer() {
         event: "INSERT",
         schema: "public",
         table: "messages",
-        filter: `room_id=eq.${currentRoomId}`,
+        filter: `room_id=eq.${roomId}`,
       },
       ({ new: data }) => {
         setMessages([...messages, data]);
@@ -65,35 +64,9 @@ export default function MessageContainer() {
     }
   }, [activeTabId]);
 
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-      setCurrentUserName(user.user_metadata.username);
-    };
-    getUser();
-  }, []);
-
-  const handleMessageSending = async (message) => {
-    const { data, error } = await supabase
-      .from("messages")
-      .insert([
-        {
-          message: message,
-          user_name: currentUserName,
-          room_id: currentRoomId,
-        },
-      ])
-      .select();
-    if (error) alert(error);
-  };
-
   if (activeTabId === 0)
     return <div className="h-screen bg-white text-black"></div>;
+
   return (
     <div className="bg-white h-full">
       {!isLoading && (
@@ -103,17 +76,13 @@ export default function MessageContainer() {
           <div className="h-24">
             {currentRoomName && (
               <RoomDetailSection
-                roomId={currentRoomId}
+                roomId={roomId}
                 currentRoomName={currentRoomName}
               />
             )}
           </div>
           <div className=" py-1  h-full overflow-hidden">
-            <MessageView
-              currentUserName={currentUserName}
-              user={user}
-              messages={messages}
-            />
+            <MessageView messages={messages} />
           </div>
 
           <div className="bg-white p-6 pt-1 mt-2">

@@ -1,10 +1,27 @@
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
+import { supabase } from "@/supabase/client";
+import { MyContext } from "@/Context";
 
 export default function MessageInputContainer({ onSubmit }: any) {
   const [message, setMessage] = useState(null);
   const [inputValue, setInputValue] = useState();
+  const { user, roomId } = useContext(MyContext);
+
+  const handleMessageSending = async (message) => {
+    const { data, error } = await supabase
+      .from("messages")
+      .insert([
+        {
+          message: message,
+          user_name: user.user_metadata.username,
+          room_id: roomId,
+        },
+      ])
+      .select();
+    if (error) alert(error);
+  };
 
   return (
     <form
@@ -12,7 +29,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
         e.preventDefault();
         const trimmedMessage = message.trim();
         if (!trimmedMessage) return;
-        onSubmit(message);
+        handleMessageSending(message);
         setInputValue("");
         setMessage("");
       }}
