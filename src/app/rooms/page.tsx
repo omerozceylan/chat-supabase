@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RoomListContainer from "@/components/Room/RoomListContainer/RoomListContainer";
 import { MessageContainer } from "@/components";
 import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 import { supabase } from "@/supabase/client";
+import { RoomListContainer, CreateRoomButton } from "@/components";
 
 export default function Room() {
-  const [activeTabId, setActiveTabId] = useState<number | undefined>();
+  const [activeTabId, setActiveTabId] = useState<number | undefined>(0);
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();
   const [userLoading, setUserLoading] = useState(true);
@@ -18,7 +18,7 @@ export default function Room() {
       const { data, error } = await supabase.auth.getUser();
       const { user } = data;
       setUser(user);
-      console.log(user);
+
       setUserLoading(false);
     };
     getUser();
@@ -26,7 +26,7 @@ export default function Room() {
 
   return (
     <div className="flex  min-h-screen">
-      <MyContext.Provider
+      <MainContext.Provider
         value={{
           activeTabId,
           setActiveTabId,
@@ -41,12 +41,12 @@ export default function Room() {
           <RoomListContainer />
         </div>
         <div className="w-full">
-          <MessageContainer activeTabId={activeTabId} />
+          <MessageContainer />
         </div>
         <div>
           <ParticipantsContainer />
         </div>
-      </MyContext.Provider>
+      </MainContext.Provider>
     </div>
   );
 }

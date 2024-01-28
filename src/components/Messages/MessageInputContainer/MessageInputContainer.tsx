@@ -2,12 +2,12 @@ import { Input } from "@/components/ui/input";
 import { useContext, useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { supabase } from "@/supabase/client";
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 
 export default function MessageInputContainer({ onSubmit }: any) {
   const [message, setMessage] = useState(null);
   const [inputValue, setInputValue] = useState();
-  const { user, roomId } = useContext(MyContext);
+  const { user, roomId } = useContext(MainContext);
 
   const handleMessageSending = async (message) => {
     const { data, error } = await supabase

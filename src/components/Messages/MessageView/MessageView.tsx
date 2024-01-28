@@ -1,11 +1,11 @@
 "use client";
 
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 import { useContext, useEffect, useRef, useState } from "react";
 
 export default function MessageView({ currentUserName = "", messages = [] }) {
   const messageContainerRef = useRef(null);
-  const { user } = useContext(MyContext);
+  const { user } = useContext(MainContext);
 
   console.log(messages);
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
   return (
     <div
       ref={messageContainerRef}
-      className="flex flex-col gap-4 p-4 pl-7 h-full overflow-y-auto transition-all"
+      className="flex flex-col gap-4 p-4  h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
         const isOwner = data.user_name == user.user_metadata.username;
@@ -27,7 +27,7 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
         return (
           <div
             key={data.user_name}
-            className={`flex items-end pr-6 ${isOwner ? "justify-end" : ""}`}
+            className={`flex items-end pr-2 ${isOwner ? "justify-end" : ""}`}
           >
             <div
               className={`text-white bg-black rounded-2xl w-8 h-8 flex justify-center items-center ${

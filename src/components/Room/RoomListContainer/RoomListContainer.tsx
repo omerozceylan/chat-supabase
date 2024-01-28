@@ -4,13 +4,13 @@ import { RoomCard, Spin } from "@/components";
 import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 import { useContext } from "react";
 import { UserCard } from "@/components";
 
 export default function RoomListContainer() {
   const { activeTabId, setActiveTabId, user, userLoading } =
-    useContext(MyContext);
+    useContext(MainContext);
 
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

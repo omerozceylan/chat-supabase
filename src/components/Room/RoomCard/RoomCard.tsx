@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { useContext, useState } from "react";
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 
 export default function RoomCard({ roomName, id, onLeave }) {
-  const { activeTabId } = useContext(MyContext);
+  const { activeTabId } = useContext(MainContext);
 
   const isActive = id == activeTabId;
   const [isEditing, setIsEditing] = useState(false);

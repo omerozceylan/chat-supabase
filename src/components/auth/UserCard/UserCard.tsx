@@ -1,9 +1,9 @@
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
-import { MyContext } from "@/Context";
+import { MainContext } from "@/Context";
 
 export default function UserCard() {
-  const { user } = useContext(MyContext);
+  const { user } = useContext(MainContext);
 
   return (
     <div className="flex gap-3 items-center relative p-2 cursor-pointer text-sm bg-white shadow rounded-lg mb-2">
