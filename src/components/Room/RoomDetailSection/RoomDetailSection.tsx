@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { FaCheckCircle } from "react-icons/fa";
 import { TbEdit } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
 import { useRef } from "react";
 import { supabase } from "@/supabase/client";
+import { MainContext } from "@/Context";
 
 export default function RoomDetailSection({ currentRoomName, roomId }) {
+  const { getRooms, user } = useContext(MainContext);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(currentRoomName);
   const editableAreaRef = useRef(null);
@@ -61,6 +63,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
       .select();
 
     console.log(data, error);
+    getRooms(user);
   };
 
   return (
