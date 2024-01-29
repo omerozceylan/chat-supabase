@@ -83,7 +83,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           <span
             ref={editableAreaRef}
             contentEditable={isEditing}
-            className={` outline-none max-w-44 min-w-12  ${
+            className={` outline-none max-w-44 min-w-12 whitespace-nowrap overflow-hidden ${
               isEditing ? `border-b-2 border-black` : ``
             }`}
           >

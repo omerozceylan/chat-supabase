@@ -27,6 +27,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        if (!message) return;
         const trimmedMessage = message.trim();
         if (!trimmedMessage) return;
         handleMessageSending(message);

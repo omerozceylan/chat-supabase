@@ -20,17 +20,14 @@ export default function RoomCard({ roomName, id, onLeave }) {
   const [isEditing, setIsEditing] = useState(false);
   return (
     <div
-      className={`flex items-center text-black gap-3 group rounded-lg p-2  hover:bg-gray-200 ${
+      className={`flex items-center text-black gap-3 group rounded-lg p-2 overflow-hidden whitespace-nowrap hover:bg-gray-200 ${
         isActive
           ? "bg-black text-white transition-all hover:bg-slate-800"
           : "hover:bg-gray-200"
       }`}
     >
-      <div className="flex justify-between  w-full">
-        <div className="flex items-center gap-3 pl-3">
-          {/* <FaRegMessage /> */}
-          <div>{roomName}</div>
-        </div>
+      <div className="flex justify-between  w-full px-2 pr-1">
+        <div className="overflow-hidden">{roomName}</div>
 
         <DropdownMenu>
           <DropdownMenuTrigger>
