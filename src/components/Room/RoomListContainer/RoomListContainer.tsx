@@ -35,8 +35,13 @@ export default function RoomListContainer() {
         <CreateRoomButton />
       </div>
       {!user && !roomLoading && (
-        <div className="bg-red-400 rounded-lg text-sm mx-4 p-2">
-          You must be logged in to reach your rooms. Or check your connection.
+        <div className="flex justify-center flex-col items-center gap-4 mt-3">
+          <div className="bg-red-400 rounded-lg text-sm mx-4 p-2">
+            You must be logged in to reach your rooms. Or check your connection.
+          </div>
+          <button className="bg-black text-white w-24 px-2 py-1 rounded-md hover:bg-slate-400">
+            Login
+          </button>
         </div>
       )}
       {user && !roomLoading && !userAttendedRooms.length > 0 && (
