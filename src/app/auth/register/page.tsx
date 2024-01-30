@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,8 +24,8 @@ const formSchema = z.object({
     .min(2, {
       message: "Username must be at least 2 characters.",
     })
-    .max(16, {
-      message: "Username must be at least 16 characters.",
+    .max(10, {
+      message: "Username must be at least 10 characters.",
     }),
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
@@ -35,7 +36,7 @@ const formSchema = z.object({
 });
 
 export default function Register() {
-  // ...
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,7 +51,11 @@ export default function Register() {
         data: { username: values.username },
       },
     });
-    if (error) alert(error);
+    if (error) {
+      alert(error);
+      return;
+    }
+    router.push("/rooms");
   }
   return (
     <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
@@ -118,6 +123,14 @@ export default function Register() {
             )}
           />
           <Button type="submit">Submit</Button>
+          {/* <button
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+          >
+            omeromeromer
+          </button> */}
+          s
         </form>
       </Form>
     </div>

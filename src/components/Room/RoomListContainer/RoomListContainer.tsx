@@ -75,7 +75,7 @@ export default function RoomListContainer() {
           })}
         </div>
       )}
-      <div className="mt-auto p-3">
+      <div className="mt-auto p-3 ">
         <UserCard />
       </div>
     </div>
