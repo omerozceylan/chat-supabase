@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/supabase/client";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -88,7 +89,7 @@ export default function Login() {
                 </FormItem>
               )}
             />
-            <Button className="" type="submit">
+            <Button className="h-9 px-3 text-sm" type="submit">
               Submit
             </Button>
             <div className="flex flex-col justify-center items-center gap-3">
@@ -96,9 +97,11 @@ export default function Login() {
                 Login with Google <FcGoogle className="w-5 h-5" />
               </button>
               <span className="font-semibold text-sm">or</span>
-              <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
-                register
-              </button>
+              <Link className="w-full" href={"/auth/register"}>
+                <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
+                  register
+                </button>
+              </Link>
             </div>
           </form>
         </Form>

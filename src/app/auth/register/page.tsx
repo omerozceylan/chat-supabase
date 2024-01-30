@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/supabase/client";
+import { FcGoogle } from "react-icons/fc";
 
 const formSchema = z.object({
   username: z
@@ -123,14 +124,9 @@ export default function Register() {
             )}
           />
           <Button type="submit">Submit</Button>
-          {/* <button
-            onClick={() => {
-              router.push("/auth/login");
-            }}
-          >
-            omeromeromer
-          </button> */}
-          s
+          <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center">
+            Login with Google <FcGoogle className="w-5 h-5" />
+          </button>
         </form>
       </Form>
     </div>
