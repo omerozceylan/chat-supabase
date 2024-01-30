@@ -16,7 +16,6 @@ export default function UserCard() {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    console.error("CIKIS YAPILDI");
   }
 
   if (!user) return <div></div>;

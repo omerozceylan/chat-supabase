@@ -22,6 +22,8 @@ export default function CreateRoomButton() {
     getRooms(user);
   }
 
+  if (!user) return <div></div>;
+
   return (
     <div>
       {" "}
