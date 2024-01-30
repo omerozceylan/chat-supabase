@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
 import { MainContext } from "@/Context";
 import { useContext } from "react";
+import Link from "next/link";
 
 export default function RoomListContainer() {
   const {
@@ -39,9 +40,11 @@ export default function RoomListContainer() {
           <div className="bg-red-400 rounded-lg text-sm mx-4 p-2">
             You must be logged in to reach your rooms. Or check your connection.
           </div>
-          <button className="bg-black text-white w-24 px-2 py-1 rounded-md hover:bg-slate-400">
-            Login
-          </button>
+          <Link href={"/auth"}>
+            <button className="bg-black text-white w-24 px-2 py-1 rounded-md hover:bg-slate-800">
+              Login
+            </button>
+          </Link>
         </div>
       )}
       {user && !roomLoading && !userAttendedRooms.length > 0 && (

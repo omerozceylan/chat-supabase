@@ -2,6 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -43,51 +45,64 @@ export default function Login() {
   return (
     <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
       {" "}
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 bg-white text-black p-4 w-80 rounded-lg border "
-        >
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-black"
-                    placeholder="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription></FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />{" "}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-black"
-                    placeholder="password"
-                    type="password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription></FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
+      <div>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 bg-white text-black p-4 w-80 rounded-lg border "
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="text-black"
+                      placeholder="email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />{" "}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="text-black"
+                      placeholder="password"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button className="" type="submit">
+              Submit
+            </Button>
+            <div className="flex flex-col justify-center items-center gap-3">
+              <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center">
+                Login with Google <FcGoogle className="w-5 h-5" />
+              </button>
+              <span className="font-semibold text-sm">or</span>
+              <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
+                register
+              </button>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }
