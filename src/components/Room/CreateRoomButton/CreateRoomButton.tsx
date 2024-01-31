@@ -29,7 +29,11 @@ export default function CreateRoomButton() {
       {" "}
       <FiPlusSquare
         onClick={() => {
-          const userName = user.user_metadata.username;
+          const userName =
+            user.app_metadata.provider === "google"
+              ? user.user_metadata.full_name
+              : user.user_metadata.username;
+
           addRoom(`${userName}'s room`);
         }}
         className="cursor-pointer"
