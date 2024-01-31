@@ -114,7 +114,9 @@ export default function Login() {
           >
             Login with Google <FcGoogle className="w-5 h-5" />
           </button>
-          <span className="font-semibold text-sm">or</span>
+          <span className="font-semibold text-sm">
+            Don't you have an account?
+          </span>
           <Link className="w-full" href={"/auth/register"}>
             <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
               register
