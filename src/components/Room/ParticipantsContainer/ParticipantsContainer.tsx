@@ -38,7 +38,9 @@ export default function ParticipantsContainer() {
             <div className="bg-black w-8 h-8 flex items-center justify-center text-md text-white rounded-full">
               o
             </div>
-            {participant.profiles.username}
+            {participant.profiles.username
+              ? participant.profiles.username
+              : participant.profiles.full_name}
           </div>
         );
       })}
