@@ -33,7 +33,9 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
                 isOwner ? "hidden" : ""
               }`}
             >
-              {data.user_name.charAt(0)}
+              {user.app_metadata.provider === "google"
+                ? user.user_metadata.full_name.charAt(0)
+                : data.user_name.charAt(0)}
             </div>
             <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80	">
               {data.message}
