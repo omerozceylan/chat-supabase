@@ -18,6 +18,7 @@ export default function Room() {
   const getUser = async () => {
     const { data, error } = await supabase.auth.getUser();
     const { user } = data;
+    console.log(data);
     setUser(user);
     setUserLoading(false);
   };
