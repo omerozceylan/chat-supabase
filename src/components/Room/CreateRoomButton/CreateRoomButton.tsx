@@ -27,6 +27,7 @@ export default function CreateRoomButton() {
   return (
     <div>
       {" "}
+      <div></div>
       <FiPlusSquare
         onClick={() => {
           const userName =
