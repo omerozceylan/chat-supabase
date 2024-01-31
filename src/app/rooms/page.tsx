@@ -14,6 +14,7 @@ export default function Room() {
   const [userLoading, setUserLoading] = useState(true);
   const [roomLoading, setRoomLoading] = useState(true);
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
+  const [provider, setProvider] = useState(undefined);
 
   const getUser = async () => {
     const { data, error } = await supabase.auth.getUser();
