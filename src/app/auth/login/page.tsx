@@ -59,6 +59,7 @@ export default function Login() {
   return (
     <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
       {" "}
+      <div></div>
       <div className="space-y-6 bg-white text-black p-4 w-80 rounded-lg border">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
