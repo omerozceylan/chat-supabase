@@ -21,8 +21,20 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
       className="flex flex-col gap-4 p-4  h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
-        const isOwner = data.user_name == user.user_metadata.username;
+        // {user.app_metadata.provider === "google" ? (
+        //   user.user_metadata.full_name
 
+        const userName =
+          user.app_metadata.provider === "google"
+            ? user.user_metadata.full_name
+            : user.user_metadata.username;
+
+        console.log(data);
+        const messageOwnerName = data.user_name;
+
+        console.log(messageOwnerName, userName);
+        const isOwner = userName == messageOwnerName;
+        // const isOwner = true;
         return (
           <div
             key={data.user_name}
@@ -33,9 +45,7 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
                 isOwner ? "hidden" : ""
               }`}
             >
-              {user.app_metadata.provider === "google"
-                ? user.user_metadata.full_name.charAt(0)
-                : data.user_name.charAt(0)}
+              {data.user_name ? data.user_name.charAt(0) : ""}
             </div>
             <span className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80	">
               {data.message}

@@ -2,14 +2,13 @@ import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { MainContext } from "@/Context";
+
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { supabase } from "@/supabase/client";
 
 export default function UserCard() {
@@ -25,8 +24,8 @@ export default function UserCard() {
 
   return (
     <div className="w-full outline-none border-none">
-      <DropdownMenu>
-        <DropdownMenuTrigger className="w-full outline-none">
+      <Popover>
+        <PopoverTrigger className="w-full outline-none">
           <div className="flex gap-3 items-center relative p-2 cursor-pointer text-sm bg-white shadow rounded-lg mb-2">
             <FaUserCircle className="w-8 h-8" />
             {user.app_metadata.provider === "google" ? (
@@ -35,18 +34,19 @@ export default function UserCard() {
               <div> @{user.user_metadata.username}</div>
             )}
           </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="">
-          <DropdownMenuItem
+        </PopoverTrigger>
+        <PopoverContent className="bg-zinc-50 px-2 py-2">
+          <div>selam</div>
+          <div
+            className="bg-white border p-1 px-3 hover:text-red-400 hover:bg-zinc-50 transition-all rounded-md cursor-pointer "
             onClick={() => {
               signOut();
             }}
-            className="text-red-500 hover:text-red-500 "
           >
             Log out
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }

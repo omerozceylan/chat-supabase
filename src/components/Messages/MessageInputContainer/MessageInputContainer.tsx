@@ -10,12 +10,17 @@ export default function MessageInputContainer({ onSubmit }: any) {
   const { user, roomId } = useContext(MainContext);
 
   const handleMessageSending = async (message) => {
+    const userName =
+      user.app_metadata.provider === "google"
+        ? user.user_metadata.full_name
+        : user.user_metadata.username;
+
     const { data, error } = await supabase
       .from("messages")
       .insert([
         {
           message: message,
-          user_name: user.user_metadata.username,
+          user_name: userName,
           room_id: roomId,
         },
       ])
