@@ -35,8 +35,7 @@ export default function UserCard() {
             )}
           </div>
         </PopoverTrigger>
-        <PopoverContent className="bg-zinc-50 px-2 py-2">
-          <div>selam</div>
+        <PopoverContent className="bg-zinc-50 p-0 ml-2 mr-2 mb-2">
           <div
             className="bg-white border p-1 px-3 hover:text-red-400 hover:bg-zinc-50 transition-all rounded-md cursor-pointer "
             onClick={() => {

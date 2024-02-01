@@ -33,14 +33,15 @@ export default function ParticipantsContainer() {
         </span>
       </div>
       {participants.map((participant) => {
+        const userName = participant.profiles.username
+          ? participant.profiles.username
+          : participant.profiles.full_name;
         return (
           <div className="flex gap-3 items-center">
             <div className="bg-black w-8 h-8 flex items-center justify-center text-md text-white rounded-full">
-              o
+              {userName.charAt(0).toUpperCase()}
             </div>
-            {participant.profiles.username
-              ? participant.profiles.username
-              : participant.profiles.full_name}
+            {userName}
           </div>
         );
       })}

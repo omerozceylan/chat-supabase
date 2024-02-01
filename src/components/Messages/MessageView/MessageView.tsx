@@ -21,20 +21,15 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
       className="flex flex-col gap-4 p-4  h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
-        // {user.app_metadata.provider === "google" ? (
-        //   user.user_metadata.full_name
-
         const userName =
           user.app_metadata.provider === "google"
             ? user.user_metadata.full_name
             : user.user_metadata.username;
 
-        console.log(data);
         const messageOwnerName = data.user_name;
 
-        console.log(messageOwnerName, userName);
         const isOwner = userName == messageOwnerName;
-        // const isOwner = true;
+
         return (
           <div
             key={data.user_name}
