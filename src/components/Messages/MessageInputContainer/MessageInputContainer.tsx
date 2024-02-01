@@ -15,7 +15,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
         ? user.user_metadata.full_name
         : user.user_metadata.username;
 
-    const { data, error } = await supabase
+    const { data, error, fetching } = await supabase
       .from("messages")
       .insert([
         {
@@ -25,6 +25,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
         },
       ])
       .select();
+    console.log(fetching);
     if (error) alert(error);
   };
 

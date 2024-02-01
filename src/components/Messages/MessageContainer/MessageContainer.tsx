@@ -72,7 +72,7 @@ export default function MessageContainer() {
         <div className="bg-white text-black h-screen flex flex-col">
           <Spin isLoading={isLoading} bgColor="bg-white" />
 
-          <div className="h-24">
+          <div className="h-23">
             {currentRoomName && (
               <RoomDetailSection
                 roomId={roomId}

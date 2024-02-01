@@ -5,7 +5,17 @@ import { TbEdit } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
 import { useRef } from "react";
 import { supabase } from "@/supabase/client";
+import { TiPlus } from "react-icons/ti";
+import { MdContentCopy } from "react-icons/md";
 import { MainContext } from "@/Context";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function RoomDetailSection({ currentRoomName, roomId }) {
   const { getRooms, user } = useContext(MainContext);
@@ -92,7 +102,33 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
 
           <span> {isEditingButtonVariants[isEditing]}</span>
         </span>
-        <PiDotsThreeBold className="cursor-pointer w-6 h-6" />
+        <div className="flex gap-12 items-center">
+          <div>
+            <Dialog>
+              <DialogTrigger>
+                {" "}
+                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground h-8 px-4 py-2 relative hover:bg-primary transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg]">
+                  <TiPlus />
+                  Invite People
+                </div>
+              </DialogTrigger>
+              <DialogContent className="text-black dark:text-white gap-6">
+                <DialogHeader>
+                  <DialogTitle>
+                    Here is your invite code. It will expire in 30 minutes.
+                  </DialogTitle>
+                  <DialogDescription>
+                    <div className=" flex justify-between items-center mt-1 border rounded-md px-2 py-1">
+                      <span>zamazingozamazingozamazingozamazingo</span>{" "}
+                      <MdContentCopy className="h-4 w-4 cursor-pointer" />
+                    </div>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
+          <PiDotsThreeBold className="cursor-pointer w-6 h-6" />
+        </div>
       </div>
     </div>
   );

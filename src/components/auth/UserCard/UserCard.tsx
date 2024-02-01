@@ -35,7 +35,7 @@ export default function UserCard() {
             )}
           </div>
         </PopoverTrigger>
-        <PopoverContent className="bg-zinc-50 flex flex-col gap-3 py-2 px-2">
+        <PopoverContent className="bg-zinc-50 flex w-60 flex-col gap-3 py-2 px-2">
           <span className="font-semibold">User Settings</span>
           <div
             className="bg-white border p-1 px-3 hover:text-red-400 hover:bg-zinc-50 transition-all rounded-md cursor-pointer "
