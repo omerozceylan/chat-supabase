@@ -2,6 +2,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { MainContext } from "@/Context";
+import { Switch } from "@/components/ui/switch";
 
 import {
   Popover,
@@ -35,8 +36,17 @@ export default function UserCard() {
             )}
           </div>
         </PopoverTrigger>
-        <PopoverContent className="bg-zinc-50 flex w-60 flex-col gap-3 py-2 px-2">
+        <PopoverContent className="bg-zinc-50 flex w-64 flex-col gap-3 py-2 px-2">
           <span className="font-semibold">User Settings</span>
+          <div className="flex items-center gap-1 ">
+            <div className="bg-blue-500  h-6 w-6 hover:bg-blue-400 transition-all cursor-pointer "></div>
+            <div className="bg-pink-500  h-6 w-6 hover:bg-pink-400 transition-all cursor-pointer "></div>
+            <div className="bg-slate-800  h-6 w-6 hover:bg-slate-600 transition-all cursor-pointer "></div>
+          </div>
+          <span className="flex items-center">
+            Use my profile color as theme. <Switch />{" "}
+          </span>
+
           <div
             className="bg-white border p-1 px-3 hover:text-red-400 hover:bg-zinc-50 transition-all rounded-md cursor-pointer "
             onClick={() => {
