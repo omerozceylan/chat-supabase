@@ -41,15 +41,10 @@ export default function RoomCard({ roomName, id, onLeave }) {
               onClick={() => {
                 onLeave(id);
               }}
-              className="text-red-500 hover:text-red-500"
+              className="text-red-500 cursor-pointer hover:text-red-500"
             >
               Leave
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex gap-3">
-              <span>Edit Title</span> <Badge variant="outline">Owner</Badge>
-            </DropdownMenuItem>
-            <DropdownMenuItem>Details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

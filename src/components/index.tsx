@@ -9,6 +9,8 @@ import { RoomCard, CreateRoomButton, RoomListContainer } from "./Room";
 
 import UserCard from "./auth/UserCard/UserCard";
 
+import { ColorPicker } from "./UserMenu";
+
 import Spin from "./Loading/Spin";
 
 export {
@@ -20,5 +22,6 @@ export {
   MessageContainer,
   UserCard,
   Spin,
+  ColorPicker,
   MessageInputContainer,
 };
