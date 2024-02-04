@@ -33,8 +33,8 @@ export default function UserCard() {
     <div className="w-full outline-none border-none">
       <Popover>
         <PopoverTrigger className="w-full outline-none">
-          <div className="flex gap-3 items-center relative p-2 cursor-pointer text-sm bg-white shadow rounded-lg mb-2">
-            <span className="h-8 w-8 bg-slate-800 rounded-full text-white flex text-base items-center justify-center">
+          <div className="flex gap-3 items-center relative p-2 cursor-pointer text-sm bg-[var(--bg-main-primary)] shadow rounded-lg mb-2">
+            <span className="h-8 w-8 bg-[var(--bg-main)] rounded-full text-white flex text-base items-center justify-center">
               {userName.charAt(0).toUpperCase()}
             </span>
             {userName}
@@ -42,7 +42,7 @@ export default function UserCard() {
         </PopoverTrigger>
         <PopoverContent
           sideOffset={8}
-          className="bg-zinc-50 flex w-64 flex-col gap-3 py-2 px-2"
+          className="bg-[var(--bg-main-secondary)] flex w-64 flex-col gap-3 py-2 px-2"
         >
           <span className="font-semibold">User Settings</span>
           Set your avatar color.
@@ -51,7 +51,7 @@ export default function UserCard() {
             Use my avatar color as theme. <Switch />{" "}
           </span>
           <div
-            className="bg-white border p-1 px-3 hover:text-red-400 hover:bg-zinc-50 transition-all rounded-md cursor-pointer "
+            className="bg-[var(--bg-main-primary)] border p-1 px-3 hover:text-red-400 hover:bg-[var(--bg-main-secondary)] transition-all rounded-md cursor-pointer "
             onClick={() => {
               signOut();
             }}

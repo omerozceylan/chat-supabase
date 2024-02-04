@@ -10,6 +10,6 @@ export default function Auth() {
   }, []);
 
   return (
-    <div className="bg-zinc-50 flex justify-center  items-center h-screen text-black"></div>
+    <div className="bg-[var(--bg-main-secondary)] flex justify-center  items-center h-screen text-black"></div>
   );
 }

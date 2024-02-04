@@ -64,13 +64,15 @@ export default function MessageContainer() {
   }, [activeTabId]);
 
   if (activeTabId === 0)
-    return <div className="h-screen bg-white text-black"></div>;
+    return (
+      <div className="h-screen bg-[var(--bg-main-primary)] text-black"></div>
+    );
 
   return (
-    <div className="bg-white h-full">
+    <div className="bg-[var(--bg-main-primary)] h-full">
       {!isLoading && (
-        <div className="bg-white text-black h-screen flex flex-col">
-          <Spin isLoading={isLoading} bgColor="bg-white" />
+        <div className="bg-[var(--bg-main-primary)] text-black h-screen flex flex-col">
+          <Spin isLoading={isLoading} bgColor="bg-[var(--bg-main-primary)]" />
 
           <div className="h-23">
             {currentRoomName && (
@@ -84,7 +86,7 @@ export default function MessageContainer() {
             <MessageView messages={messages} />
           </div>
 
-          <div className="bg-white p-6 pt-1 mt-2">
+          <div className="bg-[var(--bg-main-primary)] p-6 pt-1 mt-2">
             <MessageInputContainer
               onSubmit={(message) => {
                 handleMessageSending(message);

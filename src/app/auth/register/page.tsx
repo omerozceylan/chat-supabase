@@ -60,12 +60,12 @@ export default function Register() {
     router.push("/rooms");
   }
   return (
-    <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
+    <div className="min-h-screen p-4 bg-[var(--bg-main-secondary)] flex justify-center items-center">
       {" "}
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 bg-white text-black p-4 w-80 rounded-lg border"
+          className="space-y-8 bg-[var(--bg-main-primary)] text-black p-4 w-80 rounded-lg border"
         >
           <FormField
             control={form.control}
@@ -126,14 +126,14 @@ export default function Register() {
           />
           <Button type="submit">Submit</Button>
           <div className="flex flex-col justify-center items-center gap-3">
-            <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center">
+            <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center">
               Login with Google <FcGoogle className="w-5 h-5" />
             </button>
             <span className="font-semibold text-sm">
               Do you already have an account?
             </span>
             <Link className="w-full" href={"/auth/login"}>
-              <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
+              <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center ">
                 login
               </button>
             </Link>

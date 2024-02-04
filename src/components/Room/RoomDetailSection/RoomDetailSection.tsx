@@ -76,7 +76,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
   };
 
   return (
-    <div className=" border-b  z-20 px-6 font-semibold text-md bg-white p-4">
+    <div className=" border-b  z-20 px-6 font-semibold text-md bg-[var(--bg-main-primary)] p-4">
       <div className="flex items-center justify-between">
         <span
           onKeyDown={(e) => {
@@ -87,7 +87,9 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             }
           }}
           className={` ${
-            isEditing ? "hover:bg-white" : "hover:bg-zinc-100"
+            isEditing
+              ? "hover:bg-[var(--bg-main-primary)]"
+              : "hover:bg-zinc-100"
           } group transition-all flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
         >
           <span
@@ -107,7 +109,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             <Dialog>
               <DialogTrigger>
                 {" "}
-                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground h-8 px-4 py-2 relative hover:bg-primary transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg]">
+                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-[var(--bg-main)] ">
                   <TiPlus />
                   Invite People
                 </div>

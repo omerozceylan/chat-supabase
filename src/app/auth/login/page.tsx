@@ -63,10 +63,10 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen p-4 bg-zinc-50 flex justify-center items-center">
+    <div className="min-h-screen p-4 bg-[var(--bg-main-secondary)] flex justify-center items-center">
       {" "}
       <div></div>
-      <div className="space-y-6 bg-white text-black p-4 w-80 rounded-lg border">
+      <div className="space-y-6 bg-[var(--bg-main-primary)] text-black p-4 w-80 rounded-lg border">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
             <FormField
@@ -116,7 +116,7 @@ export default function Login() {
             onClick={() => {
               sigInWithGoogle();
             }}
-            className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center"
+            className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center"
           >
             Login with Google <FcGoogle className="w-5 h-5" />
           </button>
@@ -124,7 +124,7 @@ export default function Login() {
             Don't you have an account?
           </span>
           <Link className="w-full" href={"/auth/register"}>
-            <button className="w-full flex items-center rounded-md gap-2 bg-zinc-50 hover:bg-white border p-2 justify-center ">
+            <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center ">
               register
             </button>
           </Link>

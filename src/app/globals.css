@@ -9,6 +9,12 @@
   }
 
   :root {
+    --bg-main: #0f172a;
+    --bg-main-primary: #ffffff;
+    --bg-main-secondary: #f8fafc;
+
+    --bg-main-hover: #334155;
+
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
 
