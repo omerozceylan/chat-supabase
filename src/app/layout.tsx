@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={cn("min-h-screen bg-slate-300", fontSans.variable)}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

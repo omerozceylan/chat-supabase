@@ -47,7 +47,7 @@ export default function RoomCard({ roomName, id, onLeave }) {
               <PiDotsThreeBold className="w-6 h-6" />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className=" border border-input">
             <DropdownMenuItem
               onClick={() => {
                 onLeave(id);

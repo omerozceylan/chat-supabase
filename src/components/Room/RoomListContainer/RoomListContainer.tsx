@@ -7,6 +7,7 @@ import { FiPlusSquare } from "react-icons/fi";
 import { MainContext } from "@/Context";
 import { useContext } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 export default function RoomListContainer() {
   const {

@@ -1,3 +1,5 @@
 import ColorPicker from "./ColorPicker/ColorPicker";
 
-export { ColorPicker };
+import ToggleTheme from "./ToggleTheme/ToggleTheme";
+
+export { ColorPicker, ToggleTheme };
