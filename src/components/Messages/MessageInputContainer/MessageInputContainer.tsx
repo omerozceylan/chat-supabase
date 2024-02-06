@@ -41,9 +41,10 @@ export default function MessageInputContainer({ onSubmit }: any) {
         setMessage("");
       }}
     >
-      <div className="flex gap-2 items-center h-10">
+      <div className="flex gap-2 items-center h-10 ">
         <Input
           value={inputValue}
+          className={`border border-input dark:text-foreground`}
           placeholder="your message"
           onChange={(event) => {
             const message = event.target.value;
@@ -54,7 +55,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
 
         <button
           type="submit"
-          className="text-white focus:outline-none md:hidden  font-medium rounded-md text-sm px-5 py-2.5 me-2 mb-2 bg-gray-800 hover:bg-gray-700  border-gray-700 h-full"
+          className=" focus:outline-none md:hidden  font-medium rounded-md text-sm px-5 py-2.5 me-2 mb-2 bg-gray-800 hover:bg-gray-700  border-gray-700 h-full"
         >
           <RiSendPlaneFill />
         </button>

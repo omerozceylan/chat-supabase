@@ -59,7 +59,7 @@ const Box = ({ onClick, isChecked, tailwindStyles, color }) => {
         onClick={() => {
           setIsCheck(!isCheck);
         }}
-        className={`${tailwindStyles.color} rounded-sm shadow-lg h-7 w-7 flex justify-center items-center active:scale-95  transition-all cursor-pointer select-none`}
+        className={`${tailwindStyles.color} rounded-sm border border-input shadow-lg h-7 w-7 flex justify-center items-center active:scale-95  transition-all cursor-pointer select-none`}
       >
         <span className={`${isCheck ? "" : "hidden"}`}>
           <FaCheck className="w-3 h-3 text-white" />

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FaRegMessage } from "react-icons/fa6";
 import { PiDotsThreeBold } from "react-icons/pi";
+import { Button } from "@/components/ui/button";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +15,15 @@ import { Badge } from "@/components/ui/badge";
 import { useContext, useState } from "react";
 import { MainContext } from "@/Context";
 
+const theme = "greenTheme";
+
+const classByTheme = {
+  greenTheme: {
+    button: "",
+    activeButton: "bg-[#22C55F] hover:bg-green-600",
+  },
+};
+
 export default function RoomCard({ roomName, id, onLeave }) {
   const { activeTabId } = useContext(MainContext);
 
@@ -20,14 +31,14 @@ export default function RoomCard({ roomName, id, onLeave }) {
   const [isEditing, setIsEditing] = useState(false);
   return (
     <div
-      className={`flex items-center text-black gap-3 group rounded-lg p-2 overflow-hidden whitespace-nowrap hover:bg-gray-200 ${
+      className={`flex items-center text-black gap-3  group rounded-lg p-2 transition-all overflow-hidden whitespace-nowrap ${
         isActive
-          ? "bg-[var(--bg-main)] hover:bg-[var(--bg-main-hover)] text-white transition-all "
-          : "hover:bg-gray-200"
+          ? "bg-primary/80 text-primary-foreground hover:bg-primary/90"
+          : "hover:bg-primary/80  dark:text-foreground hover:text-primary-foreground"
       }`}
     >
       <div className="flex justify-between  w-full px-2 pr-1">
-        <div className="overflow-hidden">{roomName}</div>
+        <div className={`overflow-hidden`}>{roomName}</div>
 
         <DropdownMenu>
           <DropdownMenuTrigger>

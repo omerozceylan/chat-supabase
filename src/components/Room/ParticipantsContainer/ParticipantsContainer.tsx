@@ -26,9 +26,9 @@ export default function ParticipantsContainer() {
     );
 
   return (
-    <div className="bg-[var(--bg-main-secondary)] border-l text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72 p-4 gap-6">
+    <div className=" bg-background border-l border-input text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
       <div className="">
-        <span className="font-semibold">
+        <span className="font-semibold text-secondary-foreground">
           Participants - {participants.length}
         </span>
       </div>
@@ -38,10 +38,10 @@ export default function ParticipantsContainer() {
           : participant.profiles.full_name;
         return (
           <div className="flex gap-3 items-center">
-            <div className="bg-[var(--bg-main)] w-8 h-8 flex items-center justify-center text-md text-white rounded-full">
+            <div className=" dark:bg-secondary bg-black w-8 h-8 flex items-center text-white justify-center text-md  rounded-full">
               {userName.charAt(0).toUpperCase()}
             </div>
-            {userName}
+            <span className="text-secondary-foreground">{userName}</span>
           </div>
         );
       })}

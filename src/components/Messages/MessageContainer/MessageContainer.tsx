@@ -64,17 +64,15 @@ export default function MessageContainer() {
   }, [activeTabId]);
 
   if (activeTabId === 0)
-    return (
-      <div className="h-screen bg-[var(--bg-main-primary)] text-black"></div>
-    );
+    return <div className="h-screen bg-white text-black"></div>;
 
   return (
-    <div className="bg-[var(--bg-main-primary)] h-full">
+    <div className={` h-full bg-background`}>
       {!isLoading && (
-        <div className="bg-[var(--bg-main-primary)] text-black h-screen flex flex-col">
+        <div className="text-black h-screen flex flex-col">
           <Spin isLoading={isLoading} bgColor="bg-[var(--bg-main-primary)]" />
 
-          <div className="h-23">
+          <div className="h-23 border-b border-input">
             {currentRoomName && (
               <RoomDetailSection
                 roomId={roomId}
@@ -82,11 +80,11 @@ export default function MessageContainer() {
               />
             )}
           </div>
-          <div className=" py-1  h-full overflow-hidden">
+          <div className=" h-full overflow-hidden">
             <MessageView messages={messages} />
           </div>
 
-          <div className="bg-[var(--bg-main-primary)] p-6 pt-1 mt-2">
+          <div className="bg-[var(--background)] p-6 pt-1 mt-2">
             <MessageInputContainer
               onSubmit={(message) => {
                 handleMessageSending(message);

@@ -76,7 +76,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
   };
 
   return (
-    <div className=" border-b  z-20 px-6 font-semibold text-md bg-[var(--bg-main-primary)] p-4">
+    <div className="z-20 px-6 font-semibold text-md p-4">
       <div className="flex items-center justify-between">
         <span
           onKeyDown={(e) => {
@@ -88,9 +88,9 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           }}
           className={` ${
             isEditing
-              ? "hover:bg-[var(--bg-main-primary)]"
-              : "hover:bg-zinc-100"
-          } group transition-all flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
+              ? "hover:"
+              : "hover:bg-zinc-100 hover:text-slate-800 dark:hover:bg-primary/80"
+          } group transition-all text-slate-800 dark:text-secondary-foreground dark:duration-300 flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
         >
           <span
             ref={editableAreaRef}
@@ -109,18 +109,18 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             <Dialog>
               <DialogTrigger>
                 {" "}
-                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-[var(--bg-main)] ">
+                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-primary/80 hover:bg-primary  text-primary-foreground ">
                   <TiPlus />
                   Invite People
                 </div>
               </DialogTrigger>
-              <DialogContent className="text-black dark:text-white gap-6">
+              <DialogContent className="text-black dark:text-white gap-6 border-input">
                 <DialogHeader>
                   <DialogTitle>
                     Here is your invite code. It will expire in 30 minutes.
                   </DialogTitle>
                   <DialogDescription>
-                    <div className=" flex justify-between items-center mt-1 border rounded-md px-2 py-1">
+                    <div className=" flex justify-between items-center mt-1 border border-input rounded-md px-2 py-1">
                       <span>zamazingozamazingozamazingozamazingo</span>{" "}
                       <MdContentCopy className="h-4 w-4 cursor-pointer" />
                     </div>

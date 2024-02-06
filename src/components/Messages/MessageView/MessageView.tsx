@@ -18,7 +18,7 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
   return (
     <div
       ref={messageContainerRef}
-      className="flex flex-col gap-4 p-4  h-full overflow-y-auto transition-all"
+      className="flex flex-col gap-4 p-4 pt-1  h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
         const userName =
@@ -42,7 +42,13 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
             >
               {data.user_name ? data.user_name.charAt(0) : ""}
             </div>
-            <span className="relative ml-3 text-sm bg-[var(--bg-main-primary)] py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80	">
+            <span
+              className={`relative ml-3 text-sm  py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80 font-light	${
+                isOwner
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted dark:text-white"
+              }`}
+            >
               {data.message}
             </span>
           </div>

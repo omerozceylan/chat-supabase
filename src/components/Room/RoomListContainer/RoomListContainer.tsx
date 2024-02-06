@@ -30,7 +30,7 @@ export default function RoomListContainer() {
     );
 
   return (
-    <div className="bg-[var(--bg-main-secondary)] text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">
+    <div className=" bg-background text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:border-input dark:text-foreground lg:w-60 xl:w-72">
       <div className=" font-semibold text-lg p-4 pb-1 flex justify-between items-center">
         <span>Rooms You Attended</span>
         <CreateRoomButton />
@@ -54,7 +54,7 @@ export default function RoomListContainer() {
       )}
       <Spin isLoading={roomLoading} />
       {!roomLoading && (
-        <div className="p-3 flex flex-col overflow-y-auto">
+        <div className="p-3 flex flex-col overflow-y-auto gap-0.5">
           {userAttendedRooms.map((room) => {
             return (
               <div
