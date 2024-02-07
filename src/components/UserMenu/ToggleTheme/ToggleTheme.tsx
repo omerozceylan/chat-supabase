@@ -1,28 +1,30 @@
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSunny } from "react-icons/io5";
 import { MdDarkMode } from "react-icons/md";
 
 export default function ToggleTheme() {
   const { setTheme } = useTheme();
-  const [isDark, setIsDark] = useState(false);
-
-  setTheme(isDark ? "dark" : "light");
+  const theme = localStorage.getItem("theme");
 
   const svgByTheme = {
-    true: (
+    dark: (
       <IoSunny
         className="w-5 h-5 text-white cursor-pointer"
-        onClick={() => setIsDark(!isDark)}
+        onClick={() => {
+          setTheme("light");
+        }}
       />
     ),
-    false: (
+    light: (
       <MdDarkMode
         className="w-5 h-5 text-white cursor-pointer"
-        onClick={() => setIsDark(!isDark)}
+        onClick={() => {
+          setTheme("dark");
+        }}
       />
     ),
   };
 
-  return <div>{svgByTheme[isDark]}</div>;
+  return <div>{svgByTheme[theme]}</div>;
 }

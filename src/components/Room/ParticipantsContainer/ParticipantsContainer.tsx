@@ -13,7 +13,6 @@ export default function ParticipantsContainer() {
         .select("*, profiles(*)")
         .eq("room_id", roomId);
       setParticipants(participants);
-      console.log(participants);
     }
     getParticipants();
   }, [roomId]);

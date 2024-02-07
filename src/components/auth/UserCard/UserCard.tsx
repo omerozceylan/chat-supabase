@@ -2,6 +2,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { MainContext } from "@/Context";
+import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { ToggleTheme } from "@/components";
 import {
@@ -44,20 +45,24 @@ export default function UserCard() {
         </PopoverTrigger>
         <PopoverContent
           sideOffset={8}
-          className="bg-background flex w-64 flex-col gap-3 border-input border py-2 px-2 select-none"
+          className="bg-background flex w-64 flex-col border-input border p-0 select-none"
         >
-          <span className="font-semibold">User Settings</span>
-          <div className="w-7 h-7 text-white bg-slate-800 flex items-center justify-center rounded-md">
-            <ToggleTheme />
+          <div className="p-1 px-3 flex flex-col gap-y-2 mb-2">
+            <span className="font-semibold py-1">User Settings</span>
+            <div className="w-7 h-7 text-white bg-slate-800 flex items-center justify-center rounded-md">
+              <ToggleTheme />
+            </div>
+            <span className="text-sm">Set your avatar color.</span>
+            <ColorPicker />
+            <span className="flex gap-y-2 flex-col text-sm">
+              Use my avatar color as theme. <Switch className="" />{" "}
+            </span>
           </div>
-          Set your avatar color.
-          <ColorPicker />
-          <span className="flex items-center">
-            Use my avatar color as theme. <Switch className="" />{" "}
-          </span>
-          <div className="flex w-full">
+
+          <Separator />
+          <div className="flex w-full p-1">
             <div
-              className="bg-background border border-input p-1 px-3 hover:text-red-400 hover:bg-[var(--bg-main-secondary)] transition-all w-full rounded-md cursor-pointer "
+              className="bg-background py-2 px-3  hover:bg-zinc-100 text-red-400 transition-all w-full rounded-md cursor-pointer "
               onClick={() => {
                 signOut();
               }}
