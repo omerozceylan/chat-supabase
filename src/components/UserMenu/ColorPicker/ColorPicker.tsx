@@ -1,33 +1,11 @@
+import { ColorContext } from "@/Context/ColorThemeProvider";
 import { useTheme } from "next-themes";
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 
-const colors = [
-  {
-    id: 2,
-    name: "black",
-    color: "bg-black",
-  },
-  {
-    id: 4,
-    name: "gray",
-    color: "bg-gray-500",
-  },
-  {
-    id: 1,
-    name: "red",
-    color: "bg-red-500",
-  },
-
-  {
-    id: 3,
-    name: "green",
-    color: "bg-green-500",
-  },
-];
-
 export default function ColorPicker() {
-  const [checkedBoxId, setCheckedBoxId] = useState(0);
+  const { colors, checkedBoxId, setCheckedBoxId } = useContext(ColorContext);
+
   const { theme } = useTheme();
 
   return (
@@ -42,6 +20,7 @@ export default function ColorPicker() {
             onClick={(color, id) => {
               document.documentElement.className = `${color} ${theme}`;
               setCheckedBoxId(id);
+              localStorage.setItem("colorThemeId", id);
             }}
             key={id}
           />
@@ -52,8 +31,8 @@ export default function ColorPicker() {
 }
 
 const Box = ({ id, color, onClick, checkedBoxId, name }) => {
-  console.log("CHECK IDS: ", " ID: ", id, " CHECKEDBOXID: ", checkedBoxId);
-  const isCheck = id === checkedBoxId;
+  const isCheck = id == checkedBoxId;
+
   return (
     <div>
       <div

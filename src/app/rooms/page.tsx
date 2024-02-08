@@ -6,6 +6,7 @@ import ParticipantsContainer from "@/components/Room/ParticipantsContainer/Parti
 import { MainContext } from "@/Context";
 import { supabase } from "@/supabase/client";
 import { RoomListContainer } from "@/components";
+import ColorThemeContext from "@/Context/ColorThemeProvider";
 
 export default function Room() {
   const [activeTabId, setActiveTabId] = useState<number | undefined>(0);
@@ -14,7 +15,6 @@ export default function Room() {
   const [userLoading, setUserLoading] = useState(true);
   const [roomLoading, setRoomLoading] = useState(true);
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
-  const [provider, setProvider] = useState(undefined);
 
   const getUser = async () => {
     const { data, error } = await supabase.auth.getUser();
@@ -62,15 +62,17 @@ export default function Room() {
           setUserLoading,
         }}
       >
-        <div className=" min-h-screen">
-          <RoomListContainer />
-        </div>
-        <div className="w-full">
-          <MessageContainer />
-        </div>
-        <div>
-          <ParticipantsContainer />
-        </div>
+        <ColorThemeContext>
+          <div className=" min-h-screen">
+            <RoomListContainer />
+          </div>
+          <div className="w-full">
+            <MessageContainer />
+          </div>
+          <div>
+            <ParticipantsContainer />
+          </div>
+        </ColorThemeContext>
       </MainContext.Provider>
     </div>
   );
