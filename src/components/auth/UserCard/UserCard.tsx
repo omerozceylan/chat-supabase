@@ -1,3 +1,5 @@
+"use client";
+
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
