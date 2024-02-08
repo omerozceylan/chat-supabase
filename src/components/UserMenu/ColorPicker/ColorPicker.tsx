@@ -1,44 +1,49 @@
-import { useState } from "react";
+import { useTheme } from "next-themes";
+import { use, useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 
 const colors = [
   {
-    id: 1,
-    hexColor: "#0f172a",
-    hover: "#334155",
-    tailwindStyles: { color: "bg-[#0f172a]", hover: "bg-[#334155]" },
-    name: "deafultTheme",
+    id: 2,
+    name: "black",
+    color: "bg-black",
   },
   {
-    id: 2,
-    hexColor: "#f74d2c",
-    hover: "#f74d2c",
-    tailwindStyles: { color: "bg-[#f74d2c]", hover: "bg-[#f74d2c]" },
-    name: "orangeTheme",
+    id: 4,
+    name: "gray",
+    color: "bg-gray-500",
+  },
+  {
+    id: 1,
+    name: "red",
+    color: "bg-red-500",
+  },
+
+  {
+    id: 3,
+    name: "green",
+    color: "bg-green-500",
   },
 ];
 
-// bg-main: #0f172a;
-//     --bg-main-hover: #334155;
-
 export default function ColorPicker() {
-  const [state, setState] = useState(false);
-
-  const changeGlobalTheme = (hexCode) => {
-    if (!hexCode) return;
-    document.documentElement.style.setProperty("--bg-main", hexCode);
-  };
+  const [checkedBoxId, setCheckedBoxId] = useState(0);
+  const { theme } = useTheme();
 
   return (
     <div className="flex items-center gap-1 ">
-      {colors.map(({ hexColor, tailwindStyles }) => {
+      {colors.map(({ color, name, id }) => {
         return (
           <Box
-            color={hexColor}
-            tailwindStyles={tailwindStyles}
-            onClick={(color) => {
-              changeGlobalTheme(color);
+            id={id}
+            color={color}
+            name={name}
+            checkedBoxId={checkedBoxId}
+            onClick={(color, id) => {
+              document.documentElement.className = `${color} ${theme}`;
+              setCheckedBoxId(id);
             }}
+            key={id}
           />
         );
       })}
@@ -46,23 +51,19 @@ export default function ColorPicker() {
   );
 }
 
-const Box = ({ onClick, isChecked, tailwindStyles, color }) => {
-  const [isCheck, setIsCheck] = useState(false);
-
+const Box = ({ id, color, onClick, checkedBoxId, name }) => {
+  console.log("CHECK IDS: ", " ID: ", id, " CHECKEDBOXID: ", checkedBoxId);
+  const isCheck = id === checkedBoxId;
   return (
-    <div
-      onClick={() => {
-        onClick(color);
-      }}
-    >
+    <div>
       <div
         onClick={() => {
-          setIsCheck(!isCheck);
+          onClick(name, id);
         }}
-        className={`${tailwindStyles.color} rounded-sm  border-[2px] shadow-lg h-7 w-7 flex justify-center items-center active:scale-95  transition-all cursor-pointer select-none`}
+        className={`rounded-sm ${color}  border-[2px] shadow-lg h-7 w-7 flex justify-center items-center active:scale-95  transition-all cursor-pointer select-none`}
       >
         <span className={`${isCheck ? "" : "hidden"}`}>
-          <FaCheck className="w-3 h-3 text-white" />
+          <FaCheck className="w-3 h-3 text-white " />
         </span>
       </div>
     </div>

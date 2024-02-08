@@ -1,7 +1,7 @@
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { MainContext } from "@/Context";
+import { MainContext, UserCardContext } from "@/Context";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { ToggleTheme } from "@/components";
@@ -52,11 +52,9 @@ export default function UserCard() {
             <div className="w-7 h-7 text-white bg-slate-800 flex items-center justify-center rounded-md">
               <ToggleTheme />
             </div>
-            <span className="text-sm">Set your avatar color.</span>
+            <span className="text-sm">Choose Your Theme.</span>
             <ColorPicker />
-            <span className="flex gap-y-2 flex-col text-sm">
-              Use my avatar color as theme. <Switch className="" />{" "}
-            </span>
+            <span className="text-sm"> </span>
           </div>
 
           <Separator />

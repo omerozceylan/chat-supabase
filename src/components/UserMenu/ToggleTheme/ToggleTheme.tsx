@@ -4,8 +4,7 @@ import { IoSunny } from "react-icons/io5";
 import { MdDarkMode } from "react-icons/md";
 
 export default function ToggleTheme() {
-  const { setTheme } = useTheme();
-  const theme = localStorage.getItem("theme");
+  const { setTheme, theme } = useTheme();
 
   const svgByTheme = {
     dark: (
