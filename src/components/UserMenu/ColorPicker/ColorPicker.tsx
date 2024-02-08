@@ -1,3 +1,5 @@
+"use client";
+
 import { ColorContext } from "@/Context/ColorThemeProvider";
 import { useTheme } from "next-themes";
 import { use, useContext, useEffect, useState } from "react";
