@@ -33,7 +33,7 @@ export default function RoomCard({ roomName, id, onLeave }) {
     <div
       className={`flex items-center text-black gap-3  group rounded-lg p-2 transition-all overflow-hidden whitespace-nowrap ${
         isActive
-          ? "bg-primary/80 text-primary-foreground hover:bg-primary/90"
+          ? "bg-primary dark:bg-primary/80 text-primary-foreground hover:bg-primary/90"
           : "hover:bg-primary/80  dark:text-foreground hover:text-primary-foreground"
       }`}
     >
