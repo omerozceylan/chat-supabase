@@ -6,11 +6,6 @@ import { createContext } from "react";
 
 const colors = [
   {
-    id: 2,
-    name: "black",
-    color: "bg-black",
-  },
-  {
     id: 4,
     name: "gray",
     color: "bg-gray-500",
