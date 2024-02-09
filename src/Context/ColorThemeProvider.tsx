@@ -35,7 +35,9 @@ export default function ColorThemeContext({ children }) {
   const [checkedBoxId, setCheckedBoxId] = useState();
 
   useEffect(() => {
-    const id = localStorage.getItem("colorThemeId");
+    const id = localStorage.getItem("colorThemeId")
+      ? localStorage.getItem("colorThemeId")
+      : 4;
 
     const colorById = colors.find((color) => color.id == id).name;
 
