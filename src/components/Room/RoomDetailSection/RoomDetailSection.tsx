@@ -45,7 +45,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           onClick={() => {
             setIsEditing(false);
           }}
-          className="flex items-center text-sm select-none rounded-lg border px-2"
+          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary dark:border-input border px-2"
         >
           <IoClose className="text-md" />
           Cancel

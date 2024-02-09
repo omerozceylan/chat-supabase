@@ -36,7 +36,7 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
             className={`flex items-end pr-2 ${isOwner ? "justify-end" : ""}`}
           >
             <div
-              className={`text-white bg-black rounded-2xl w-8 h-8 flex justify-center items-center ${
+              className={`  dark:bg-secondary bg-secondary-foreground text-white rounded-2xl w-8 h-8 flex justify-center items-center ${
                 isOwner ? "hidden" : ""
               }`}
             >

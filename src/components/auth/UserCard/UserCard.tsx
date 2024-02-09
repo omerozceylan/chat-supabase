@@ -38,7 +38,7 @@ export default function UserCard() {
     <div className="w-full outline-none border-none">
       <Popover>
         <PopoverTrigger className="w-full outline-none">
-          <div className="flex gap-3 items-center border border-input relative p-2 cursor-pointer text-sm bg-[var(--bg-main-primary)] shadow rounded-lg mb-2">
+          <div className="flex gap-3 items-center border border-input relative p-2 cursor-pointer text-sm bg-background shadow rounded-lg mb-2">
             <span className="h-8 w-8 bg-black dark:bg-secondary rounded-full text-white flex text-base items-center justify-center">
               {userName.charAt(0).toUpperCase()}
             </span>
