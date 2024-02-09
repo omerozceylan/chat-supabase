@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="gray" lang="en">
-      <body className={cn("min-h-screen bg-slate-300", fontSans.variable)}>
+      <body className={cn("min-h-screen bg-white", fontSans.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -20,8 +20,6 @@ export default function RoomListContainer() {
     getRooms,
   } = useContext(MainContext);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   if (userLoading)
     return (
       <div className="bg-[var(--bg-main-secondary)] text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">

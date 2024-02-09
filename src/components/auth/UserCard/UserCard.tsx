@@ -65,6 +65,8 @@ export default function UserCard() {
               className="bg-background py-2 px-3  hover:bg-zinc-100 text-red-400 transition-all w-full rounded-md cursor-pointer "
               onClick={() => {
                 signOut();
+                localStorage.clear();
+                document.documentElement.className = "light gray";
               }}
             >
               Log out
