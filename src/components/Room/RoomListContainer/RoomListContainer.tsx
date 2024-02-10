@@ -22,7 +22,7 @@ export default function RoomListContainer() {
 
   if (userLoading)
     return (
-      <div className="bg-[var(--bg-main-secondary)] text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72">
+      <div className="bg-background text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:border-input lg:w-60 xl:w-72">
         {" "}
         <Spin isLoading={userLoading} />
       </div>
@@ -34,6 +34,7 @@ export default function RoomListContainer() {
         <span>Rooms You Attended</span>
         <CreateRoomButton />
       </div>
+
       {!user && !roomLoading && (
         <div className="flex justify-center flex-col items-center gap-4 mt-3">
           <div className="bg-red-400 rounded-lg text-sm mx-4 p-2">
@@ -46,12 +47,15 @@ export default function RoomListContainer() {
           </Link>
         </div>
       )}
+
       {user && !roomLoading && !userAttendedRooms.length > 0 && (
         <div className="text-sm text-gray-500/75 mx-4 mt-4">
           There are no rooms you have joined or created.
         </div>
       )}
+
       <Spin isLoading={roomLoading} />
+
       {!roomLoading && (
         <div className="p-3 flex flex-col overflow-y-auto gap-0.5">
           {userAttendedRooms.map((room) => {
@@ -82,6 +86,7 @@ export default function RoomListContainer() {
           })}
         </div>
       )}
+
       <div className="mt-auto p-3 ">
         <UserCard />
       </div>

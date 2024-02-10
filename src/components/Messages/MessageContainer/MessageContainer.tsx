@@ -12,7 +12,7 @@ export default function MessageContainer() {
 
   const [currentRoomName, setCurrentRoomName] = useState();
 
-  const { activeTabId, user, roomId, setRoomId } = useContext(MainContext);
+  const { activeTabId, roomId, setRoomId } = useContext(MainContext);
 
   const fetchRoomByParticipantsId = async (id: any) => {
     const { data, error } = await supabase
@@ -26,10 +26,12 @@ export default function MessageContainer() {
 
   const fetchMessages = async (roomId: any) => {
     setIsLoading(true);
+
     const { data: messages, error } = await supabase
       .from("messages")
       .select("*")
       .eq("room_id", roomId);
+
     if (error) {
       console.error("Error fetching messages", error);
       return [];
@@ -63,8 +65,10 @@ export default function MessageContainer() {
     }
   }, [activeTabId]);
 
-  if (activeTabId === 0)
-    return <div className="h-screen bg-white text-black"></div>;
+  if (activeTabId === 0 && !activeTabId)
+    return (
+      <div className="h-screen bg-background border-r border-input text-black"></div>
+    );
 
   return (
     <div className={` h-full bg-background`}>

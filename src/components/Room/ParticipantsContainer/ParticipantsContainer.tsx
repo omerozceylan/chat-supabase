@@ -19,7 +19,7 @@ export default function ParticipantsContainer() {
 
   if (!participants)
     return (
-      <div className="bg-[var(--bg-main-secondary)] border-l text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col lg:border-r lg:w-60 xl:w-72 p-4 gap-6">
+      <div className="bg-background dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
         Participants
       </div>
     );
