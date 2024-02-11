@@ -45,7 +45,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           onClick={() => {
             setIsEditing(false);
           }}
-          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary dark:border-input border px-2"
+          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary dark:  border px-2"
         >
           <IoClose className="text-md" />
           Cancel
@@ -76,7 +76,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
   };
 
   return (
-    <div className="z-20 px-6 font-semibold text-md p-4">
+    <div className="z-20 px-6 font-semibold  text-md p-4">
       <div className="flex items-center justify-between">
         <span
           onKeyDown={(e) => {
@@ -114,13 +114,13 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
                   Invite People
                 </div>
               </DialogTrigger>
-              <DialogContent className="text-black dark:text-white gap-6 border-input">
+              <DialogContent className="text-black dark:text-white gap-6  ">
                 <DialogHeader>
                   <DialogTitle>
                     Here is your invite code. It will expire in 30 minutes.
                   </DialogTitle>
                   <DialogDescription>
-                    <div className=" flex justify-between items-center mt-1 border border-input rounded-md px-2 py-1">
+                    <div className=" flex justify-between items-center mt-1 border   rounded-md px-2 py-1">
                       <span>zamazingozamazingozamazingozamazingo</span>{" "}
                       <MdContentCopy className="h-4 w-4 cursor-pointer" />
                     </div>

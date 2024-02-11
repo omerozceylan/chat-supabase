@@ -21,13 +21,13 @@ export default function ParticipantsContainer() {
 
   if (!participants)
     return (
-      <div className="dark:bg-black bg-white dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
+      <div className="dark:bg-black bg-white  dark:border-[var(--border-primary)] dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
         Participants
       </div>
     );
 
   return (
-    <div className=" dark:bg-black bg-white border-l border-input text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
+    <div className=" dark:bg-black bg-white border-l  dark:border-[var(--border-primary)]  text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
       <div className="">
         <span className="font-semibold text-secondary-foreground">
           Participants - {participants.length}

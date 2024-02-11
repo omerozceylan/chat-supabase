@@ -38,7 +38,7 @@ export default function UserCard() {
     <div className="w-full outline-none border-none">
       <Popover>
         <PopoverTrigger className="w-full outline-none">
-          <div className="flex gap-3 items-center border border-input relative p-2 cursor-pointer text-sm dark:bg-black bg-white shadow rounded-lg mb-2">
+          <div className="flex gap-3 items-center border  dark:border-[var(--border-primary)]  relative p-2 cursor-pointer text-sm dark:bg-black bg-white shadow rounded-lg mb-2">
             <span className="h-8 w-8 bg-black dark:bg-secondary rounded-full text-white flex text-base items-center justify-center">
               {userName.charAt(0).toUpperCase()}
             </span>
@@ -47,7 +47,7 @@ export default function UserCard() {
         </PopoverTrigger>
         <PopoverContent
           sideOffset={8}
-          className="dark:bg-black bg-white flex w-64 flex-col border-input border p-0 select-none"
+          className="dark:bg-black bg-white flex w-64 flex-col border  dark:border-[var(--border-primary)] p-0 select-none"
         >
           <div className="p-1 px-3 flex flex-col gap-y-2 mb-2">
             <span className="font-semibold py-1">User Settings</span>

@@ -67,7 +67,7 @@ export default function MessageContainer() {
 
   if (activeTabId === 0 && !activeTabId)
     return (
-      <div className="h-screen dark:bg-black bg-white border-r border-input text-black"></div>
+      <div className="h-screen dark:bg-black bg-white border-r   text-black"></div>
     );
 
   return (
@@ -76,7 +76,7 @@ export default function MessageContainer() {
         <div className="text-black h-screen flex flex-col">
           <Spin isLoading={isLoading} bgColor="bg-[var(--bg-main-primary)]" />
 
-          <div className="h-23 border-b border-input">
+          <div className="h-23 border-b  dark:border-[var(--border-primary)] ">
             {currentRoomName && (
               <RoomDetailSection
                 roomId={roomId}

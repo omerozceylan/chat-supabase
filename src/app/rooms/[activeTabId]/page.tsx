@@ -53,7 +53,7 @@ export default function Room({ params }) {
   };
 
   return (
-    <div className="flex  min-h-screen">
+    <div className="flex min-h-screen">
       <MainContext.Provider
         value={{
           activeTabId,

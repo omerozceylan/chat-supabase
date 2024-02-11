@@ -44,7 +44,7 @@ export default function MessageInputContainer({ onSubmit }: any) {
       <div className="flex gap-2 items-center h-10 ">
         <Input
           value={inputValue}
-          className={`border border-input dark:text-foreground`}
+          className={`border  dark:border-[var(--border-primary)] dark:text-foreground`}
           placeholder="your message"
           onChange={(event) => {
             const message = event.target.value;
