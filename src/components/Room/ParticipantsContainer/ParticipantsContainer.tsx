@@ -6,26 +6,28 @@ export default function ParticipantsContainer() {
   const { roomId } = useContext(MainContext);
   const [participants, setParticipants] = useState([]);
 
+  async function getParticipants() {
+    const { data: participants, error } = await supabase
+      .from("participants")
+      .select("*, profiles(*)")
+      .eq("room_id", roomId);
+    setParticipants(participants);
+  }
+
   useEffect(() => {
-    async function getParticipants() {
-      const { data: participants, error } = await supabase
-        .from("participants")
-        .select("*, profiles(*)")
-        .eq("room_id", roomId);
-      setParticipants(participants);
-    }
+    if (!roomId) return;
     getParticipants();
   }, [roomId]);
 
   if (!participants)
     return (
-      <div className="bg-background dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
+      <div className="dark:bg-black bg-white dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
         Participants
       </div>
     );
 
   return (
-    <div className=" bg-background border-l border-input text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
+    <div className=" dark:bg-black bg-white border-l border-input text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
       <div className="">
         <span className="font-semibold text-secondary-foreground">
           Participants - {participants.length}
