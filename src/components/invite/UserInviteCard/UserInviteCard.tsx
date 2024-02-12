@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 
@@ -9,7 +11,7 @@ export default function UserInviteCard() {
         <div className="w-9 h-9 flex items-center justify-center text-white bg-black dark:bg-secondary rounded-full">
           O
         </div>
-        <span>Omer Ozceylan</span>
+        <span className="w-32 truncate overflow-hidden">Omer Ozceylan</span>
       </div>
       <button
         onClick={() => {

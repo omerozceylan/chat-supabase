@@ -22,7 +22,7 @@ export default function RoomListContainer() {
 
   if (userLoading)
     return (
-      <div className="dark:bg-black bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:  lg:w-60 xl:w-72">
+      <div className="dark:bg-black dark:lg:border-[var(--border-primary=)] bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:  lg:w-60 xl:w-72">
         {" "}
         <Spin isLoading={userLoading} />
       </div>

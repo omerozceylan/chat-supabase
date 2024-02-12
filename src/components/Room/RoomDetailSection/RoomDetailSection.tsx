@@ -7,6 +7,8 @@ import { useRef } from "react";
 import { supabase } from "@/supabase/client";
 import { TiPlus } from "react-icons/ti";
 import { MainContext } from "@/Context";
+import { MdCopyAll } from "react-icons/md";
+import { Separator } from "@/components/ui/separator";
 import UserInviteCard from "@/components/invite/UserInviteCard/UserInviteCard";
 import {
   Popover,
@@ -113,10 +115,16 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
               </PopoverTrigger>
               <PopoverContent
                 sideOffset={8}
-                className="text-black dark:text-white max-h-96 overflow-y-auto w-92 select-none gap-6 border-[var(--border-primary)] "
+                className="text-black dark:text-white max-h-96 overflow-y-auto w-92 select-none gap-6 dark:border-[var(--border-primary)] "
               >
                 <span className=" flex flex-col gap-6">
-                  <span className="font-semibold">
+                  <span className="font-semibold">Invite Link</span>
+                  <div className="border dark:border-[var(--border-primary)] px-2 rounded flex justify-between items-center">
+                    <span className="">zamazingzamazingzamazingo</span>{" "}
+                    <MdCopyAll className=" text-foreground/50 w-4 h-4 cursor-pointer" />
+                  </div>
+                  <Separator />
+                  <span className="font-semibold ">
                     People who request to enter this room
                   </span>
                   <UserInviteCard /> <UserInviteCard />
