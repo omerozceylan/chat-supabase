@@ -19,7 +19,7 @@ export default function UserInviteCard() {
           isAccepted ? " dark:bg-zinc-200 dark:text-black " : ""
         }`}
       >
-        {isAccepted ? <MdOutlineDone className="w-5 h-5" /> : "Accept"}
+        {isAccepted ? <MdOutlineDone className="w-5 h-5" /> : <div>Accept</div>}
       </button>
     </div>
   );

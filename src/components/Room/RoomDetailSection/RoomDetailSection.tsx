@@ -125,7 +125,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
               </PopoverContent>
             </Popover>
           </div>
-          <PiDotsThreeBold className="cursor-pointer w-6 h-6" />
+          <PiDotsThreeBold className="cursor-pointer dark:text-white w-6 h-6" />
         </div>
       </div>
     </div>

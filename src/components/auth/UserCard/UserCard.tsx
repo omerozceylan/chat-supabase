@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { MainContext, UserCardContext } from "@/Context";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
+import { IoMdSettings } from "react-icons/io";
 import { ToggleTheme } from "@/components";
 import {
   Popover,
@@ -38,11 +38,14 @@ export default function UserCard() {
     <div className="w-full outline-none border-none">
       <Popover>
         <PopoverTrigger className="w-full outline-none">
-          <div className="flex gap-3 items-center border  dark:border-[var(--border-primary)]  relative p-2 cursor-pointer text-sm dark:bg-black bg-white shadow rounded-lg mb-2">
-            <span className="h-8 w-8 bg-black dark:bg-secondary rounded-full text-white flex text-base items-center justify-center">
-              {userName.charAt(0).toUpperCase()}
-            </span>
-            {userName}
+          <div className="flex items-center justify-between gap-3 border  dark:border-[var(--border-primary)]  relative p-2 cursor-pointer text-sm dark:bg-black bg-white shadow rounded-lg mb-2">
+            <div className="flex items-center gap-3">
+              <span className="h-8 w-8 bg-black dark:bg-secondary rounded-full text-white flex text-base items-center justify-center">
+                {userName.charAt(0).toUpperCase()}
+              </span>
+              {userName}
+            </div>
+            <IoMdSettings className="mr-1 text-foreground/50 w-4 h-4" />
           </div>
         </PopoverTrigger>
         <PopoverContent

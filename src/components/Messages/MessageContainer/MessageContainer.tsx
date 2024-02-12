@@ -15,6 +15,7 @@ export default function MessageContainer() {
   const { activeTabId, roomId, setRoomId } = useContext(MainContext);
 
   const fetchRoomByParticipantsId = async (id: any) => {
+    if (id == 0) return;
     const { data, error } = await supabase
       .from("participants")
       .select("*,rooms(*)")

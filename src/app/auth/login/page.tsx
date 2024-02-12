@@ -63,10 +63,10 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen p-4 bg-[var(--bg-main-secondary)] flex justify-center items-center">
+    <div className="min-h-screen p-4 bg-white flex justify-center items-center">
       {" "}
       <div></div>
-      <div className="space-y-6 bg-[var(--bg-main-primary)] text-black p-4 w-80 rounded-lg border">
+      <div className="space-y-6 bg-white text-black p-4 w-80 rounded-lg border">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
             <FormField
@@ -77,7 +77,7 @@ export default function Login() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      className="text-black"
+                      className="text-black dark:bg-white bg-white"
                       placeholder="email"
                       {...field}
                     />
@@ -95,7 +95,7 @@ export default function Login() {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
-                      className="text-black"
+                      className="text-black dark:bg-white bg-white"
                       placeholder="password"
                       type="password"
                       {...field}
@@ -106,7 +106,10 @@ export default function Login() {
                 </FormItem>
               )}
             />
-            <Button className="h-9 px-3 text-sm mt-3" type="submit">
+            <Button
+              className="h-9 px-3 text-sm mt-3 bg-black dark:bg-black text-white dark:hover:bg-slate-800 hover:bg-slate-800"
+              type="submit"
+            >
               Submit
             </Button>
           </form>
