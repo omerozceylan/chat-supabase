@@ -114,13 +114,13 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
                   Invite People
                 </div>
               </DialogTrigger>
-              <DialogContent className="text-black dark:text-white gap-6  ">
+              <DialogContent className="text-black dark:text-white gap-6 border-[var(--border-primary)] ">
                 <DialogHeader>
                   <DialogTitle>
                     Here is your invite code. It will expire in 30 minutes.
                   </DialogTitle>
                   <DialogDescription>
-                    <div className=" flex justify-between items-center mt-1 border   rounded-md px-2 py-1">
+                    <div className=" flex justify-between items-center mt-1 border border-[var(--border-primary)]  rounded-md px-2 py-1">
                       <span>zamazingozamazingozamazingozamazingo</span>{" "}
                       <MdContentCopy className="h-4 w-4 cursor-pointer" />
                     </div>
