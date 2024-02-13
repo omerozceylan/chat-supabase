@@ -44,7 +44,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           onClick={() => {
             setIsEditing(false);
           }}
-          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary dark:  border px-2"
+          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary dark:border dark:border-[var(--border-primary)] px-2"
         >
           <IoClose className="text-md" />
           Cancel
@@ -115,7 +115,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
               </PopoverTrigger>
               <PopoverContent
                 sideOffset={8}
-                className="text-black dark:text-white max-h-96 overflow-y-auto w-92 select-none gap-6 dark:border-[var(--border-primary)] "
+                className="text-black dark:text-white max-h-96 overflow-y-auto w-96 px-8 py-6 select-none gap-6 dark:border-[var(--border-primary)] "
               >
                 <span className=" flex flex-col gap-6">
                   <span className="font-semibold">Invite Link</span>

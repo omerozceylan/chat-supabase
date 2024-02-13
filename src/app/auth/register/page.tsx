@@ -60,7 +60,7 @@ export default function Register() {
     router.push("/rooms");
   }
   return (
-    <div className="min-h-screen p-4 bg-[var(--bg-main-secondary)] flex justify-center items-center">
+    <div className="min-h-screen p-4 bg-white flex justify-center items-center">
       {" "}
       <Form {...form}>
         <form
@@ -75,7 +75,7 @@ export default function Register() {
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black"
+                    className="text-black dark:bg-white bg-white"
                     placeholder="username"
                     {...field}
                   />
@@ -95,7 +95,7 @@ export default function Register() {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black"
+                    className="text-black dark:bg-white bg-white"
                     placeholder="email"
                     {...field}
                   />
@@ -113,8 +113,8 @@ export default function Register() {
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black"
                     placeholder="password"
+                    className="text-black dark:bg-white bg-white"
                     type="password"
                     {...field}
                   />
@@ -124,7 +124,12 @@ export default function Register() {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button
+            className="bg-black dark:bg-black text-white dark:hover:bg-slate-800 hover:bg-slate-800"
+            type="submit"
+          >
+            Submit
+          </Button>
           <div className="flex flex-col justify-center items-center gap-3">
             <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center">
               Login with Google <FcGoogle className="w-5 h-5" />
@@ -133,8 +138,8 @@ export default function Register() {
               Do you already have an account?
             </span>
             <Link className="w-full" href={"/auth/login"}>
-              <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center ">
-                login
+              <button className="w-full flex items-center rounded-md gap-2  border p-2 justify-center ">
+                Login
               </button>
             </Link>
           </div>

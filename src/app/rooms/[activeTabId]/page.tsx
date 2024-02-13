@@ -36,7 +36,7 @@ export default function Room({ params }) {
       .from("participants")
       .select("*, rooms(*)")
       .eq("user_id", user.id);
-    setUserAttendedRooms(rooms);
+    setUserAttendedRooms(rooms ? rooms : []);
     setRoomLoading(false);
   };
 
