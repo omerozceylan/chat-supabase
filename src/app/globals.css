@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --border-primary: rgb(0, 63, 56);
+    --border-primary: rgb(40, 40, 40);
   }
 
   .red:root {
