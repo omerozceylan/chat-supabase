@@ -34,8 +34,9 @@ export default function Room({ params }) {
     }
     const { data: rooms, error } = await supabase
       .from("participants")
-      .select("*, rooms(*)")
+      .select("*,rooms!inner(*)")
       .eq("user_id", user.id);
+
     setUserAttendedRooms(rooms ? rooms : []);
     setRoomLoading(false);
   };
