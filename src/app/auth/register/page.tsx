@@ -125,7 +125,7 @@ export default function Register() {
             )}
           />
           <Button
-            className="bg-black dark:bg-black text-white dark:hover:bg-slate-800 hover:bg-slate-800"
+            className="bg-black dark:bg-[#0f0f0f] text-white dark:hover:bg-slate-800 hover:bg-slate-800"
             type="submit"
           >
             Submit

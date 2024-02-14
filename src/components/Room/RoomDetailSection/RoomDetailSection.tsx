@@ -115,7 +115,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
               </PopoverTrigger>
               <PopoverContent
                 sideOffset={8}
-                className="text-black dark:bg-black dark:text-white max-h-96 overflow-y-auto w-96 px-6 py-6 select-none gap-6 dark:border-[var(--border-primary)] "
+                className="text-black dark:bg-[#0f0f0f] dark:text-white max-h-96 overflow-y-auto w-96 px-6 py-6 select-none gap-6 dark:border-[var(--border-primary)] "
               >
                 <span className=" flex flex-col gap-6">
                   <span className="font-semibold">Invite Link</span>

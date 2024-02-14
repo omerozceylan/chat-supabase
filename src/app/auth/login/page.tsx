@@ -107,7 +107,7 @@ export default function Login() {
               )}
             />
             <Button
-              className="h-9 px-3 text-sm mt-3 bg-black dark:bg-black text-white dark:hover:bg-slate-800 hover:bg-slate-800"
+              className="h-9 px-3 text-sm mt-3 bg-black dark:bg-[#0f0f0f] text-white dark:hover:bg-slate-800 hover:bg-slate-800"
               type="submit"
             >
               Submit

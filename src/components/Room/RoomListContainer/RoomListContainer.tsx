@@ -22,14 +22,14 @@ export default function RoomListContainer() {
 
   if (userLoading)
     return (
-      <div className="dark:bg-black dark:lg:border-[var(--border-primary)] bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:  lg:w-60 xl:w-72">
+      <div className="dark:bg-[#0f0f0f] dark:lg:border-[var(--border-primary)] bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r lg:  lg:w-60 xl:w-72">
         {" "}
         <Spin isLoading={userLoading} />
       </div>
     );
 
   return (
-    <div className=" dark:bg-black bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r  dark:border-[var(--border-primary)]  dark:text-foreground lg:w-60 xl:w-72">
+    <div className=" dark:bg-[#0f0f0f] bg-white text-black h-screen scrollable-area relative w-full hidden  lg:flex lg:flex-col lg:border-r  dark:border-[var(--border-primary)]  dark:text-foreground lg:w-60 xl:w-72">
       <div className=" font-semibold text-lg p-4 pb-1 flex justify-between items-center">
         <span>Rooms You Attended</span>
         <CreateRoomButton />
