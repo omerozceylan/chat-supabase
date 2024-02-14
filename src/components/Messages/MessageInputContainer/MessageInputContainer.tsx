@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { useContext, useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { supabase } from "@/supabase/client";
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 
 export default function MessageInputContainer({ onSubmit }: any) {
   const [message, setMessage] = useState(null);

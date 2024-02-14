@@ -1,6 +1,6 @@
 "use client";
 
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 import { useContext, useEffect, useRef, useState } from "react";
 
 export default function MessageView({ currentUserName = "", messages = [] }) {

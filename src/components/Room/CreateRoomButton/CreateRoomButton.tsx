@@ -1,4 +1,4 @@
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 import { useContext } from "react";
 import { FiPlusSquare } from "react-icons/fi";
 import { supabase } from "@/supabase/client";

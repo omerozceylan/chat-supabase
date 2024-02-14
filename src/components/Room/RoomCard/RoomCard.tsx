@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useContext } from "react";
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 
 export default function RoomCard({ roomName, id, onLeave }) {
   const { activeTabId } = useContext(MainContext);

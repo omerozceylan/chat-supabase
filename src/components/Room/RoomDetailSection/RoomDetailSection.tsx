@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { useRef } from "react";
 import { supabase } from "@/supabase/client";
 import { TiPlus } from "react-icons/ti";
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 import { MdCopyAll } from "react-icons/md";
 import { Separator } from "@/components/ui/separator";
 import UserInviteCard from "@/components/invite/UserInviteCard/UserInviteCard";
@@ -108,7 +108,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             <Popover>
               <PopoverTrigger>
                 {" "}
-                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-primary/80 hover:bg-primary  text-primary-foreground ">
+                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-primary/95 hover:bg-primary  text-primary-foreground ">
                   <TiPlus />
                   Invite People
                 </div>

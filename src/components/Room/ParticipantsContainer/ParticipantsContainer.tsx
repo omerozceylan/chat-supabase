@@ -1,4 +1,4 @@
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 import { supabase } from "@/supabase/client";
 import { useContext, useEffect, useState } from "react";
 

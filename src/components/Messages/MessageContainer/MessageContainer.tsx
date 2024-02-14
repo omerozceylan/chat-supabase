@@ -4,7 +4,7 @@ import { supabase } from "@/supabase/client";
 import { useContext, useEffect, useState } from "react";
 import { MessageView, MessageInputContainer, Spin } from "@/components";
 import RoomDetailSection from "@/components/Room/RoomDetailSection/RoomDetailSection";
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 
 export default function MessageContainer() {
   const [isLoading, setIsLoading] = useState(true);

@@ -3,7 +3,7 @@
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { MainContext, UserCardContext } from "@/Context";
+import { MainContext, UserCardContext } from "@/MainContext";
 import { Separator } from "@/components/ui/separator";
 import { IoMdSettings } from "react-icons/io";
 import { ToggleTheme } from "@/components";

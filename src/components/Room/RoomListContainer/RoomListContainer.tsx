@@ -2,12 +2,9 @@
 
 import { RoomCard, Spin, UserCard, CreateRoomButton } from "@/components";
 import { supabase } from "@/supabase/client";
-import { useEffect, useState } from "react";
-import { FiPlusSquare } from "react-icons/fi";
-import { MainContext } from "@/Context";
+import { MainContext } from "@/MainContext";
 import { useContext } from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 
 export default function RoomListContainer() {
   const {
