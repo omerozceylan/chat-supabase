@@ -1,18 +1,20 @@
 import { createContext } from "react";
+import { useEffect, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import { supabase } from "@/supabase/client";
+import { useSearchParams } from "next/navigation";
 
 export const MainContext = createContext("");
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/supabase/client";
 
 export default function MainContextProvider({ params, children }) {
   const router = useRouter();
-  const activeTabId = params.activeTabId;
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();
   const [userLoading, setUserLoading] = useState(true);
   const [roomLoading, setRoomLoading] = useState(true);
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
+  const searchParams = useSearchParams();
+  const activeTabId = searchParams.get("id");
 
   const getUser = async () => {
     const { data, error } = await supabase.auth.getUser();
@@ -46,8 +48,9 @@ export default function MainContextProvider({ params, children }) {
   }, [user]);
 
   const setActiveTabId = (id: number) => {
-    router.push(`/rooms/${id}`);
+    router.replace(`/rooms?id=${id}`);
   };
+
   return (
     <MainContext.Provider
       value={{
