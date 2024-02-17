@@ -15,9 +15,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Input } from "@/components/ui/input";
 
 export default function RoomDetailSection({ currentRoomName, roomId }) {
-  const { getRooms, user } = useContext(MainContext);
+  const { getRooms, user, activeTabId, isUserParticipant } =
+    useContext(MainContext);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(currentRoomName);
   const editableAreaRef = useRef(null);
@@ -29,13 +31,13 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           setIsEditing(true);
           editableAreaRef.current.focus();
         }}
-        className="hidden group-hover:block text-black/35"
+        className="hidden group-hover:block cursor-pointer text-black/35"
       />
     ),
     true: (
       <div contentEditable="false" className="flex items-center gap-2">
         <FaCheckCircle
-          className="hover:text-green-900 text-green-700"
+          className="hover:text-green-900 text-green-700 cursor-pointer"
           onClick={() => {
             handleSubmitNewRoomName();
           }}
@@ -86,10 +88,10 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             }
           }}
           className={` ${
-            isEditing
+            isEditing || !isUserParticipant
               ? "hover:"
               : "hover:bg-zinc-100 hover:text-slate-800 dark:hover:bg-primary/80"
-          } group transition-all text-slate-800 dark:text-secondary-foreground dark:duration-300 flex gap-2 items-center cursor-pointer focus:border-none outline-none rounded-xl px-2 p-1`}
+          }  group transition-all text-slate-800 dark:text-secondary-foreground dark:duration-300 flex gap-2 items-center focus:border-none outline-none rounded-xl px-2 p-1`}
         >
           <span
             ref={editableAreaRef}
@@ -103,10 +105,13 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             {currentRoomName}
           </span>
 
-          <span> {isEditingButtonVariants[isEditing]}</span>
+          <span className={`${isUserParticipant ? "" : "hidden"}`}>
+            {" "}
+            {isEditingButtonVariants[isEditing]}
+          </span>
         </span>
         <div className="flex gap-12 items-center">
-          <div>
+          <div className={`${isUserParticipant ? "" : "hidden"}`}>
             <Popover>
               <PopoverTrigger>
                 {" "}
@@ -121,12 +126,12 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
               >
                 <span className=" flex flex-col gap-6">
                   <span className="font-semibold">Invite Link</span>
-                  <div className="border dark:border-[var(--border-primary)] px-2 rounded flex justify-between items-center">
-                    <span className="">zamazingzamazingzamazingo</span>{" "}
+                  <div className="border dark:border-[var(--border-primary)] px-2 rounded flex justify-between items-center select-text">
+                    https://chat-xi-rose.vercel.app/rooms?id={activeTabId}
                     <MdCopyAll className=" text-foreground/50 w-4 h-4 cursor-pointer" />
                   </div>
                   <Separator className="dark:bg-[var(--border-primary)]" />
-                  <span className="font-semibold ">
+                  <span className="font-semibold pb-2">
                     People who request to enter this room
                   </span>
                   <UserInviteCard /> <UserInviteCard />

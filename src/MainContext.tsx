@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 
 export const MainContext = createContext("");
 
-export default function MainContextProvider({ params, children }) {
+export default function MainContextProvider({ children }) {
   const router = useRouter();
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();

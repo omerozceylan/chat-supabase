@@ -10,7 +10,7 @@ import MainContextProvider from "@/MainContext";
 export default function Room({ params }) {
   return (
     <div className="flex min-h-screen">
-      <MainContextProvider params={params}>
+      <MainContextProvider>
         <ColorThemeContext>
           <div className=" min-h-screen">
             <RoomListContainer />
