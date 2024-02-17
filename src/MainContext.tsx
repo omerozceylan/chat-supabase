@@ -10,9 +10,12 @@ export default function MainContextProvider({ params, children }) {
   const router = useRouter();
   const [roomId, setRoomId] = useState();
   const [user, setUser] = useState();
+  const [currentRoomName, setCurrentRoomName] = useState();
+  const [isUserParticipant, setIsUserParticipant] = useState(false);
   const [userLoading, setUserLoading] = useState(true);
   const [roomLoading, setRoomLoading] = useState(true);
   const [userAttendedRooms, setUserAttendedRooms] = useState([]);
+  const [currentParticipants, setCurrentParticipants] = useState();
   const searchParams = useSearchParams();
   const activeTabId = searchParams.get("id");
 
@@ -44,6 +47,13 @@ export default function MainContextProvider({ params, children }) {
   }, []);
 
   useEffect(() => {
+    if (!currentParticipants) return;
+    for (let i = 0; i < currentParticipants.length; i++) {
+      if (currentParticipants[i].user_id == user.id) setIsUserParticipant(true);
+    }
+  }, [currentParticipants]);
+
+  useEffect(() => {
     getRooms(user);
   }, [user]);
 
@@ -55,7 +65,12 @@ export default function MainContextProvider({ params, children }) {
     <MainContext.Provider
       value={{
         activeTabId,
+        currentRoomName,
+        setCurrentRoomName,
+        isUserParticipant,
         setActiveTabId,
+        currentParticipants,
+        setCurrentParticipants,
         roomId,
         getRooms,
         roomLoading,

@@ -3,15 +3,15 @@ import { supabase } from "@/supabase/client";
 import { useContext, useEffect, useState } from "react";
 
 export default function ParticipantsContainer() {
-  const { roomId } = useContext(MainContext);
-  const [participants, setParticipants] = useState([]);
+  const { roomId, currentParticipants, setCurrentParticipants } =
+    useContext(MainContext);
 
   async function getParticipants() {
     const { data: participants, error } = await supabase
       .from("participants")
       .select("*, profiles(*)")
       .eq("room_id", roomId);
-    setParticipants(participants);
+    setCurrentParticipants(participants);
   }
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function ParticipantsContainer() {
     getParticipants();
   }, [roomId]);
 
-  if (!participants)
+  if (!currentParticipants)
     return (
       <div className="dark:bg-[#0f0f0f] bg-white  dark:border-[var(--border-primary)] dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
         Participants
@@ -30,10 +30,10 @@ export default function ParticipantsContainer() {
     <div className=" dark:bg-[#0f0f0f] bg-white border-l  dark:border-[var(--border-primary)]  text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
       <div className="">
         <span className="font-semibold text-secondary-foreground">
-          Participants - {participants.length}
+          Participants - {currentParticipants.length}
         </span>
       </div>
-      {participants.map((participant) => {
+      {currentParticipants.map((participant) => {
         const userName = participant.profiles.username
           ? participant.profiles.username
           : participant.profiles.full_name;

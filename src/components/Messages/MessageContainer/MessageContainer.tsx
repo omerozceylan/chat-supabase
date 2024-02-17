@@ -10,11 +10,15 @@ export default function MessageContainer() {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState([]);
 
-  const [currentRoomName, setCurrentRoomName] = useState();
+  const {
+    activeTabId,
+    roomId,
+    setRoomId,
+    currentRoomName,
+    setCurrentRoomName,
+  } = useContext(MainContext);
 
-  const { activeTabId, roomId, setRoomId } = useContext(MainContext);
-
-  const fetchRoomByParticipantsId = async (id: any) => {
+  const fetchRoomByParticipantId = async (id: any) => {
     if (id == 0) return;
     const { data, error } = await supabase
       .from("participants")
@@ -60,7 +64,7 @@ export default function MessageContainer() {
 
   useEffect(() => {
     if (activeTabId) {
-      fetchRoomByParticipantsId(activeTabId);
+      fetchRoomByParticipantId(activeTabId);
     } else {
       setIsLoading(false);
     }
@@ -70,6 +74,7 @@ export default function MessageContainer() {
     return (
       <div className="h-screen dark:bg-[#0f0f0f] bg-white border-r   text-black"></div>
     );
+  console.log();
 
   return (
     <div className={` h-full dark:bg-[#0f0f0f] bg-white`}>

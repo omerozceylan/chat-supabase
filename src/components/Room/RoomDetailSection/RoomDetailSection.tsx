@@ -95,7 +95,9 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             ref={editableAreaRef}
             contentEditable={isEditing}
             className={` outline-none max-w-44 whitespace-nowrap overflow-hidden ${
-              isEditing ? `border-b-2 border-black min-w-12` : ``
+              isEditing
+                ? `border-b-2 border-black dark:border-white min-w-12`
+                : ``
             }`}
           >
             {currentRoomName}
@@ -108,7 +110,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
             <Popover>
               <PopoverTrigger>
                 {" "}
-                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30 before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-primary/95 hover:bg-primary  text-primary-foreground ">
+                <div className="inline-flex gap-x-2 items-center justify-between rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  h-8 px-4 py-2 relative transition-colors overflow-hidden before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-1/2 before:bg-gray-50/30  before:blur before:select-none before:translate-x-[-170%] before:skew-x-[-20deg] before:transition-transform before:duration-500 before:ease-in-out hover:before:translate-x-[220%] hover:before:skew-x-[-20deg] bg-primary/95 hover:bg-primary  text-primary-foreground ">
                   <TiPlus />
                   Invite People
                 </div>
@@ -123,7 +125,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
                     <span className="">zamazingzamazingzamazingo</span>{" "}
                     <MdCopyAll className=" text-foreground/50 w-4 h-4 cursor-pointer" />
                   </div>
-                  <Separator />
+                  <Separator className="dark:bg-[var(--border-primary)]" />
                   <span className="font-semibold ">
                     People who request to enter this room
                   </span>

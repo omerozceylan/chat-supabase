@@ -5,7 +5,13 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 export default function MessageView({ currentUserName = "", messages = [] }) {
   const messageContainerRef = useRef(null);
-  const { user } = useContext(MainContext);
+  const {
+    user,
+    roomId,
+    currentParticipants,
+    isUserParticipant,
+    currentRoomName,
+  } = useContext(MainContext);
 
   useEffect(() => {
     const scrollToBottom = () => {
@@ -15,10 +21,23 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
     scrollToBottom();
   }, [messages]);
 
+  if (!isUserParticipant)
+    return (
+      <div
+        ref={messageContainerRef}
+        className="flex flex-col items-center h-full justify-center "
+      >
+        <span className="dark:text-white font-semibold">{currentRoomName}</span>
+        <span className="dark:text-white/40 text-black/40">
+          Submit a request to enter the room
+        </span>
+      </div>
+    );
+
   return (
     <div
       ref={messageContainerRef}
-      className="flex flex-col gap-4 p-4 pt-1  h-full overflow-y-auto transition-all"
+      className="flex flex-col gap-3 pt-3 p-4   h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
         const userName =
