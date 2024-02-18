@@ -71,7 +71,7 @@ export default function MessageContainer() {
     }
   }, [activeTabId]);
 
-  if (activeTabId === 0 && !activeTabId)
+  if (activeTabId == 0 || !activeTabId)
     return (
       <div className="h-screen dark:bg-[#0f0f0f] bg-white border-r   text-black"></div>
     );

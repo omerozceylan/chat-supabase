@@ -63,7 +63,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
     const trimmedText = text.trim();
 
     if (!trimmedText) {
-      console.error("bos title gonderilemez ! <3");
+      console.log("bos title gonderilemez ! <3");
       return;
     }
 
@@ -73,7 +73,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
       .update({ room_name: trimmedText })
       .eq("id", roomId)
       .select();
-
+    console.log("trrimmmeeddd ", data, error);
     getRooms(user);
   };
 

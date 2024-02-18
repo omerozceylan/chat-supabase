@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
+import { supabase } from "@/supabase/client";
 
 export default function UserInviteCard({ userName }) {
   const [isAccepted, setIsAccepted] = useState(false);
   if (!userName) return <div></div>;
+
+  const handleAcceptInvite = async () => {
+    const { data, error } = await supabase.from("participants").update([]);
+  };
 
   return (
     <div className="flex items-center justify-between">
