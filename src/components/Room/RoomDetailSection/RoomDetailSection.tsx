@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { useRef } from "react";
 import { supabase } from "@/supabase/client";
 import { MainContext } from "@/MainContext";
-
+import { InvitesPopOver } from "@/components";
 export default function RoomDetailSection({ currentRoomName, roomId }) {
   const { getRooms, user, isUserParticipant } = useContext(MainContext);
   const [isEditing, setIsEditing] = useState(false);
@@ -100,7 +100,9 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           </span>
         </span>
         <div className="flex gap-12 items-center">
-          <div className={`${isUserParticipant ? "" : "hidden"}`}></div>
+          <div className={`${isUserParticipant ? "" : "hidden"}`}>
+            <InvitesPopOver />
+          </div>
           <PiDotsThreeBold className="cursor-pointer dark:text-white w-6 h-6" />
         </div>
       </div>

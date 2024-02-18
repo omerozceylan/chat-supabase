@@ -1,33 +1,17 @@
 import { MdCopyAll } from "react-icons/md";
 import { Separator } from "@/components/ui/separator";
-import UserInviteCard from "@/components/invite/UserInviteCard/UserInviteCard";
-const [enterRequest, setEnterRequest] = useState([]);
 import { TiPlus } from "react-icons/ti";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useContext, useEffect, useState } from "react";
-import { supabase } from "@/supabase/client";
 import { MainContext } from "@/MainContext";
+import RequestList from "../RequestList/RequestList";
+import { useContext } from "react";
 
 export default function InvitesPopOver() {
-  const { roomId } = useContext(MainContext);
-
-  const getEnterRequests = async () => {
-    const { data } = await supabase
-      .from("participants")
-      .select("*,profiles(*)")
-      .eq("room_id", roomId)
-      .eq("is_invite_accepted", false);
-    console.log(data);
-    setEnterRequest(data);
-  };
-
-  useEffect(() => {
-    getEnterRequests();
-  }, []);
+  const { activeTabId } = useContext(MainContext);
 
   return (
     <Popover>
@@ -52,18 +36,7 @@ export default function InvitesPopOver() {
           <span className="font-semibold pb-2">
             People who request to enter this room
           </span>
-          {enterRequest &&
-            enterRequest.map((req) => {
-              return (
-                <UserInviteCard
-                  userName={
-                    req.profiles.username
-                      ? req.profiles.username
-                      : req.profiles.full_name
-                  }
-                />
-              );
-            })}
+          <RequestList />
         </span>
       </PopoverContent>
     </Popover>
