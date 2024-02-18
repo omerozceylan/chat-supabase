@@ -1,3 +1,5 @@
+"use client";
+
 import { MdCopyAll } from "react-icons/md";
 import { Separator } from "@/components/ui/separator";
 import { TiPlus } from "react-icons/ti";

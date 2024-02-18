@@ -1,3 +1,5 @@
+"use client";
+
 import { PiDotsThreeBold } from "react-icons/pi";
 import { MainContext } from "@/MainContext";
 import { useContext } from "react";

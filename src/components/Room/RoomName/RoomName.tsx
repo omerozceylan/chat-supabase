@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "@/MainContext";
 import { FaCheckCircle } from "react-icons/fa";
