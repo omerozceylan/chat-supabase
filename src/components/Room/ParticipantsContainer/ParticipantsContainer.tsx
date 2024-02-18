@@ -10,7 +10,8 @@ export default function ParticipantsContainer() {
     const { data: participants, error } = await supabase
       .from("participants")
       .select("*, profiles(*)")
-      .eq("room_id", roomId);
+      .eq("room_id", roomId)
+      .eq("is_invite_accepted", true);
     setCurrentParticipants(participants);
   }
 

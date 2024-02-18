@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { FaCheckCircle } from "react-icons/fa";
 import { TbEdit } from "react-icons/tb";
@@ -21,6 +21,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
   const { getRooms, user, activeTabId, isUserParticipant } =
     useContext(MainContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [enterRequest, setEnterRequest] = useState([]);
   const [value, setValue] = useState(currentRoomName);
   const editableAreaRef = useRef(null);
 
@@ -46,7 +47,7 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
           onClick={() => {
             setIsEditing(false);
           }}
-          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary border dark:border-[var(--border-primary)] px-2"
+          className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary border dark:border-[var(--border-primary)] px-2 cursor-pointer"
         >
           <IoClose className="text-md" />
           Cancel
@@ -75,6 +76,19 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
 
     getRooms(user);
   };
+
+  useEffect(() => {
+    const getEnterRequests = async () => {
+      const { data } = await supabase
+        .from("participants")
+        .select("*,profiles(*)")
+        .eq("room_id", roomId)
+        .eq("is_invite_accepted", false);
+      console.log(data);
+      setEnterRequest(data);
+    };
+    getEnterRequests();
+  }, []);
 
   return (
     <div className="z-20 px-6 font-semibold  text-md p-4">
@@ -134,8 +148,18 @@ export default function RoomDetailSection({ currentRoomName, roomId }) {
                   <span className="font-semibold pb-2">
                     People who request to enter this room
                   </span>
-                  <UserInviteCard /> <UserInviteCard />
-                  <UserInviteCard /> <UserInviteCard />
+                  {enterRequest &&
+                    enterRequest.map((req) => {
+                      return (
+                        <UserInviteCard
+                          userName={
+                            req.profiles.username
+                              ? req.profiles.username
+                              : req.profiles.full_name
+                          }
+                        />
+                      );
+                    })}
                 </span>
               </PopoverContent>
             </Popover>

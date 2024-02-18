@@ -1,9 +1,11 @@
 "use client";
 
 import { MainContext } from "@/MainContext";
+import { Button } from "@/components/ui/button";
 import { useContext, useEffect, useRef, useState } from "react";
+import { supabase } from "@/supabase/client";
 
-export default function MessageView({ currentUserName = "", messages = [] }) {
+export default function MessageView({ messages = [] }) {
   const messageContainerRef = useRef(null);
   const {
     user,
@@ -21,16 +23,34 @@ export default function MessageView({ currentUserName = "", messages = [] }) {
     scrollToBottom();
   }, [messages]);
 
+  const relationUserToTheRoom = async () => {
+    const { data, error } = await supabase
+      .from("participants")
+      .insert([{ room_id: roomId, user_id: user.id }])
+      .select();
+    console.log(roomId, user.id);
+
+    console.log("data: ", data, " error ", error);
+  };
+
   if (!isUserParticipant)
     return (
       <div
         ref={messageContainerRef}
-        className="flex flex-col items-center h-full justify-center "
+        className="flex flex-col  items-center h-full justify-center "
       >
         <span className="dark:text-white font-semibold">{currentRoomName}</span>
         <span className="dark:text-white/40 text-black/40">
           Submit a request to enter the room
         </span>
+        <Button
+          onClick={() => {
+            relationUserToTheRoom();
+          }}
+          className="dark:bg-[#0f0f0f] dark:text-white dark:hover:bg-white/5 border border-[var(--border-primary)] px-3 h-8 mt-2"
+        >
+          Request
+        </Button>
       </div>
     );
 

@@ -3,15 +3,17 @@
 import { useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 
-export default function UserInviteCard() {
+export default function UserInviteCard({ userName }) {
   const [isAccepted, setIsAccepted] = useState(false);
+  if (!userName) return <div></div>;
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex gap-3 items-center">
         <div className="w-9 h-9 flex items-center justify-center text-white bg-black dark:bg-secondary rounded-full">
-          O
+          {userName.charAt(0).toUpperCase()}
         </div>
-        <span className="w-32 truncate overflow-hidden">Omer Ozceylan</span>
+        <span className="w-32 truncate overflow-hidden">{userName}</span>
       </div>
       <button
         onClick={() => {

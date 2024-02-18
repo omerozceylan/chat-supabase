@@ -15,6 +15,7 @@ export default function MessageContainer() {
     roomId,
     setRoomId,
     currentRoomName,
+    isUserParticipant,
     setCurrentRoomName,
   } = useContext(MainContext);
 
@@ -74,7 +75,6 @@ export default function MessageContainer() {
     return (
       <div className="h-screen dark:bg-[#0f0f0f] bg-white border-r   text-black"></div>
     );
-  console.log();
 
   return (
     <div className={` h-full dark:bg-[#0f0f0f] bg-white`}>
@@ -94,13 +94,15 @@ export default function MessageContainer() {
             <MessageView messages={messages} />
           </div>
 
-          <div className="bg-[var(--background)] p-6 pt-1 mt-2">
-            <MessageInputContainer
-              onSubmit={(message) => {
-                handleMessageSending(message);
-              }}
-            />
-          </div>
+          {isUserParticipant && (
+            <div className=" p-6 pt-1 mt-2">
+              <MessageInputContainer
+                onSubmit={(message) => {
+                  handleMessageSending(message);
+                }}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

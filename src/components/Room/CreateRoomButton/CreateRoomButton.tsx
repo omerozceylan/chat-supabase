@@ -18,7 +18,9 @@ export default function CreateRoomButton() {
   async function relationUserToRoom(roomId) {
     const { data, error } = await supabase
       .from("participants")
-      .insert([{ room_id: roomId, user_id: user.id }]);
+      .insert([
+        { room_id: roomId, user_id: user.id, is_invite_accepted: true },
+      ]);
     getRooms(user);
   }
 

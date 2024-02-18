@@ -36,7 +36,10 @@ export default function MainContextProvider({ children }) {
     const { data: rooms, error } = await supabase
       .from("participants")
       .select("*,rooms!inner(*)")
-      .eq("user_id", user.id);
+      .eq("user_id", user.id)
+      .eq("is_invite_accepted", true);
+
+    console.log(rooms);
 
     setUserAttendedRooms(rooms ? rooms : []);
     setRoomLoading(false);
