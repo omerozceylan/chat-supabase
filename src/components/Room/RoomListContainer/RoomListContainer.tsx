@@ -66,13 +66,11 @@ export default function wRoomListContainer() {
               >
                 <RoomCard
                   onLeave={async (participantsId) => {
-                    console.log("participants id on delete ", participantsId);
                     const { data, error } = await supabase
                       .from("participants")
                       .delete()
                       .eq("id", participantsId);
 
-                    console.log(data);
                     if (error) console.log(error);
                     getRooms(user);
                     setActiveTabId(0);

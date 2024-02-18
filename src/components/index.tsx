@@ -13,6 +13,8 @@ import { ColorPicker, ToggleTheme } from "./UserMenu";
 
 import Spin from "./Loading/Spin";
 
+import { UserInviteCard, InvitesPopOver } from "./invite";
+
 export {
   ToggleTheme,
   CreateRoomButton,
@@ -25,4 +27,6 @@ export {
   Spin,
   ColorPicker,
   MessageInputContainer,
+  UserInviteCard,
+  InvitesPopOver,
 };
