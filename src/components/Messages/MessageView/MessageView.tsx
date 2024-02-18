@@ -28,9 +28,6 @@ export default function MessageView({ messages = [] }) {
       .from("participants")
       .insert([{ room_id: roomId, user_id: user.id }])
       .select();
-    console.log(roomId, user.id);
-
-    console.log("data: ", data, " error ", error);
   };
 
   if (!isUserParticipant)

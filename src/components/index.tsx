@@ -15,6 +15,8 @@ import Spin from "./Loading/Spin";
 
 import { UserInviteCard, InvitesPopOver } from "./invite";
 
+import { RoomName } from "./Room";
+
 export {
   ToggleTheme,
   CreateRoomButton,
@@ -29,4 +31,5 @@ export {
   MessageInputContainer,
   UserInviteCard,
   InvitesPopOver,
+  RoomName,
 };

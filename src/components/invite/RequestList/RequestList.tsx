@@ -13,8 +13,7 @@ export default function RequestList() {
       .select("*,profiles(*)")
       .eq("room_id", roomId)
       .eq("is_invite_accepted", false);
-    console.log(data);
-    console.log("mounteddd");
+
     setEnterRequest(data);
   };
 

@@ -39,8 +39,6 @@ export default function MainContextProvider({ children }) {
       .eq("user_id", user.id)
       .eq("is_invite_accepted", true);
 
-    console.log(rooms);
-
     setUserAttendedRooms(rooms ? rooms : []);
     setRoomLoading(false);
   };
