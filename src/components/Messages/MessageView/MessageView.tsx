@@ -76,7 +76,7 @@ export default function MessageView({ messages = [] }) {
                 isOwner ? "hidden" : ""
               }`}
             >
-              {data.user_name ? data.user_name.charAt(0) : ""}
+              {data.user_name ? data.user_name.charAt(0).toUpperCase() : ""}
             </div>
             <span
               className={`relative ml-3 text-sm  py-2 px-4 shadow rounded-xl text-wrap whitespace-normal break-words max-w-[500px] scroll-mb-80 font-light	${
