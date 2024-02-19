@@ -57,7 +57,9 @@ export default function UserCard() {
             <div className="w-7 h-7 text-white bg-slate-800 flex items-center justify-center rounded-md">
               <ToggleTheme />
             </div>
-            <span className="text-sm font-thin">{user.email}</span>
+            <span className="text-sm  dark:text-white/40 text-black/40">
+              {user.email}
+            </span>
             {/* <span className="text-sm">Choose Your Theme.</span>
             <ColorPicker /> */}
             <span className="text-sm"> </span>
