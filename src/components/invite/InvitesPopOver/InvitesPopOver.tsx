@@ -1,6 +1,5 @@
 "use client";
 
-import { MdCopyAll } from "react-icons/md";
 import { Separator } from "@/components/ui/separator";
 import { TiPlus } from "react-icons/ti";
 import {
@@ -8,13 +7,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { MainContext } from "@/MainContext";
 import RequestList from "../RequestList/RequestList";
-import { useContext } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function InvitesPopOver() {
-  const { activeTabId } = useContext(MainContext);
-
   return (
     <Popover>
       <PopoverTrigger>
@@ -30,10 +31,7 @@ export default function InvitesPopOver() {
       >
         <span className=" flex flex-col gap-6">
           <span className="font-semibold">Invite Link</span>
-          <div className="border dark:border-[var(--border-primary)] px-2 rounded flex justify-between items-center select-text">
-            https://chat-xi-rose.vercel.app/rooms?id={activeTabId}
-            <MdCopyAll className=" text-foreground/50 w-4 h-4 cursor-pointer" />
-          </div>
+
           <Separator className="dark:bg-[var(--border-primary)]" />
           <span className="font-semibold pb-2">
             People who request to enter this room

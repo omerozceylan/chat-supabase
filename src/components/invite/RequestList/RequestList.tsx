@@ -29,9 +29,17 @@ export default function RequestList() {
 
   const viewsByDataStatus = {
     empty: (
-      <div className="w-full flex justify-start dark:text-white/40 text-black/40">
-        Empty (No one wants to chat with you lol)
-      </div>
+      <>
+        {isLoading ? (
+          <div className="dark:text-white/40 text-black/40">loading...</div>
+        ) : (
+          <div
+            className={`w-full flex justify-start dark:text-white/40 text-black/40 `}
+          >
+            Empty
+          </div>
+        )}
+      </>
     ),
     notEmpty: (
       <div>
