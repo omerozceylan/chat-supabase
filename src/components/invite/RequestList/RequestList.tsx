@@ -17,7 +17,7 @@ export default function RequestList() {
       .select("*,profiles(*)")
       .eq("room_id", roomId)
       .eq("is_invite_accepted", false);
-
+    console.log(data, roomId);
     setEnterRequests(data);
     if (data.length > 0) setDataStatus("notEmpty");
     setIsLoading(false);
