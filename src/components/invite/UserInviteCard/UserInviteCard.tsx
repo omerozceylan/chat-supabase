@@ -1,16 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 import { supabase } from "@/supabase/client";
 
-export default function UserInviteCard({ userName }) {
+export default function UserInviteCard({
+  userName,
+  userId,
+  roomId,
+  participantId,
+}) {
   const [isAccepted, setIsAccepted] = useState(false);
   if (!userName) return <div></div>;
 
   const handleAcceptInvite = async () => {
-    const { data, error } = await supabase.from("participants").update([]);
+    const { data, error } = await supabase
+      .from("participants")
+      .update({ is_invite_accepted: true })
+      .eq("id", participantId)
+      .select();
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="flex items-center justify-between">
@@ -28,7 +39,11 @@ export default function UserInviteCard({ userName }) {
           isAccepted ? " dark:bg-zinc-200 dark:text-black " : ""
         }`}
       >
-        {isAccepted ? <MdOutlineDone className="w-5 h-5" /> : <div>Accept</div>}
+        {isAccepted ? (
+          <MdOutlineDone className="w-5 h-5" />
+        ) : (
+          <div onClick={handleAcceptInvite}>Accept</div>
+        )}
       </button>
     </div>
   );
