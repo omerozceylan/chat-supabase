@@ -73,7 +73,7 @@ export default function MessageContainer() {
 
   if (activeTabId == 0 || !activeTabId)
     return (
-      <div className="h-screen dark:bg-[#0f0f0f] bg-white border-r   text-black"></div>
+      <div className="h-screen dark:bg-[#0f0f0f] bg-white text-black"></div>
     );
 
   return (
