@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/Context/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html className="gray" lang="en">
       <body className={cn("min-h-screen  bg-white roboto-regular")}>
+        <Toaster />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -1,6 +1,9 @@
+"use client";
+
 import { MainContext } from "@/MainContext";
 import { useContext } from "react";
 import { MdCopyAll } from "react-icons/md";
+import { toast } from "sonner";
 
 export default function RoomLinkInput() {
   const { activeTabId } = useContext(MainContext);
@@ -13,6 +16,7 @@ export default function RoomLinkInput() {
       <MdCopyAll
         onClick={() => {
           navigator.clipboard.writeText(link);
+          toast.success("Link Copied To Clipboard! :)");
         }}
         className="active:text-black dark:active:text-white select-none text-foreground/50 w-4 h-4 cursor-pointer"
       />
