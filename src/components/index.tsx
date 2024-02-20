@@ -13,7 +13,7 @@ import { ColorPicker, ToggleTheme } from "./UserMenu";
 
 import Spin from "./Loading/Spin";
 
-import { UserInviteCard, InvitesPopOver } from "./invite";
+import { UserInviteCard, InvitesPopOver, RoomLinkInput } from "./invite";
 
 import { RoomName } from "./Room";
 
@@ -32,4 +32,5 @@ export {
   UserInviteCard,
   InvitesPopOver,
   RoomName,
+  RoomLinkInput,
 };

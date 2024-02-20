@@ -8,12 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import RequestList from "../RequestList/RequestList";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { RoomLinkInput } from "..";
 
 export default function InvitesPopOver() {
   return (
@@ -31,7 +26,7 @@ export default function InvitesPopOver() {
       >
         <span className=" flex flex-col gap-6">
           <span className="font-semibold">Invite Link</span>
-
+          <RoomLinkInput />
           <Separator className="dark:bg-[var(--border-primary)]" />
           <span className="font-semibold pb-2">
             People who request to enter this room
