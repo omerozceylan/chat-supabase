@@ -16,7 +16,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         unstyled: true,
         classNames: {
           toast:
-            "bg-white text-black w-[356px] rounded-md  dark:text-white dark:bg-[#0f0f0f] border-[var(--border-primary)] flex gap-2 shadow-xl items-center px-4 py-[14px] border",
+            "bg-white text-black w-[356px] rounded-md  dark:text-white dark:bg-[#0f0f0f] dark:border-[var(--border-primary)] flex gap-2 shadow-xl items-center px-4 py-[14px] border",
           title: "text-red-400 whitespace w-full text-sm ",
           description: "text-red-400",
           actionButton: "bg-zinc-400",
