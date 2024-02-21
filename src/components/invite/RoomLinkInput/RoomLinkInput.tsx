@@ -17,10 +17,10 @@ export default function RoomLinkInput() {
         onClick={() => {
           navigator.clipboard.writeText(link);
           toast.success("Link Copied To Clipboard!", {
-            className: "dark:bg-[#0f0f0f]",
+            className: "dark:bg-[#0f0f0f] bg-white",
           });
         }}
-        className="active:text-black dark:active:text-white select-none text-foreground/50 w-4 h-4 cursor-pointer"
+        className="active:text-black   dark:active:text-white select-none text-foreground/50 w-4 h-4 cursor-pointer"
       />
     </div>
   );
