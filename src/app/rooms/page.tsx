@@ -1,13 +1,12 @@
 "use client";
 
 import { RoomListContainer } from "@/components";
-import { useSearchParams } from "next/navigation";
 import ColorThemeContext from "@/Context/ColorThemeProvider";
 import { MessageContainer } from "@/components";
 import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
 import MainContextProvider from "@/MainContext";
 
-export default function Room({ params }) {
+export default function Room() {
   return (
     <div className="flex min-h-screen">
       <MainContextProvider>
