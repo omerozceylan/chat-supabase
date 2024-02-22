@@ -34,6 +34,7 @@ export default function NoneParticipantUserView() {
 
   useEffect(() => {
     const checkIfRequested = async () => {
+      setIsLoading(true);
       const { data, error } = await supabase
         .from("participants")
         .select()
@@ -42,9 +43,11 @@ export default function NoneParticipantUserView() {
 
       if (data.length <= 0) {
         setIsRequested(false);
+        setIsLoading(false);
         return;
       }
       setIsRequested(true);
+      setIsLoading(false);
     };
 
     checkIfRequested();
@@ -53,12 +56,14 @@ export default function NoneParticipantUserView() {
   return (
     <div className="flex flex-col  items-center h-full justify-center ">
       {isLoading ? (
-        <>
-          <Skeleton className="w-[200px] h-[20px] rounded-full" />
-        </>
+        <div className="flex flex-col gap-5 items-center">
+          <Skeleton className="w-[300px] h-[20px] rounded-full" />
+          <Skeleton className="w-[350px] h-[20px] rounded-full" />
+          <Skeleton className="w-[100px] h-[20px] rounded-full" />
+        </div>
       ) : (
         <>
-          <span className="dark:text-white font-semibold">
+          <span className="dark:text-white font-semibold transition-all">
             {currentRoomName}
           </span>
           {infoTextByRequestState[isRequested]}
