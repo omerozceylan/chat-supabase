@@ -21,7 +21,6 @@ export default function CreateRoomButton() {
       .insert([{ room_id: roomId, user_id: user.id, is_invite_accepted: true }])
       .select();
 
-    console.log(data);
     getRooms(user);
     setActiveTabId(data[0].id);
   }
