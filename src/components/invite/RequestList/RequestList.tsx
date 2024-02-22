@@ -49,21 +49,23 @@ export default function RequestList() {
           {isLoading && (
             <div className="dark:text-white/40 text-black/40">loading...</div>
           )}
-          {enterRequests &&
-            enterRequests.map((req) => {
-              return (
-                <UserInviteCard
-                  userName={
-                    req.profiles.username
-                      ? req.profiles.username
-                      : req.profiles.full_name
-                  }
-                  roomId={req.room_id}
-                  userId={req.user_id}
-                  participantId={req.id}
-                />
-              );
-            })}
+          <div className="flex flex-col gap-5">
+            {enterRequests &&
+              enterRequests.map((req) => {
+                return (
+                  <UserInviteCard
+                    userName={
+                      req.profiles.username
+                        ? req.profiles.username
+                        : req.profiles.full_name
+                    }
+                    roomId={req.room_id}
+                    userId={req.user_id}
+                    participantId={req.id}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
     ),

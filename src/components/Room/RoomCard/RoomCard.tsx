@@ -33,12 +33,12 @@ export default function RoomCard({ roomName, id, onLeave }) {
               <PiDotsThreeBold className="w-6 h-6" />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className=" border dark:border-[var(--border-primary)]  ">
+          <DropdownMenuContent className="dark:bg-[#0f0f0f] border dark:border-[var(--border-primary)]  ">
             <DropdownMenuItem
               onClick={() => {
                 onLeave(id);
               }}
-              className="text-red-500 cursor-pointer hover:text-red-500"
+              className="text-red-500 dark:bg-[#0f0f0f] hover:dark:bg-[#0f0f0f] cursor-pointer "
             >
               Leave
             </DropdownMenuItem>

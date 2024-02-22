@@ -20,7 +20,7 @@ export default function RoomLinkInput() {
             className: "dark:bg-[#0f0f0f] bg-white",
           });
         }}
-        className="active:text-black   dark:active:text-white select-none text-foreground/50 w-4 h-4 cursor-pointer"
+        className="active:text-black  hover:text-zinc-400 dark:active:text-white select-none text-foreground/50 w-5 h-5 cursor-pointer"
       />
     </div>
   );
