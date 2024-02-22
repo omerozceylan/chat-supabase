@@ -4,7 +4,7 @@ import { FiPlusSquare } from "react-icons/fi";
 import { supabase } from "@/supabase/client";
 
 export default function CreateRoomButton() {
-  const { user, getRooms } = useContext(MainContext);
+  const { user, getRooms, setActiveTabId } = useContext(MainContext);
 
   async function addRoom(roomName) {
     const { data, error } = await supabase
@@ -18,10 +18,12 @@ export default function CreateRoomButton() {
   async function relationUserToRoom(roomId) {
     const { data, error } = await supabase
       .from("participants")
-      .insert([
-        { room_id: roomId, user_id: user.id, is_invite_accepted: true },
-      ]);
+      .insert([{ room_id: roomId, user_id: user.id, is_invite_accepted: true }])
+      .select();
+
+    console.log(data);
     getRooms(user);
+    setActiveTabId(data[0].id);
   }
 
   if (!user) return <div></div>;

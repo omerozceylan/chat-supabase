@@ -1,3 +1,5 @@
+"use client";
+
 import { MainContext } from "@/MainContext";
 import { Button } from "@/components/ui/button";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -60,27 +62,30 @@ export default function NoneParticipantUserView() {
     <div className="flex flex-col  items-center h-full justify-center ">
       <span className="dark:text-white font-semibold">{currentRoomName}</span>
       {infoTextByRequestState[isRequested]}
-      <Button
-        onClick={() => {
-          relationUserToTheRoom();
-        }}
-        className={`${
-          isRequested
-            ? "bg-zinc-800 cursor-default border-zinc-800 hover:bg-zinc-800"
-            : "dark:hover:bg-white/5 border border-[var(--border-primary)] bg-[#0f0f0f]"
-        }  dark:text-white  relative px-3 h-8 mt-2`}
-      >
-        {isRequested ? (
-          <div>Requested</div>
-        ) : (
-          <>
-            <div className={`${isLoading ? "blur-sm" : ""} `}>Request</div>
-            {isLoading && (
-              <div className="inline-block m-auto w-5 h-5  border-[3px] md:border-[4px] border-t-zinc-300 absolute border-zinc-500 dark:border-white/100 dark:border-t-zinc-600 rounded-full animate-spin inset-0"></div>
-            )}
-          </>
-        )}
-      </Button>
     </div>
   );
+}
+
+{
+  /* <Button
+onClick={() => {
+  relationUserToTheRoom();
+}}
+className={`${
+  isRequested
+    ? "bg-zinc-800 cursor-default border-zinc-800 hover:bg-zinc-800"
+    : "dark:hover:bg-white/5 border border-[var(--border-primary)] bg-[#0f0f0f]"
+}  dark:text-white  relative px-3 h-8 mt-2`}
+>
+{isRequested ? (
+  <div>Requested</div>
+) : (
+  <>
+    <div className={`${isLoading ? "blur-sm" : ""} `}>Request</div>
+    {isLoading && (
+      <div className="inline-block m-auto w-5 h-5  border-[3px] md:border-[4px] border-t-zinc-300 absolute border-zinc-500 dark:border-white/100 dark:border-t-zinc-600 rounded-full animate-spin inset-0"></div>
+    )}
+  </>
+)}
+</Button> */
 }
