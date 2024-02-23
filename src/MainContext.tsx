@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext } from "react";
 import { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
@@ -8,9 +10,9 @@ export const MainContext = createContext("");
 
 export default function MainContextProvider({ children }) {
   const router = useRouter();
-  const [roomId, setRoomId] = useState();
-  const [user, setUser] = useState();
-  const [currentRoomName, setCurrentRoomName] = useState();
+  const [roomId, setRoomId] = useState(null);
+  const [user, setUser] = useState(null);
+  const [currentRoomName, setCurrentRoomName] = useState(null);
   const [isUserParticipant, setIsUserParticipant] = useState(false);
   const [userLoading, setUserLoading] = useState(true);
   const [roomLoading, setRoomLoading] = useState(true);
