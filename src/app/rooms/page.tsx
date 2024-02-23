@@ -10,7 +10,7 @@ import { Suspense } from "react";
 export default function Room() {
   return (
     <div className="flex min-h-screen">
-      <Suspense>
+      <Suspense fallback={<LoadingFallBack />}>
         <MainContextProvider>
           <ColorThemeContext>
             <div className=" min-h-screen">

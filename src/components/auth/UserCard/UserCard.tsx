@@ -24,7 +24,7 @@ export default function UserCard() {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    router.push("/");
+    router.push("https://chat-xi-rose.vercel.app/");
   }
 
   if (!user) return <div></div>;

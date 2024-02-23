@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="gray" suppressHydrationWarning>
+    <html lang="en" className="gray">
       <body className={cn("min-h-screen  bg-white roboto-regular")}>
         <Toaster />
         <ThemeProvider

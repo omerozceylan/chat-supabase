@@ -80,7 +80,7 @@ export default function RoomName() {
           isEditing || !isUserParticipant
             ? "hover:"
             : "hover:bg-zinc-100 hover:text-slate-800 dark:hover:bg-primary/80"
-        }  group transition-all text-slate-800 dark:text-secondary-foreground dark:duration-300 flex gap-2 items-center focus:border-none outline-none rounded-xl px-2 p-1`}
+        }  group transition-all text-slate-800 dark:text-white dark:duration-300 flex gap-2 items-center focus:border-none outline-none rounded-xl px-2 p-1`}
       >
         <span
           ref={editableAreaRef}
