@@ -53,7 +53,7 @@ export default function Login() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://chat-xi-rose.vercel.app/rooms/0",
+        redirectTo: "https://chat-xi-rose.vercel.app/rooms",
         queryParams: {
           access_type: "offline",
           prompt: "consent",

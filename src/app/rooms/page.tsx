@@ -5,7 +5,6 @@ import ColorThemeContext from "@/Context/ColorThemeProvider";
 import { MessageContainer } from "@/components";
 import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
 import MainContextProvider from "@/MainContext";
-import { supabase } from "@/supabase/client";
 import { Suspense } from "react";
 
 export default function Room() {
