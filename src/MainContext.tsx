@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext } from "react";
 import { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";

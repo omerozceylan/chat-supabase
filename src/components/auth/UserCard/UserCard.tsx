@@ -54,7 +54,7 @@ export default function UserCard() {
         >
           <div className="p-1 px-3 flex flex-col gap-y-2 mb-2">
             <span className="font-semibold py-1">User Settings</span>
-            <div className="w-7 h-7 text-white bg-slate-800 flex items-center justify-center rounded-md">
+            <div className="w-7 h-7 text-white bg-neutral-800 flex items-center justify-center rounded-md">
               <ToggleTheme />
             </div>
             <span className="text-sm  dark:text-white/40 text-black/40">

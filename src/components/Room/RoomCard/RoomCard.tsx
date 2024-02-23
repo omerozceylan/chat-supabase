@@ -19,8 +19,8 @@ export default function RoomCard({ roomName, id, onLeave }) {
     <div
       className={`flex items-center text-black gap-3  group rounded-lg p-2 transition-all overflow-hidden whitespace-nowrap ${
         isActive
-          ? "bg-primary dark:bg-primary/80 text-primary-foreground hover:bg-primary/90"
-          : "hover:bg-primary/80  dark:text-foreground hover:text-primary-foreground"
+          ? "bg-neutral-800 dark:bg-neutral-800 text-white hover:bg-primary/90"
+          : "hover:bg-neutral-700  dark:text-white hover:text-white"
       }`}
     >
       <div className="flex justify-between  w-full px-2 pr-1">
