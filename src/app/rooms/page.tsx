@@ -6,7 +6,6 @@ import { MessageContainer } from "@/components";
 import ParticipantsContainer from "@/components/Room/ParticipantsContainer/ParticipantsContainer";
 import MainContextProvider from "@/MainContext";
 import { Suspense } from "react";
-// export const dynamic = "force-dynamic";
 
 export default function Room() {
   return (
@@ -28,4 +27,8 @@ export default function Room() {
       </Suspense>
     </div>
   );
+}
+
+function LoadingFallBack() {
+  return <div>loading</div>;
 }

@@ -25,6 +25,8 @@ const colors = [
 
 export const ColorContext = createContext("");
 
+interface colorThemeTypes {}
+
 export default function ColorThemeContext({ children }) {
   const { theme } = useTheme();
   const [checkedBoxId, setCheckedBoxId] = useState();
@@ -37,7 +39,7 @@ export default function ColorThemeContext({ children }) {
     const colorById = colors.find((color) => color.id == id).name;
 
     setCheckedBoxId(id);
-    document.documentElement.className = `${colorById} ${theme}`;
+    // document.documentElement.className = `${colorById} ${theme}`;
   }, []);
 
   return (
