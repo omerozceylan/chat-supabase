@@ -78,14 +78,14 @@ export default function RoomName() {
         }}
         className={` ${
           isEditing || !isUserParticipant
-            ? "hover:"
+            ? "hover: dark:hover:text-white"
             : "hover:bg-zinc-100 hover:text-slate-800 dark:hover:bg-primary/80"
-        }  group transition-all text-slate-800 dark:text-white dark:duration-300 flex gap-2 items-center focus:border-none outline-none rounded-xl px-2 p-1`}
+        }  group transition-all text-slate-800 dark:hover:text-black dark:text-white dark:duration-300 flex gap-2 items-center focus:border-none outline-none rounded-xl px-2 p-1`}
       >
         <span
           ref={editableAreaRef}
           contentEditable={isEditing}
-          className={` outline-none max-w-44 whitespace-nowrap overflow-hidden ${
+          className={` outline-none max-w-44 whitespace-nowrap  overflow-hidden ${
             isEditing
               ? `border-b-2 border-black dark:border-white min-w-12`
               : ``
