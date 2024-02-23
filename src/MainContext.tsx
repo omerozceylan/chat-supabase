@@ -2,7 +2,7 @@
 
 import { createContext } from "react";
 import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/supabase/client";
 import { useSearchParams } from "next/navigation";
 
