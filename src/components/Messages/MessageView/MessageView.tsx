@@ -1,9 +1,8 @@
 "use client";
 
 import { MainContext } from "@/MainContext";
-import { Button } from "@/components/ui/button";
-import { useContext, useEffect, useRef, useState } from "react";
-import { supabase } from "@/supabase/client";
+import { useContext, useEffect, useRef } from "react";
+import { VList } from "virtua";
 import NoneParticipantUserView from "../NoneParticipantUserView/NoneParticipantUserView";
 
 export default function MessageView({ messages = [] }) {
@@ -20,8 +19,11 @@ export default function MessageView({ messages = [] }) {
   useEffect(() => {
     if (!messageContainerRef.current) return;
     const scrollToBottom = () => {
-      messageContainerRef.current.scrollTop =
-        messageContainerRef.current.scrollHeight;
+      messageContainerRef.current?.scrollToIndex(
+        messageContainerRef.current.scrollTop
+      );
+      // messageContainerRef.current.scrollTop =
+      //   ;
     };
     scrollToBottom();
   }, [messages]);
@@ -29,8 +31,10 @@ export default function MessageView({ messages = [] }) {
   if (!isUserParticipant) return <NoneParticipantUserView />;
 
   return (
-    <div
+    <VList
       ref={messageContainerRef}
+      // style={{ gap: "2px" }}
+      reverse
       className="flex flex-col gap-3 pt-3 p-4   h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
@@ -46,7 +50,9 @@ export default function MessageView({ messages = [] }) {
         return (
           <div
             key={data.user_name}
-            className={`flex items-end pr-2 ${isOwner ? "justify-end" : ""}`}
+            className={`flex items-end mt-1 mb-1 pr-2 ${
+              isOwner ? "justify-end" : ""
+            }`}
           >
             <div
               className={`  dark:bg-secondary bg-secondary-foreground text-white rounded-2xl w-8 h-8 flex justify-center items-center ${
@@ -66,7 +72,7 @@ export default function MessageView({ messages = [] }) {
             </span>
           </div>
         );
-      })}
-    </div>
+      })}{" "}
+    </VList>
   );
 }
