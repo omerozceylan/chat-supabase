@@ -28,9 +28,7 @@ export default function InvitesPopOver() {
           <span className="font-semibold">Invite Link</span>
           <RoomLinkInput />
           <Separator className="dark:bg-[var(--border-primary)]" />
-          <span className="font-semibold pb-2">
-            People who request to enter this room
-          </span>
+          <span className="font-semibold pb-2">Requests</span>
           <RequestList />
         </span>
       </PopoverContent>
