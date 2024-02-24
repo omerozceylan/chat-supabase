@@ -19,11 +19,8 @@ export default function MessageView({ messages = [] }) {
   useEffect(() => {
     if (!messageContainerRef.current) return;
     const scrollToBottom = () => {
-      messageContainerRef.current?.scrollToIndex(
-        messageContainerRef.current.scrollTop
-      );
-      // messageContainerRef.current.scrollTop =
-      //   ;
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
     };
     scrollToBottom();
   }, [messages]);
@@ -31,10 +28,8 @@ export default function MessageView({ messages = [] }) {
   if (!isUserParticipant) return <NoneParticipantUserView />;
 
   return (
-    <VList
+    <div
       ref={messageContainerRef}
-      // style={{ gap: "2px" }}
-      reverse
       className="flex flex-col gap-3 pt-3 p-4   h-full overflow-y-auto transition-all"
     >
       {messages.map((data) => {
@@ -73,6 +68,6 @@ export default function MessageView({ messages = [] }) {
           </div>
         );
       })}{" "}
-    </VList>
+    </div>
   );
 }
