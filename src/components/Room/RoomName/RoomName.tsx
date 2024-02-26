@@ -10,8 +10,14 @@ import { supabase } from "@/supabase/client";
 
 export default function RoomName() {
   const [isEditing, setIsEditing] = useState(false);
-  const { getRooms, currentRoomName, user, roomId, isUserParticipant } =
-    useContext(MainContext);
+  const {
+    getRooms,
+    currentRoomName,
+    user,
+    roomId,
+    setCurrentRoomName,
+    isUserParticipant,
+  } = useContext(MainContext);
   const [value, setValue] = useState(currentRoomName);
   const editableAreaRef = useRef(null);
 
@@ -21,7 +27,6 @@ export default function RoomName() {
         onClick={() => {
           setIsEditing(true);
           editableAreaRef.current.focus();
-          setValue(value);
         }}
         className="hidden group-hover:block cursor-pointer text-black/35"
       />
@@ -58,6 +63,7 @@ export default function RoomName() {
       return;
     }
 
+    setCurrentRoomName(trimmedText);
     setIsEditing(false);
     const { data, error } = await supabase
       .from("rooms")

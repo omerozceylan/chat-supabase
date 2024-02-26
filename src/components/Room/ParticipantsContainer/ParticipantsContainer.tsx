@@ -24,7 +24,7 @@ export default function ParticipantsContainer() {
 
   if (!currentParticipants)
     return (
-      <div className="dark:bg-[#0f0f0f] bg-white  dark:border-[var(--border-primary)] dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
+      <div className="dark:bg-[#0f0f0f] bg-white border-l dark:border-[var(--border-primary)] dark:text-white text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col font-semibold lg:w-60 xl:w-72 p-4 gap-6">
         Participants
       </div>
     );

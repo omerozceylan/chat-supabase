@@ -45,9 +45,7 @@ export default function MessageView({ messages = [] }) {
         return (
           <div
             key={data.user_name}
-            className={`flex items-end mt-1 mb-1 pr-2 ${
-              isOwner ? "justify-end" : ""
-            }`}
+            className={`flex items-end pr-2 ${isOwner ? "justify-end" : ""}`}
           >
             <div
               className={`  dark:bg-secondary bg-secondary-foreground text-white rounded-2xl w-8 h-8 flex justify-center items-center ${
