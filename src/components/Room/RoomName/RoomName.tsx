@@ -21,6 +21,7 @@ export default function RoomName() {
         onClick={() => {
           setIsEditing(true);
           editableAreaRef.current.focus();
+          setValue(value);
         }}
         className="hidden group-hover:block cursor-pointer text-black/35"
       />
@@ -36,6 +37,7 @@ export default function RoomName() {
         <div
           onClick={() => {
             setIsEditing(false);
+            editableAreaRef.current.textContent = currentRoomName;
           }}
           className="flex items-center text-sm select-none rounded-lg bg-white dark:bg-secondary border dark:border-[var(--border-primary)] px-2 cursor-pointer"
         >
@@ -91,7 +93,7 @@ export default function RoomName() {
               : ``
           }`}
         >
-          {currentRoomName}
+          {value}
         </span>
 
         <span className={`${isUserParticipant ? "" : "hidden"}`}>
