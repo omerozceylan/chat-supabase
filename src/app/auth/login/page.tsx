@@ -65,9 +65,9 @@ export default function Login() {
   return (
     <div className="min-h-screen p-4 bg-white flex justify-center items-center">
       {" "}
-      <div></div>
+      {/* <div>Login/Sigin</div> */}
       <div className="space-y-6 bg-white text-black p-4 w-80 rounded-lg border">
-        <Form {...form}>
+        {/* <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
             <FormField
               control={form.control}
@@ -113,7 +113,9 @@ export default function Login() {
               Submit
             </Button>
           </form>
-        </Form>
+        </Form> */}
+        <div className="">Log in / Sign in</div>
+
         <div className="flex flex-col justify-center items-center gap-3">
           <button
             onClick={() => {
@@ -123,14 +125,14 @@ export default function Login() {
           >
             Login with Google <FcGoogle className="w-5 h-5" />
           </button>
-          <span className="font-semibold text-sm">
+          {/* <span className="font-semibold text-sm">
             Don't you have an account?
           </span>
           <Link className="w-full" href={"/auth/register"}>
             <button className="w-full flex items-center rounded-md gap-2 bg-[var(--bg-main-secondary)] hover:bg-[var(--bg-main-primary)] border p-2 justify-center ">
               register
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
