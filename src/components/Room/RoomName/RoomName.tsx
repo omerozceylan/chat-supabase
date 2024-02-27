@@ -95,7 +95,7 @@ export default function RoomName() {
           contentEditable={isEditing}
           className={` outline-none max-w-44 whitespace-nowrap  overflow-hidden ${
             isEditing
-              ? `border-b-2 border-black dark:border-white min-w-12`
+              ? `border-b-2 border-black dark:border-white select-none min-w-12`
               : ``
           }`}
         >

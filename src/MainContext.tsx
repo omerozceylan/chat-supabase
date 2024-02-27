@@ -64,6 +64,39 @@ export default function MainContextProvider({ children }) {
     router.replace(`/rooms?id=${id}`);
   };
 
+  supabase
+    .channel("custom-all-channel")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "participants",
+        filter: `room_id=eq.${roomId}`,
+      },
+      (payload) => {
+        if (payload.eventType == "INSERT") {
+          const userId = payload.new.user_id;
+
+          const getUserById = async () => {
+            let { data: profile, error } = await supabase
+              .from("profiles")
+              .select("*")
+              .eq("id", userId);
+            const payloadWithProfile = [
+              ...currentParticipants,
+              { ...payload.new, profiles: profile[0] },
+            ];
+
+            setCurrentParticipants(payloadWithProfile);
+          };
+          getUserById();
+          getRooms(user);
+        }
+      }
+    )
+    .subscribe();
+
   return (
     <MainContext.Provider
       value={{
