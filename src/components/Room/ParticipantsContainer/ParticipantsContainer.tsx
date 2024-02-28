@@ -29,6 +29,8 @@ export default function ParticipantsContainer() {
       </div>
     );
 
+  console.log(currentParticipants);
+
   return (
     <div className=" dark:bg-[#0f0f0f] bg-white border-l  dark:border-[var(--border-primary)]  text-black h-screen scrollable-area relative w-full hidden lg:flex lg:flex-col  lg:w-60 xl:w-72 p-4 gap-6">
       <div className="">
@@ -40,6 +42,7 @@ export default function ParticipantsContainer() {
         const userName = participant.profiles.username
           ? participant.profiles.username
           : participant.profiles.full_name;
+        if (participant.is_invite_accepted == false) return <div></div>;
         return (
           <div className="flex gap-3 items-center">
             <div className=" dark:bg-secondary bg-black w-8 h-8 flex items-center text-white justify-center text-md  rounded-full">

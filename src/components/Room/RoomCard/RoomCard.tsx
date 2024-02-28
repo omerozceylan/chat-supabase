@@ -7,13 +7,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MainContext } from "@/MainContext";
 
 export default function RoomCard({ roomName, id, onLeave }) {
   const { activeTabId } = useContext(MainContext);
+  const [isActive, setIsActive] = useState(id == activeTabId);
 
-  const isActive = id == activeTabId;
+  // useEffect(() => {
+  //   setIsActive
+  // }, [activeTabId]);
 
   return (
     <div

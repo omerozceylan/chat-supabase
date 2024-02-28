@@ -55,10 +55,11 @@ export default function MainContextProvider({ children }) {
       if (currentParticipants[i].user_id == user.id) setIsUserParticipant(true);
     }
   }, [currentParticipants]);
+  console.log(currentParticipants);
 
   useEffect(() => {
     getRooms(user);
-  }, [user]);
+  }, [user, currentParticipants]);
 
   const setActiveTabId = (id: number) => {
     router.replace(`/rooms?id=${id}`);
@@ -87,11 +88,10 @@ export default function MainContextProvider({ children }) {
               ...currentParticipants,
               { ...payload.new, profiles: profile[0] },
             ];
-
+            console.log(payloadWithProfile);
             setCurrentParticipants(payloadWithProfile);
           };
           getUserById();
-          getRooms(user);
         }
       }
     )

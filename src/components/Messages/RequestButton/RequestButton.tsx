@@ -49,7 +49,7 @@ export default function RequestButton({
       </Button>
     ),
     true: (
-      <Button className="bg-zinc-800 cursor-default border-zinc-800 hover:bg-zinc-800 dark:text-white  relative px-3 h-8 mt-2">
+      <Button className="bg-zinc-800 opacity-50 cursor-default border-zinc-800 hover:bg-zinc-800 dark:text-white  relative px-3 h-8 mt-2">
         Requested
       </Button>
     ),
