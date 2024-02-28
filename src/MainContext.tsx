@@ -20,7 +20,6 @@ export default function MainContextProvider({ children }) {
   const [currentParticipants, setCurrentParticipants] = useState();
   const searchParams = useSearchParams();
   const activeTabId = searchParams.get("id");
-
   const getUser = async () => {
     const { data, error } = await supabase.auth.getUser();
     const { user } = data;
@@ -55,7 +54,6 @@ export default function MainContextProvider({ children }) {
       if (currentParticipants[i].user_id == user.id) setIsUserParticipant(true);
     }
   }, [currentParticipants]);
-  console.log(currentParticipants);
 
   useEffect(() => {
     getRooms(user);
@@ -77,6 +75,8 @@ export default function MainContextProvider({ children }) {
       },
       (payload) => {
         if (payload.eventType == "INSERT") {
+          console.log("Request SIGNED");
+          return;
           const userId = payload.new.user_id;
 
           const getUserById = async () => {
@@ -92,6 +92,23 @@ export default function MainContextProvider({ children }) {
             setCurrentParticipants(payloadWithProfile);
           };
           getUserById();
+        } else if (payload.eventType == "UPDATE") {
+          const userId = payload.new.user_id;
+
+          const getUserById = async () => {
+            let { data: profile, error } = await supabase
+              .from("profiles")
+              .select("*")
+              .eq("id", userId);
+            const payloadWithProfile = [
+              ...currentParticipants,
+              { ...payload.new, profiles: profile[0] },
+            ];
+            console.log(payloadWithProfile);
+            setCurrentParticipants(payloadWithProfile);
+          };
+          getUserById();
+          console.log(payload);
         }
       }
     )
