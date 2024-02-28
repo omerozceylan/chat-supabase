@@ -76,6 +76,7 @@ export default function MainContextProvider({ children }) {
       (payload) => {
         if (payload.eventType == "INSERT") {
           console.log("Request SIGNED");
+          //invite button badge code here
           return;
           const userId = payload.new.user_id;
 
@@ -100,15 +101,17 @@ export default function MainContextProvider({ children }) {
               .from("profiles")
               .select("*")
               .eq("id", userId);
+
             const payloadWithProfile = [
               ...currentParticipants,
               { ...payload.new, profiles: profile[0] },
             ];
-            console.log(payloadWithProfile);
+            console.log(payload.new.id);
+            setActiveTabId(payload.new.id);
             setCurrentParticipants(payloadWithProfile);
           };
+
           getUserById();
-          console.log(payload);
         }
       }
     )

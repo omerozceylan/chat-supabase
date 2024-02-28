@@ -11,12 +11,8 @@ import { useContext, useEffect, useState } from "react";
 import { MainContext } from "@/MainContext";
 
 export default function RoomCard({ roomName, id, onLeave }) {
-  const { activeTabId } = useContext(MainContext);
+  const { activeTabId, setActiveTabId } = useContext(MainContext);
   const [isActive, setIsActive] = useState(id == activeTabId);
-
-  // useEffect(() => {
-  //   setIsActive
-  // }, [activeTabId]);
 
   return (
     <div
